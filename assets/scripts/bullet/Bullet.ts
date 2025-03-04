@@ -15,7 +15,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class Bullet extends cc.Component {
     @property
-    attack: number = 2;  //攻击力
+    attack: number = 2;  //攻击力  
 
     private _plane!: Plane;
     private _weapon!: Weapon;
