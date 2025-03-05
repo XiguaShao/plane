@@ -10,9 +10,6 @@ function getEndPoint(rotation: number, r: number): cc.Vec2 {
     return cc.v2(x, y);
 }
 
-
-
-
 const { ccclass, property } = cc._decorator;
 
 @ccclass
