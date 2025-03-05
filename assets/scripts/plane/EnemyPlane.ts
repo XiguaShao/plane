@@ -62,5 +62,3 @@ export default class EnemyPlane extends Plane {
         super._playDestroy();
     }
 }
-
-cc.warn = function(){}

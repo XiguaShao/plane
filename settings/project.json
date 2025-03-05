@@ -86,26 +86,35 @@
   "design-resolution-height": 640,
   "design-resolution-width": 960,
   "excluded-modules": [
-    "AudioSource",
     "Canvas Renderer",
+    "LabelOutline",
+    "Mask",
+    "Graphics",
+    "TiledMap",
+    "Spine Skeleton",
     "DragonBones",
-    "Geom Utils",
+    "RichText",
     "MotionStreak",
-    "Native Socket",
+    "ScrollBar",
+    "ScrollView",
+    "Toggle",
     "PageView",
     "PageViewIndicator",
     "Slider",
-    "ScrollBar",
-    "ScrollView",
-    "Spine Skeleton",
-    "StudioComponent",
-    "TiledMap",
+    "EditBox",
+    "VideoPlayer",
     "WebView",
+    "AudioSource",
+    "Physics",
+    "StudioComponent",
+    "Native Socket",
+    "Geom Utils",
     "3D",
     "3D Primitive",
     "3D Physics/cannon.js",
     "3D Physics/Builtin",
-    "3D Particle"
+    "3D Particle",
+    "SafeArea"
   ],
   "facebook": {
     "appID": "",
@@ -131,7 +140,7 @@
     "player-bullet",
     "item"
   ],
-  "last-module-event-record-time": 1740968512574,
+  "last-module-event-record-time": 1607064818593,
   "simulator-orientation": false,
   "simulator-resolution": {
     "height": 640,
@@ -139,8 +148,8 @@
   },
   "use-customize-simulator": true,
   "use-project-simulator-setting": false,
+  "start-scene": "current",
   "migrate-history": [
     "cloud-function"
-  ],
-  "start-scene": "current"
+  ]
 }

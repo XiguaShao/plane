@@ -1,5 +1,4 @@
 const { ccclass, property } = cc._decorator;
-const _ = require('lodash')
 
 @ccclass
 export default class Plane extends cc.Component {

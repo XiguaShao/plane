@@ -69,7 +69,7 @@ export default class Weapon extends cc.Component {
         const node = cc.instantiate(this.bulletPrefab);
         const p = this.node.convertToWorldSpaceAR(cc.v2(0, 0));
         node.position = cc.v3(this.node.parent.convertToNodeSpaceAR(p).add(this.offset));
-        node.rotation = this.rotation + this.node.rotation;
+        node.angle = this.node.angle - this.rotation;
         node.parent = this.node.parent;
 
         if (this.node.group === 'player') {

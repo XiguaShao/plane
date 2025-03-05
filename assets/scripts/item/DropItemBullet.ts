@@ -1,11 +1,7 @@
-import DropItem from './DropItem';
+import DropItem from './DropItem';  // Keep this import
 import Weapon from '../weapon/Weapon';
 
 const { ccclass } = cc._decorator;
-
-// let weaponParams = ['bulletPrefab', 'offset', 'rotation', 'rate', 'speed', 'count']
-// let fanWeaponParams = weaponParams.concat();
-// let spinWeaponParams = weaponParams.concat(['spinMin', 'spinMax', 'spinSpeed']);
 
 @ccclass
 export default class DropItemBullet extends DropItem {

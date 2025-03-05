@@ -11,7 +11,7 @@ function getRotation(startPoint: Vec2Like, endPoint: Vec2Like, offset: number = 
     //与Y轴的夹角弧度
     const radian = Math.atan2(x, y);
     const rotation = (180 * radian / Math.PI) % 360 + offset;
-    return -rotation;
+    return rotation;
 }
 
 @ccclass
@@ -32,7 +32,7 @@ export default class UpdateRotation extends cc.Component {
             const rotation = getRotation(this.samplePoint, this.node.position, this.offsetRotation);
             this.samplePoint = this.node.position;
             
-            this.node.angle = rotation;
+            this.node.angle = -rotation;
         }
     }
 }

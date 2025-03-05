@@ -15,7 +15,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class Bullet extends cc.Component {
     @property
-    attack: number = 2;  //攻击力  
+    attack: number = 2;  //攻击力
 
     private _plane!: Plane;
     private _weapon!: Weapon;
@@ -23,9 +23,9 @@ export default class Bullet extends cc.Component {
     private _getMoveAction(weapon: Weapon): cc.ActionInterval {
         let distance: number, endPoint: cc.Vec2, moveAction: cc.ActionInterval;
         if (this._plane.node.group !== 'player') {
-            this.node.rotation += 180;
+            this.node.angle = this.node.angle - 180;
         }
-        endPoint = getEndPoint(this.node.rotation, cc.winSize.height).add(cc.v2(this.node.position.x, this.node.position.y));
+        endPoint = getEndPoint(-this.node.angle, cc.winSize.height).add(cc.v2(this.node.position.x, this.node.position.y));
         distance = endPoint.sub(cc.v2(this.node.position.x, this.node.position.y)).mag();
         const duration = distance / weapon.speed;
         moveAction = cc.moveTo(duration, endPoint);
@@ -35,6 +35,7 @@ export default class Bullet extends cc.Component {
     run(plane: Plane, weapon: Weapon): void {
         this._plane = plane;
         this._weapon = weapon;
+
         const moveAction = this._getMoveAction(weapon); 
         const removeSelf = cc.removeSelf();
         const action = cc.sequence(moveAction, removeSelf);

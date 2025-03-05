@@ -112,7 +112,7 @@ export default class GeneratorPlane extends cc.Component {
             plane.parent = this.target;
             plane.position = cc.v3(pathConfig.points[0][0]);
             const duration = (groupConfig.duration || 0) / pathConfig.points.length;
-            const actions = pathConfig.points.map(param => {
+            const actions: any[] = pathConfig.points.map(param => {
                 const array = param.slice(1).map(p => cc.v2(p));
                 return cc.bezierTo(duration, array);
             });
@@ -129,7 +129,7 @@ export default class GeneratorPlane extends cc.Component {
                     }
                 }
             });
-            actions.push(cc.sequence(callFunc, cc.callFunc(()=>{}))); // 将 callFunc 包装在 sequence 中以满足 ActionInterval 类型要求
+            actions.push(callFunc); // 将 callFunc 包装在 sequence 中以满足 ActionInterval 类型要求
             plane.runAction(cc.sequence(actions));
             this.scheduleOnce(() => cb(null, plane), groupConfig.interval || 0);
 
@@ -137,7 +137,7 @@ export default class GeneratorPlane extends cc.Component {
             plane.on('shoot-down', () => {
                 if (plane.isValid) {
                     destroyCount++;
-                    // cc.log('shoot-down', destroyCount);
+                    cc.log('shoot-down', destroyCount);
                     if (!groupConfig.nextWave && destroyCount >= (groupConfig.count || 0)) {
                         callback();
                     }
@@ -179,7 +179,7 @@ export default class GeneratorPlane extends cc.Component {
             plane.on('shoot-down', () => {
                 if (plane.isValid) {
                     destroyCount++;
-                    // cc.log('shoot-down', destroyCount);
+                    cc.log('shoot-down', destroyCount);
                     if (!groupConfig.nextWave && destroyCount >= array.length) {
                         callback();
                     }

@@ -16,8 +16,9 @@ export default class FanWeapon extends Weapon {
         _.forEach(_.range(0, this.count), (index) => {
             const bullet = this._createBullet();
             if (bullet && bullet.node) {
-                bullet.node.rotation = startRotation + index * this.rotation;
-                bullet.node.zIndex = Math.abs(bullet.node.rotation);
+                let curRotation = startRotation + index * this.rotation;
+                bullet.node.angle = -curRotation;
+                bullet.node.zIndex = Math.abs(bullet.node.angle);
                 bullet.run(this.plane, this);
             }
         });

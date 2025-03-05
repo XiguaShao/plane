@@ -1,0 +1,398 @@
+{
+   "1": {
+      "rank": 1,
+      "experience": 100
+   },
+   "2": {
+      "rank": 2,
+      "experience": 300
+   },
+   "3": {
+      "rank": 3,
+      "experience": 600
+   },
+   "4": {
+      "rank": 4,
+      "experience": 1000
+   },
+   "5": {
+      "rank": 5,
+      "experience": 2000
+   },
+   "6": {
+      "rank": 6,
+      "experience": 5000
+   },
+   "7": {
+      "rank": 7,
+      "experience": 5400
+   },
+   "8": {
+      "rank": 8,
+      "experience": 6300
+   },
+   "9": {
+      "rank": 9,
+      "experience": 7100
+   },
+   "10": {
+      "rank": 10,
+      "experience": 8000
+   },
+   "11": {
+      "rank": 11,
+      "experience": 8800
+   },
+   "12": {
+      "rank": 12,
+      "experience": 9700
+   },
+   "13": {
+      "rank": 13,
+      "experience": 10500
+   },
+   "14": {
+      "rank": 14,
+      "experience": 11400
+   },
+   "15": {
+      "rank": 15,
+      "experience": 12300
+   },
+   "16": {
+      "rank": 16,
+      "experience": 13100
+   },
+   "17": {
+      "rank": 17,
+      "experience": 14000
+   },
+   "18": {
+      "rank": 18,
+      "experience": 14800
+   },
+   "19": {
+      "rank": 19,
+      "experience": 15700
+   },
+   "20": {
+      "rank": 20,
+      "experience": 16500
+   },
+   "21": {
+      "rank": 21,
+      "experience": 17400
+   },
+   "22": {
+      "rank": 22,
+      "experience": 18300
+   },
+   "23": {
+      "rank": 23,
+      "experience": 19100
+   },
+   "24": {
+      "rank": 24,
+      "experience": 20000
+   },
+   "25": {
+      "rank": 25,
+      "experience": 20800
+   },
+   "26": {
+      "rank": 26,
+      "experience": 21700
+   },
+   "27": {
+      "rank": 27,
+      "experience": 22500
+   },
+   "28": {
+      "rank": 28,
+      "experience": 23400
+   },
+   "29": {
+      "rank": 29,
+      "experience": 24300
+   },
+   "30": {
+      "rank": 30,
+      "experience": 25100
+   },
+   "31": {
+      "rank": 31,
+      "experience": 26000
+   },
+   "32": {
+      "rank": 32,
+      "experience": 26800
+   },
+   "33": {
+      "rank": 33,
+      "experience": 27700
+   },
+   "34": {
+      "rank": 34,
+      "experience": 28500
+   },
+   "35": {
+      "rank": 35,
+      "experience": 29400
+   },
+   "36": {
+      "rank": 36,
+      "experience": 30300
+   },
+   "37": {
+      "rank": 37,
+      "experience": 31100
+   },
+   "38": {
+      "rank": 38,
+      "experience": 32000
+   },
+   "39": {
+      "rank": 39,
+      "experience": 32800
+   },
+   "40": {
+      "rank": 40,
+      "experience": 33700
+   },
+   "41": {
+      "rank": 41,
+      "experience": 34500
+   },
+   "42": {
+      "rank": 42,
+      "experience": 35400
+   },
+   "43": {
+      "rank": 43,
+      "experience": 36300
+   },
+   "44": {
+      "rank": 44,
+      "experience": 37100
+   },
+   "45": {
+      "rank": 45,
+      "experience": 38000
+   },
+   "46": {
+      "rank": 46,
+      "experience": 38800
+   },
+   "47": {
+      "rank": 47,
+      "experience": 39700
+   },
+   "48": {
+      "rank": 48,
+      "experience": 40500
+   },
+   "49": {
+      "rank": 49,
+      "experience": 41400
+   },
+   "50": {
+      "rank": 50,
+      "experience": 42300
+   },
+   "51": {
+      "rank": 51,
+      "experience": 43100
+   },
+   "52": {
+      "rank": 52,
+      "experience": 44000
+   },
+   "53": {
+      "rank": 53,
+      "experience": 44800
+   },
+   "54": {
+      "rank": 54,
+      "experience": 45700
+   },
+   "55": {
+      "rank": 55,
+      "experience": 46500
+   },
+   "56": {
+      "rank": 56,
+      "experience": 47400
+   },
+   "57": {
+      "rank": 57,
+      "experience": 48300
+   },
+   "58": {
+      "rank": 58,
+      "experience": 49100
+   },
+   "59": {
+      "rank": 59,
+      "experience": 50000
+   },
+   "60": {
+      "rank": 60,
+      "experience": 50800
+   },
+   "61": {
+      "rank": 61,
+      "experience": 51700
+   },
+   "62": {
+      "rank": 62,
+      "experience": 52500
+   },
+   "63": {
+      "rank": 63,
+      "experience": 53400
+   },
+   "64": {
+      "rank": 64,
+      "experience": 54300
+   },
+   "65": {
+      "rank": 65,
+      "experience": 55100
+   },
+   "66": {
+      "rank": 66,
+      "experience": 56000
+   },
+   "67": {
+      "rank": 67,
+      "experience": 56800
+   },
+   "68": {
+      "rank": 68,
+      "experience": 57700
+   },
+   "69": {
+      "rank": 69,
+      "experience": 58500
+   },
+   "70": {
+      "rank": 70,
+      "experience": 59400
+   },
+   "71": {
+      "rank": 71,
+      "experience": 60300
+   },
+   "72": {
+      "rank": 72,
+      "experience": 61100
+   },
+   "73": {
+      "rank": 73,
+      "experience": 62000
+   },
+   "74": {
+      "rank": 74,
+      "experience": 62800
+   },
+   "75": {
+      "rank": 75,
+      "experience": 63700
+   },
+   "76": {
+      "rank": 76,
+      "experience": 64500
+   },
+   "77": {
+      "rank": 77,
+      "experience": 65400
+   },
+   "78": {
+      "rank": 78,
+      "experience": 66300
+   },
+   "79": {
+      "rank": 79,
+      "experience": 67100
+   },
+   "80": {
+      "rank": 80,
+      "experience": 68000
+   },
+   "81": {
+      "rank": 81,
+      "experience": 68800
+   },
+   "82": {
+      "rank": 82,
+      "experience": 69700
+   },
+   "83": {
+      "rank": 83,
+      "experience": 70500
+   },
+   "84": {
+      "rank": 84,
+      "experience": 71400
+   },
+   "85": {
+      "rank": 85,
+      "experience": 72300
+   },
+   "86": {
+      "rank": 86,
+      "experience": 73100
+   },
+   "87": {
+      "rank": 87,
+      "experience": 74000
+   },
+   "88": {
+      "rank": 88,
+      "experience": 74800
+   },
+   "89": {
+      "rank": 89,
+      "experience": 75700
+   },
+   "90": {
+      "rank": 90,
+      "experience": 76500
+   },
+   "91": {
+      "rank": 91,
+      "experience": 77400
+   },
+   "92": {
+      "rank": 92,
+      "experience": 78300
+   },
+   "93": {
+      "rank": 93,
+      "experience": 79100
+   },
+   "94": {
+      "rank": 94,
+      "experience": 80000
+   },
+   "95": {
+      "rank": 95,
+      "experience": 80800
+   },
+   "96": {
+      "rank": 96,
+      "experience": 81700
+   },
+   "97": {
+      "rank": 97,
+      "experience": 82500
+   },
+   "98": {
+      "rank": 98,
+      "experience": 83350
+   },
+   "99": {
+      "rank": 99,
+      "experience": 84200
+   }
+}
