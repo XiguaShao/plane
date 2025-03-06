@@ -33,7 +33,7 @@ function generateStartPoints(): cc.Vec2[] {
         for (let j = 0; j < 7; j++) {
             const x = startX + unitX * j;
             const y = startY - unitY * i;
-            array.push(cc.v2(x, y));  
+            array.push(cc.v2(x, y));
         }
     }
     return array;
@@ -60,6 +60,7 @@ export default class GeneratorPlane extends cc.Component {
     target: cc.Node | null = null;            //生成飞机的父节点的 
 
     private _startPoints: cc.Vec2[] = [];
+    private _waves: GroupConfig[][] = [];
 
     start(): void {
         if (!this.stageAsset) return;
@@ -70,16 +71,20 @@ export default class GeneratorPlane extends cc.Component {
 
     init(waves: GroupConfig[][]): void {
         this._startPoints = generateStartPoints();
-        
-        async.eachSeries(waves, (waveConfig: GroupConfig[], cb) => {
+        this._waves = waves;
+    }
+
+    startGame() {
+        async.eachSeries(this._waves, (waveConfig: GroupConfig[], cb) => {
             this._waveGenerate(waveConfig, cb);
         }, () => {
-            cc.game.emit('pass-stage', this, waves);
+            cc.game.emit('pass-stage', this, this._waves);
         });
     }
 
+
     private _getStartPos(index: number): cc.Vec3 {
-        return cc.v3(this._startPoints[index]);            
+        return cc.v3(this._startPoints[index]);
     }
 
     private _waveGenerate(waveConfig: GroupConfig[], callback: () => void): void {
@@ -87,9 +92,9 @@ export default class GeneratorPlane extends cc.Component {
             if (groupConfig.nextWave === undefined) {
                 groupConfig.nextWave = true;
             }
-            
+
             if (groupConfig.type === 'sequence') {
-                this._sequenceGenerate(groupConfig, cb);    
+                this._sequenceGenerate(groupConfig, cb);
             } else if (groupConfig.type === 'spawn') {
                 this._spawnGenerate(groupConfig, cb);
             } else if (groupConfig.type === 'sleep') {
@@ -146,7 +151,7 @@ export default class GeneratorPlane extends cc.Component {
         }, () => {
             if (groupConfig.nextWave) {
                 callback();
-            }     
+            }
         });
     }
 
