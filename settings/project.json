@@ -83,8 +83,8 @@
       false
     ]
   ],
-  "design-resolution-height": 640,
-  "design-resolution-width": 960,
+  "design-resolution-height": 1280,
+  "design-resolution-width": 720,
   "excluded-modules": [
     "Canvas Renderer",
     "LabelOutline",
@@ -126,8 +126,8 @@
       "enable": false
     }
   },
-  "fit-height": true,
-  "fit-width": false,
+  "fit-height": false,
+  "fit-width": true,
   "group-list": [
     "default",
     "far",
@@ -148,7 +148,7 @@
   },
   "use-customize-simulator": true,
   "use-project-simulator-setting": false,
-  "start-scene": "current",
+  "start-scene": "bbbf63ad-c530-47b0-a126-af9a3607ec25",
   "migrate-history": [
     "cloud-function"
   ]

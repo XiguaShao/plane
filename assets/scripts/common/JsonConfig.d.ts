@@ -75,7 +75,7 @@ export interface PropCfg {
    colliderParam:object,
 }
 
-export interface Stage2Cfg { 
+export interface StageCfg { 
    /** 波次ID */
    id:string,
    /** 波次序列 */

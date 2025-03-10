@@ -74,7 +74,7 @@ export default class FormationEditor extends cc.Component {
                 // 添加点击事件
                 // 修改点击事件绑定
                 const currentIndex = index;  // 保存当前索引
-                cell.addComponent(cc.Button);  // 添加按钮组件使节点可点击
+                // cell.addComponent(cc.Button);  // 添加按钮组件使节点可点击
                 cell.on(cc.Node.EventType.TOUCH_START, () => {
                     this._onCellClick(currentIndex, sprite);
                 }, this);
@@ -97,14 +97,16 @@ export default class FormationEditor extends cc.Component {
     }
     
     private _updateSpriteColor(sprite: cc.Sprite, color: cc.Color): void {
+        sprite.spriteFrame.setTexture(null);
         const texture = new cc.Texture2D();
         const buffer = new Uint8Array(4);
         buffer[0] = color.r;
         buffer[1] = color.g;
         buffer[2] = color.b;
-        buffer[3] = color.a;
+        buffer[3] = 255;
         texture.initWithData(buffer, cc.Texture2D.PixelFormat.RGBA8888, 1, 1);
         sprite.spriteFrame.setTexture(texture);
+        sprite.node.setContentSize(this.cellSize, this.cellSize);
         sprite.node.color = color;
     }
     
