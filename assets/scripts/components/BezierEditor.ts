@@ -21,14 +21,148 @@ export default class BezierEditor extends cc.Component {
     pointPrefab: cc.Prefab | null = null;
     @property(cc.Graphics)
     graphics: cc.Graphics | null = null;
+    @property(cc.Button)
+    resetButton: cc.Button | null = null;
+    @property
+    isLineMode: boolean = false;  // 是否为直线模式
+
     private points: cc.Node[] = [];
     private isDragging: boolean = false;
     private selectedPoint: cc.Node | null = null;
     @property(cc.Button)
-    resetButton: cc.Button | null = null;
+    hMirrorButton: cc.Button | null = null;    // 水平镜像按钮
+    @property(cc.Button)
+    vMirrorButton: cc.Button | null = null;    // 垂直镜像按钮
+
     onLoad(): void {
         this._initEvents();
         this._initResetButton();
+        this._initMirrorButtons();
+        // 初始化时绘制标尺
+        this._drawRuler();
+    }
+
+    @property(cc.Prefab)
+    labelPrefab: cc.Prefab | null = null;    // Add this property for label prefab
+
+    private scaleLabels: cc.Node[] = [];      // Add this property to track labels
+
+    private _drawRuler(): void {
+        if (!this.graphics || !this.canvas) return;
+
+        // Clear old labels
+        this.scaleLabels.forEach(label => label.destroy());
+        this.scaleLabels = [];
+
+        this.graphics.clear();
+        const width = this.canvas.width;
+        const height = this.canvas.height;
+        const step = 50;
+        const majorStep = 100; // 主要刻度间隔
+
+        // Draw grid lines
+        this.graphics.strokeColor = new cc.Color(128, 128, 128, 80);
+        this.graphics.lineWidth = 2;
+
+        // Draw vertical lines and scale
+        for (let x = 0; x <= width/2; x += step) {
+            // 绘制所有50间隔的线
+            this.graphics.moveTo(x, -height/2);
+            this.graphics.lineTo(x, height/2);
+            this.graphics.moveTo(-x, -height/2);
+            this.graphics.lineTo(-x, height/2);
+            
+            // 只在100的倍数处添加刻度标签
+            if (x % majorStep === 0 && x !== 0 && this.labelPrefab) {
+                const rightLabel = cc.instantiate(this.labelPrefab);
+                rightLabel.getComponent(cc.Label).string = x.toString();
+                rightLabel.parent = this.canvas;
+                rightLabel.position = cc.v3(x, 10, 0);
+                this.scaleLabels.push(rightLabel);
+
+                const leftLabel = cc.instantiate(this.labelPrefab);
+                leftLabel.getComponent(cc.Label).string = (-x).toString();
+                leftLabel.parent = this.canvas;
+                leftLabel.position = cc.v3(-x, 10, 0);
+                this.scaleLabels.push(leftLabel);
+            }
+        }
+
+        // Draw horizontal lines and scale
+        for (let y = 0; y <= height/2; y += step) {
+            // 绘制所有50间隔的线
+            this.graphics.moveTo(-width/2, y);
+            this.graphics.lineTo(width/2, y);
+            this.graphics.moveTo(-width/2, -y);
+            this.graphics.lineTo(width/2, -y);
+            
+            // 只在100的倍数处添加刻度标签
+            if (y % majorStep === 0 && y !== 0 && this.labelPrefab) {
+                const topLabel = cc.instantiate(this.labelPrefab);
+                topLabel.getComponent(cc.Label).string = y.toString();
+                topLabel.parent = this.canvas;
+                topLabel.position = cc.v3(10, y, 0);
+                this.scaleLabels.push(topLabel);
+
+                const bottomLabel = cc.instantiate(this.labelPrefab);
+                bottomLabel.getComponent(cc.Label).string = (-y).toString();
+                bottomLabel.parent = this.canvas;
+                bottomLabel.position = cc.v3(10, -y, 0);
+                this.scaleLabels.push(bottomLabel);
+            }
+        }
+        this.graphics.stroke();
+
+        // Draw center point and cross lines
+        this.graphics.strokeColor = cc.Color.YELLOW;
+        this.graphics.fillColor = cc.Color.YELLOW;
+        this.graphics.circle(0, 0, 5);
+        this.graphics.fill();
+        this.graphics.stroke();
+
+        // Draw center cross lines
+        this.graphics.strokeColor = cc.Color.RED;
+        this.graphics.lineWidth = 2;
+        this.graphics.moveTo(-width/2, 0);
+        this.graphics.lineTo(width/2, 0);
+        this.graphics.moveTo(0, -height/2);
+        this.graphics.lineTo(0, height/2);
+        this.graphics.stroke();
+
+        // Add origin label (0,0)
+        if (this.labelPrefab) {
+            const originLabel = cc.instantiate(this.labelPrefab);
+            originLabel.getComponent(cc.Label).string = "0";
+            originLabel.parent = this.canvas;
+            originLabel.position = cc.v3(10, 10, 0);
+            this.scaleLabels.push(originLabel);
+        }
+    }
+    private _initMirrorButtons(): void {
+        if (this.hMirrorButton) {
+            this.hMirrorButton.node.on('click', this._onHorizontalMirror, this);
+        }
+        if (this.vMirrorButton) {
+            this.vMirrorButton.node.on('click', this._onVerticalMirror, this);
+        }
+    }
+
+    private _onHorizontalMirror(): void {
+        if (this.points.length === 0) return;
+        
+        this.points.forEach(point => {
+            point.position = cc.v3(-point.position.x, point.position.y, point.position.z);
+        });
+        this._updateCurve();
+    }
+
+    private _onVerticalMirror(): void {
+        if (this.points.length === 0) return;
+        
+        this.points.forEach(point => {
+            point.position = cc.v3(point.position.x, -point.position.y, point.position.z);
+        });
+        this._updateCurve();
     }
     private _initResetButton(): void {
         if (!this.resetButton) return;
@@ -93,16 +227,41 @@ export default class BezierEditor extends cc.Component {
     }
 
     private _updateCurve(): void {
-        if (!this.graphics || 
-            this.points.length < 4 || 
-            (this.points.length - 4) < 0 || 
-            (this.points.length - 4) % 3 !== 0) return;
+        if (!this.graphics) return;
 
         this.graphics.clear();
+        
+        // 绘制标尺线
+        this._drawRuler();
+
+        // 绘制路径
+        if (this.points.length < 2) return;
         this.graphics.strokeColor = cc.Color.GREEN;
         this.graphics.lineWidth = 2;
 
-        // 按每4个点为一组绘制贝塞尔曲线
+        if (this.isLineMode) {
+            this._drawLines();
+        } else {
+            if (this.points.length < 4 || (this.points.length - 4) % 3 !== 0) return;
+            this._drawBezier();
+        }
+        
+        this.graphics.stroke();
+        this.exportPath();
+    }
+
+    private _drawLines(): void {
+        // 绘制直线
+        for (let i = 0; i < this.points.length - 1; i++) {
+            const p0 = this.points[i].position;
+            const p1 = this.points[i + 1].position;
+            this.graphics.moveTo(p0.x, p0.y);
+            this.graphics.lineTo(p1.x, p1.y);
+        }
+    }
+
+    private _drawBezier(): void {
+        // 原有的贝塞尔曲线绘制逻辑
         for (let i = 0; i < this.points.length - 3; i += 3) {
             const p0 = i === 0 ? this.points[0].position : this.points[i].position;
             const p1 = this.points[i + 1].position;
@@ -110,57 +269,49 @@ export default class BezierEditor extends cc.Component {
             const p3 = this.points[i + 3].position;
     
             this.graphics.moveTo(p0.x, p0.y);
-            
-            // 绘制100个点来模拟曲线
             for (let t = 0; t <= 1; t += 0.01) {
                 const point = this._getBezierPoint(p0, p1, p2, p3, t);
                 this.graphics.lineTo(point.x, point.y);
             }
         }
-        
-        this.graphics.stroke();
-        this.exportPath();
     }
 
     exportPath(): void {
-        if (this.points.length < 4) {
-            cc.warn('需要至少4个点才能导出路径');
+        if (this.points.length < 2) {
+            cc.warn('需要至少2个点才能导出路径');
             return;
         }
     
-        // 将点分组并转换为输出格式
         const groups: Point[][] = [];
-        for (let i = 0; i < this.points.length - 3; i += 3) {
-            const group = [];
-            const p0 = i === 0 ? this.points[0] : this.points[i];
-            const p1 = this.points[i + 1];
-            const p2 = this.points[i + 2];
-            const p3 = this.points[i + 3];
-    
-            group.push({
-                x: Math.round(p0.position.x),
-                y: Math.round(p0.position.y)
-            });
-            group.push({
-                x: Math.round(p1.position.x),
-                y: Math.round(p1.position.y)
-            });
-            group.push({
-                x: Math.round(p2.position.x),
-                y: Math.round(p2.position.y)
-            });
-            group.push({
-                x: Math.round(p3.position.x),
-                y: Math.round(p3.position.y)
-            });
-    
-            groups.push(group);
+        
+        if (this.isLineMode) {
+            // 直线模式导出 - 所有点合并到一个数组
+            const linePoints: Point[] = this.points.map(point => ({
+                x: Math.round(point.position.x),
+                y: Math.round(point.position.y)
+            }));
+            groups.push(linePoints);
+        } else {
+            // 原有的贝塞尔曲线导出逻辑
+            for (let i = 0; i < this.points.length - 3; i += 3) {
+                const group = [];
+                const p0 = i === 0 ? this.points[0] : this.points[i];
+                const p1 = this.points[i + 1];
+                const p2 = this.points[i + 2];
+                const p3 = this.points[i + 3];
+        
+                group.push({x: Math.round(p0.position.x), y: Math.round(p0.position.y)});
+                group.push({x: Math.round(p1.position.x), y: Math.round(p1.position.y)});
+                group.push({x: Math.round(p2.position.x), y: Math.round(p2.position.y)});
+                group.push({x: Math.round(p3.position.x), y: Math.round(p3.position.y)});
+        
+                groups.push(group);
+            }
         }
     
-        // 构造符合原JSON格式的数据结构
         const pathData = {
             id: 1,
-            sytle: 2,
+            sytle: this.isLineMode ? 1 : 2,
             ctype: 1,
             points: groups
         };

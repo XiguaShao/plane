@@ -46,6 +46,7 @@ const { ccclass, property } = cc._decorator;
 
 interface PathConfig {
     points: Array<[cc.Vec2, ...cc.Vec2[]]>;
+    repeat?: number;  // 新增 repeat 字段
 }
 
 @ccclass
@@ -142,6 +143,18 @@ export default class GeneratorPlane extends cc.Component {
                 return cc.bezierTo(duration, array);
             });
 
+            let finalAction: cc.ActionInterval;
+            if (pathConfig.repeat === undefined) {
+                // 不循环
+                finalAction = cc.sequence(actions);
+            } else if (pathConfig.repeat === 0) {
+                // 永久循环
+                finalAction = cc.repeatForever(cc.sequence(actions));
+            } else {
+                // 循环指定次数
+                finalAction = cc.repeat(cc.sequence(actions), pathConfig.repeat);
+            }
+
             //停止移动
             const callFunc = cc.callFunc(() => {
                 if (plane.isValid) {
@@ -154,8 +167,8 @@ export default class GeneratorPlane extends cc.Component {
                     }
                 }
             });
-            actions.push(callFunc); // 将 callFunc 包装在 sequence 中以满足 ActionInterval 类型要求
-            plane.runAction(cc.sequence(actions));
+
+            plane.runAction(cc.sequence(finalAction, callFunc));
             this.scheduleOnce(() => cb(null, plane), groupConfig.interval || 0);
 
             //监听击落
