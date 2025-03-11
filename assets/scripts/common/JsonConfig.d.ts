@@ -28,7 +28,9 @@ export interface PathCfg {
    /** 相对或绝对绝对(xxxTo)=1相对(xxxBy)=2 */
    type:number,
    /** 路径参数点 */
-   points:object,
+   points:any,
+   /** 曲线长度 */
+   distances?:number[],
 }
 
 export interface PlaneCfg { 
@@ -88,17 +90,17 @@ export interface WaveCfg {
    /** 路径类型路径='sequence'阵型='spawn'休眠='sleep' */
    type:string,
    /** planeID关联plane表 */
-   planeID:number,
+   planeID?:number,
    /** 数量 */
-   count:number,
+   count?:number,
    /** 飞行时间 */
    duration?:number,
    /** 生成间隔 */
    interval?:number,
    /** 路径关联Path表sequence激活 */
-   path:string,
+   path?:string,
    /** 出生点索引spawn激活 */
-   indexs:number[],
+   indexs?:number[],
    /** 休眠时间sleep激活 */
    time?:number,
    /** 垂直终点 */

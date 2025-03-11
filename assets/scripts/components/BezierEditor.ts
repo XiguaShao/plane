@@ -283,7 +283,7 @@ export default class BezierEditor extends cc.Component {
         }
     
         const groups: Point[][] = [];
-        
+        const distances: number[] = [];
         if (this.isLineMode) {
             // 直线模式导出 - 所有点合并到一个数组
             const linePoints: Point[] = this.points.map(point => ({
@@ -304,19 +304,37 @@ export default class BezierEditor extends cc.Component {
                 group.push({x: Math.round(p1.position.x), y: Math.round(p1.position.y)});
                 group.push({x: Math.round(p2.position.x), y: Math.round(p2.position.y)});
                 group.push({x: Math.round(p3.position.x), y: Math.round(p3.position.y)});
-        
+                distances.push(this._getBezierLength(group[0], group[1],group[2],group[3]))
                 groups.push(group);
             }
         }
     
         const pathData = {
             id: 1,
-            sytle: this.isLineMode ? 1 : 2,
-            ctype: 1,
+            style: this.isLineMode ? 1 : 2,
+            type: 1,
             points: groups
         };
+
+        if(distances.length > 0) {
+            pathData["distances"] = distances;
+        }
     
         console.log(JSON.stringify(pathData, null, 2));
+    }
+    private _getBezierLength(p0: cc.Vec2, p1: cc.Vec2, p2: cc.Vec2, p3: cc.Vec2): number {
+        const steps = 30; // 减少采样点数量以提高性能
+        let length = 0;
+        let lastPoint = p0;
+
+        for (let i = 1; i <= steps; i++) {
+            const t = i / steps;
+            const point = this._getBezierPoint(cc.v3(p0), cc.v3(p1), cc.v3(p2), cc.v3(p3), t);
+            const currentPoint = cc.v2(point.x, point.y);
+            length += currentPoint.sub(lastPoint).mag();
+            lastPoint = currentPoint;
+        }
+        return Math.round(length);
     }
 
     private _getBezierPoint(p0: cc.Vec3, p1: cc.Vec3, p2: cc.Vec3, p3: cc.Vec3, t: number): Point {

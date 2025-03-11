@@ -150,13 +150,25 @@ export default class GeneratorPlane extends cc.Component {
             if(pathConfig.style === 1) {
                 // Line mode: create moveTo actions between points
                 const array = pathConfig.points[0].slice(1).map(p => cc.v2(p));
-                actions = array.map(parm=> {
-                    return cc.moveTo(duration, parm)
+                let beginPos = cc.v2(pathConfig.points[0][0])
+                actions = array.map(endPos => {
+                    let distance = endPos.sub(beginPos).mag();
+                    beginPos.x = endPos.x;
+                    beginPos.y = endPos.y;
+                    return cc.moveTo(distance/groupConfig.speed, endPos)
                 })
             } else {
+                let index = 0;
                 actions = pathConfig.points.map(param => {
+                    let distance = 400;
+                    if(pathConfig.distances && index < pathConfig.distances.length) {
+                        distance = pathConfig.distances[index];
+                    }
                     const array = param.slice(1).map(p => cc.v2(p));
-                    return cc.bezierTo(duration, array);
+                    return cc.bezierTo(distance/groupConfig.speed, array);
+
+                    index++;
+
                 });
             }
 

@@ -2084,7 +2084,7 @@
     "resetButton": {
       "__id__": 26
     },
-    "isLineMode": true,
+    "isLineMode": false,
     "hMirrorButton": {
       "__id__": 33
     },
