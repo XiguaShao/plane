@@ -1,0 +1,82 @@
+{
+   "Wave1": {
+      "id": "Wave1",
+      "subwaves": [
+         102,
+         12,
+         2
+      ]
+   },
+   "Wave2": {
+      "id": "Wave2",
+      "subwaves": [
+         103,
+         13,
+         1
+      ]
+   },
+   "Wave3": {
+      "id": "Wave3",
+      "subwaves": [
+         104,
+         14,
+         3
+      ]
+   },
+   "Wave4": {
+      "id": "Wave4",
+      "subwaves": [
+         105,
+         15,
+         0
+      ]
+   },
+   "Wave5": {
+      "id": "Wave5",
+      "subwaves": [
+         106,
+         16,
+         2
+      ]
+   },
+   "Wave6": {
+      "id": "Wave6",
+      "subwaves": [
+         107,
+         17,
+         1
+      ]
+   },
+   "Wave7": {
+      "id": "Wave7",
+      "subwaves": [
+         108,
+         18,
+         3
+      ]
+   },
+   "Wave8": {
+      "id": "Wave8",
+      "subwaves": [
+         109,
+         19,
+         2
+      ]
+   },
+   "Wave9": {
+      "id": "Wave9",
+      "subwaves": [
+         100,
+         10,
+         0
+      ]
+   },
+   "Wave10": {
+      "id": "Wave10",
+      "subwaves": [
+         101,
+         11,
+         1
+      ]
+   }
+}

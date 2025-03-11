@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import * as async from 'async';
 import ResourceManager from '../../framework/resourceManager/ResourceManager';
 import { TempConfig } from '../common/ResConst';
-import { StageCfg, WaveCfg } from '../common/JsonConfig';
+import { PathCfg, StageCfg, WaveCfg } from '../common/JsonConfig';
 
 interface PathPoint {
     points: [cc.Vec2, ...cc.Vec2[]];
@@ -26,14 +26,14 @@ interface GroupConfig {
  * 生成开始坐标点
  */
 function generateStartPoints(): cc.Vec2[] {
-    const unitX = 102;
-    const unitY = 102;
+    const unitX = 70;
+    const unitY = 70;
     const startX = -cc.winSize.width / 2 + unitX / 2;
     const startY = cc.winSize.height / 2 + unitY * 4;
     const array: cc.Vec2[] = [];
 
-    for (let i = 0; i < 4; i++) {
-        for (let j = 0; j < 7; j++) {
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 9; j++) {
             const x = startX + unitX * j;
             const y = startY - unitY * i;
             array.push(cc.v2(x, y));
@@ -44,10 +44,10 @@ function generateStartPoints(): cc.Vec2[] {
 
 const { ccclass, property } = cc._decorator;
 
-interface PathConfig {
-    points: Array<[cc.Vec2, ...cc.Vec2[]]>;
-    repeat?: number;  // 新增 repeat 字段
-}
+// interface PathConfig {
+//     points: Array<[cc.Vec2, ...cc.Vec2[]]>;
+//     repeat?: number;  // 新增 repeat 字段
+// }
 
 @ccclass
 export default class GeneratorPlane extends cc.Component {
@@ -57,7 +57,7 @@ export default class GeneratorPlane extends cc.Component {
     // @property(cc.JsonAsset)
     stageAsset: cc.JsonAsset | null = null;   //飞机配置
 
-    @property(cc.JsonAsset)
+    // @property(cc.JsonAsset)
     pathAsset: cc.JsonAsset | null = null;    //飞行轨迹配置
 
     @property(cc.Node)
@@ -73,10 +73,17 @@ export default class GeneratorPlane extends cc.Component {
                 return;
             }
         });
+
+        ResourceManager.ins().loadRes(TempConfig.PathConfig, cc.JsonAsset, (err, asset) => {
+            if (err) {
+                cc.error("加载 Wave.json 失败:", err);
+                return;
+            }
+        });
     }
 
     loadStage() {
-        ResourceManager.ins().loadRes("config/Stage2", cc.JsonAsset, (err, asset) => {
+        ResourceManager.ins().loadRes("config/Stage5", cc.JsonAsset, (err, asset) => {
             if (err) {
                 cc.error("加载 stage1.json 失败:", err);
                 return;
@@ -113,7 +120,7 @@ export default class GeneratorPlane extends cc.Component {
             if (groupConfig.nextWave === undefined) {
                 groupConfig.nextWave = true;
             }
-
+            console.log("current wave index: ", waveIndex)
             if (groupConfig.type === 'sequence') {
                 this._sequenceGenerate(groupConfig, cb);
             } else if (groupConfig.type === 'spawn') {
@@ -125,8 +132,9 @@ export default class GeneratorPlane extends cc.Component {
     }
 
     private _sequenceGenerate(groupConfig: WaveCfg, callback: () => void): void {
-        if (!this.pathAsset || !this.target) return;
-        const pathConfig: PathConfig = this.pathAsset.json[groupConfig.path || ''];
+        if (!this.target) return;
+        let pathConfig = ResourceManager.ins().getJsonById<PathCfg>(TempConfig.PathConfig, groupConfig.path);
+        // const pathConfig: PathConfig = this.pathAsset.json[groupConfig.path || ''];
         let destroyCount = 0;
 
         async.mapSeries(_.range(0, groupConfig.count || 0), (i, cb: (error: Error | null, result?: cc.Node) => void) => {
@@ -137,22 +145,31 @@ export default class GeneratorPlane extends cc.Component {
             const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
             plane.parent = this.target;
             plane.position = cc.v3(pathConfig.points[0][0]);
-            const duration = (groupConfig.duration || 0) / pathConfig.points.length;
-            const actions: any[] = pathConfig.points.map(param => {
-                const array = param.slice(1).map(p => cc.v2(p));
-                return cc.bezierTo(duration, array);
-            });
+            const duration = (groupConfig.duration || 6) / pathConfig.points.length;
+            let actions: any[] = null;
+            if(pathConfig.style === 1) {
+                // Line mode: create moveTo actions between points
+                const array = pathConfig.points[0].slice(1).map(p => cc.v2(p));
+                actions = array.map(parm=> {
+                    return cc.moveTo(duration, parm)
+                })
+            } else {
+                actions = pathConfig.points.map(param => {
+                    const array = param.slice(1).map(p => cc.v2(p));
+                    return cc.bezierTo(duration, array);
+                });
+            }
 
             let finalAction: cc.ActionInterval;
-            if (pathConfig.repeat === undefined) {
+            if (groupConfig.repeat === undefined) {
                 // 不循环
-                finalAction = cc.sequence(actions);
-            } else if (pathConfig.repeat === 0) {
+                finalAction = null;
+            } else if (groupConfig.repeat === 0) {
                 // 永久循环
                 finalAction = cc.repeatForever(cc.sequence(actions));
             } else {
                 // 循环指定次数
-                finalAction = cc.repeat(cc.sequence(actions), pathConfig.repeat);
+                finalAction = cc.repeat(cc.sequence(actions), groupConfig.repeat);
             }
 
             //停止移动
@@ -168,7 +185,11 @@ export default class GeneratorPlane extends cc.Component {
                 }
             });
 
-            plane.runAction(cc.sequence(finalAction, callFunc));
+            if(finalAction) {
+                plane.runAction(cc.sequence([finalAction, callFunc]));
+            } else {
+                plane.runAction(cc.sequence([...actions, callFunc]));
+            }
             this.scheduleOnce(() => cb(null, plane), groupConfig.interval || 0);
 
             //监听击落

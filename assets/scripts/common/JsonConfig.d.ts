@@ -13,20 +13,20 @@ export interface BulletCfg {
    /** 伤害 */
    attack:number,
    /** 碰撞组 */
-   group:string,
+   group?:string,
    /** 碰撞类型 */
-   colliderType:string,
+   colliderType?:string,
    /** 碰撞参数 */
-   colliderParam:object,
+   colliderParam?:object,
 }
 
 export interface PathCfg { 
    /** 路径ID */
    id:number,
-   /** 路径类型 直线=1 贝赛尔曲线=2 */
-   sytle:number,
-   /** 相对或绝对 绝对(xxxTo)=1 相对(xxxBy)=2 */
-   ctype:number,
+   /** 路径类型直线=1贝赛尔曲线=2 */
+   style:number,
+   /** 相对或绝对绝对(xxxTo)=1相对(xxxBy)=2 */
+   type:number,
    /** 路径参数点 */
    points:object,
 }
@@ -58,21 +58,21 @@ export interface PropCfg {
    /** 资产  */
    asset:string,
    /** 道具类型 货币=1 武器=2 效果=3 */
-   ptype:number,
+   type:number,
    /** 数量 */
-   count:number,
+   count?:number,
    /** 是否可覆盖 */
-   isOverlap:boolean,
+   isOverlap?:boolean,
    /** 标记 */
-   tag:number,
+   tag?:number,
    /** 武器或效果ID 关联Weapon表 */
-   weapons:number[],
+   weapons?:number[],
    /** 碰撞组 */
-   group:string,
+   group?:string,
    /** 碰撞类型 */
-   colliderType:string,
+   colliderType?:string,
    /** 碰撞参数 */
-   colliderParam:object,
+   colliderParam?:object,
 }
 
 export interface StageCfg { 
@@ -85,54 +85,56 @@ export interface StageCfg {
 export interface WaveCfg { 
    /** 波次ID */
    id:number,
-   /** 路径类型 路径='sequence' 阵型='spawn' 休眠='sleep' */
+   /** 路径类型路径='sequence'阵型='spawn'休眠='sleep' */
    type:string,
-   /** planeID 关联plane表 */
-   planeID?:number,
+   /** planeID关联plane表 */
+   planeID:number,
    /** 数量 */
-   count?:number,
+   count:number,
    /** 飞行时间 */
    duration?:number,
    /** 生成间隔 */
    interval?:number,
-   /** 路径 关联Path表 sequence激活 */
-   path?:string,
-   /** 出生点索引 spawn激活 */
-   indexs?:number[],
-   /** 休眠时间 sleep激活 */
+   /** 路径关联Path表sequence激活 */
+   path:string,
+   /** 出生点索引spawn激活 */
+   indexs:number[],
+   /** 休眠时间sleep激活 */
    time?:number,
    /** 垂直终点 */
-   dy:number,
+   dy?:number,
    /** 飞行速度 */
    speed?:number,
    /** 波次同步 */
    nextWave?:boolean,
+   /** 循环次数 */
+   repeat?:number,
 }
 
 export interface WeaponCfg { 
    /** 武器ID */
    id:number,
    /** 武器类型 基础=1 扇形=2 曲线=3 */
-   wtype:number,
+   type:number,
    /** 资产  */
    asset:string,
    /** 偏移位置 */
-   offset:number[],
+   offset?:number[],
    /** 角度 */
-   rotation:number,
+   rotation?:number,
    /** 发射频率 */
-   rate:number,
+   rate?:number,
    /** 子弹Id 关联Bullet表  */
-   bulletId:number,
+   bulletId?:number,
    /** 最小曲度  */
-   spinMin:number,
+   spinMin?:number,
    /** 最大曲度  */
-   spinMax:number,
+   spinMax?:number,
    /** 角速度 */
-   spinSpeed:number,
+   spinSpeed?:number,
    /** 速度 */
    speed:number,
    /** 子弹个数 */
-   count:number,
+   count?:number,
 }
 

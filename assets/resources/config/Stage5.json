@@ -2,48 +2,40 @@
    "Wave1": {
       "id": "Wave1",
       "subwaves": [
-         100,
-         10,
-         0
+         113,
+         12,
+         2
       ]
    },
    "Wave2": {
       "id": "Wave2",
+      "subwaves": [
+         107,
+         10,
+         0
+      ]
+   },
+   "Wave3": {
+      "id": "Wave3",
+      "subwaves": [
+         116,
+         13,
+         1
+      ]
+   },
+   "Wave4": {
+      "id": "Wave4",
       "subwaves": [
          111,
          11,
          1
       ]
    },
-   "Wave3": {
-      "id": "Wave3",
-      "subwaves": [
-         112,
-         12,
-         0
-      ]
-   },
-   "Wave4": {
-      "id": "Wave4",
-      "subwaves": [
-         102,
-         13,
-         2
-      ]
-   },
    "Wave5": {
       "id": "Wave5",
       "subwaves": [
-         101,
-         14,
-         1
-      ]
-   },
-   "Wave6": {
-      "id": "Wave6",
-      "subwaves": [
-         116,
-         10,
+         200,
+         18,
          3
       ]
    }
