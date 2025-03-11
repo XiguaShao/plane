@@ -1,5 +1,8 @@
 import * as _ from 'lodash';
 import * as async from 'async';
+import ResourceManager from '../../framework/resourceManager/ResourceManager';
+import { TempConfig } from '../common/ResConst';
+import { StageCfg, WaveCfg } from '../common/JsonConfig';
 
 interface PathPoint {
     points: [cc.Vec2, ...cc.Vec2[]];
@@ -50,7 +53,7 @@ export default class GeneratorPlane extends cc.Component {
     @property([cc.Prefab])
     planePrefabs: cc.Prefab[] = [];
 
-    @property(cc.JsonAsset)
+    // @property(cc.JsonAsset)
     stageAsset: cc.JsonAsset | null = null;   //飞机配置
 
     @property(cc.JsonAsset)
@@ -60,26 +63,42 @@ export default class GeneratorPlane extends cc.Component {
     target: cc.Node | null = null;            //生成飞机的父节点的 
 
     private _startPoints: cc.Vec2[] = [];
-    private _waves: GroupConfig[][] = [];
+    private _waves: StageCfg[] = [];
 
     start(): void {
-        if (!this.stageAsset) return;
-        const stage = this.stageAsset.json;
-        const waves: GroupConfig[][] = Object.values(stage);
-        this.init(waves);
+        ResourceManager.ins().loadRes(TempConfig.WaveConfig, cc.JsonAsset, (err, asset) => {
+            if (err) {
+                cc.error("加载 Wave.json 失败:", err);
+                return;
+            }
+        });
     }
 
-    init(waves: GroupConfig[][]): void {
+    loadStage() {
+        ResourceManager.ins().loadRes("config/Stage2", cc.JsonAsset, (err, asset) => {
+            if (err) {
+                cc.error("加载 stage1.json 失败:", err);
+                return;
+            }
+            const stage = asset.json;
+            const waves: StageCfg[] = Object.values(stage);
+            this.init(waves);
+        });
+    }
+
+    init(waves: StageCfg[]): void {
         this._startPoints = generateStartPoints();
         this._waves = waves;
-    }
 
-    startGame() {
-        async.eachSeries(this._waves, (waveConfig: GroupConfig[], cb) => {
-            this._waveGenerate(waveConfig, cb);
+        async.eachSeries(this._waves, (stageCfg: StageCfg, cb) => {
+            this._waveGenerate(stageCfg.subwaves, cb);
         }, () => {
             cc.game.emit('pass-stage', this, this._waves);
         });
+    }
+
+    startGame() {
+        this.loadStage();
     }
 
 
@@ -87,8 +106,9 @@ export default class GeneratorPlane extends cc.Component {
         return cc.v3(this._startPoints[index]);
     }
 
-    private _waveGenerate(waveConfig: GroupConfig[], callback: () => void): void {
-        async.each(waveConfig, (groupConfig: GroupConfig, cb) => {
+    private _waveGenerate(waveConfig: number[], callback: () => void): void {
+        async.each(waveConfig, (waveIndex: number, cb) => {
+            let groupConfig = ResourceManager.ins().getJsonById<WaveCfg>(TempConfig.WaveConfig, waveIndex);
             if (groupConfig.nextWave === undefined) {
                 groupConfig.nextWave = true;
             }
@@ -103,7 +123,7 @@ export default class GeneratorPlane extends cc.Component {
         }, callback);
     }
 
-    private _sequenceGenerate(groupConfig: GroupConfig, callback: () => void): void {
+    private _sequenceGenerate(groupConfig: WaveCfg, callback: () => void): void {
         if (!this.pathAsset || !this.target) return;
         const pathConfig: PathConfig = this.pathAsset.json[groupConfig.path || ''];
         let destroyCount = 0;
@@ -155,7 +175,7 @@ export default class GeneratorPlane extends cc.Component {
         });
     }
 
-    private _spawnGenerate(groupConfig: GroupConfig, callback: () => void): void {
+    private _spawnGenerate(groupConfig: WaveCfg, callback: () => void): void {
         if (!this.target) return;
         const array = groupConfig.indexs || [];
         let destroyCount = 0;

@@ -214,7 +214,7 @@ export default class ResLoader {
 					}
 				});
 			} else {
-				cc.resources.load(path, type, (e, res) => {
+				cc.loader.loadRes(path, type, (e, res) => {
 					if (e) {
 						console.error(e);
 						reject(e);

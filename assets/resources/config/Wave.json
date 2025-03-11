@@ -1,1 +1,37 @@
-{}
+{
+   "0": {
+      "id": 0,
+      "type": "spawn",
+      "planeID": 1.0,
+      "indexs": "[1|9|17|18|19|13|7]",
+      "speed": 200.0
+   },
+   "1": {
+      "id": 1,
+      "type": "sleep",
+      "time": 5.0
+   },
+   "2": {
+      "id": 2,
+      "type": "sequence",
+      "planeID": 2.0,
+      "count": 5.0,
+      "duration": 6.0,
+      "interval": 0.5,
+      "path": 1.0
+   },
+   "3": {
+      "id": 3,
+      "type": "sequence",
+      "planeID": 2.0,
+      "count": 5.0,
+      "duration": 6.0,
+      "interval": 0.5,
+      "path": 2.0
+   },
+   "4": {
+      "id": 4,
+      "type": "sleep",
+      "time": 3.0
+   }
+}

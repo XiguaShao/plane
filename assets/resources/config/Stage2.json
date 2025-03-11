@@ -1,1 +1,22 @@
-{}
+{
+   "firstWave": {
+      "id": "firstWave",
+      "subwaves": [
+         0,
+         1,
+         2,
+         3,
+         4
+      ]
+   },
+   "secondWave": {
+      "id": "secondWave",
+      "subwaves": [
+         2,
+         3,
+         4,
+         0,
+         1
+      ]
+   }
+}

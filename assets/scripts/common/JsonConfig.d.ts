@@ -88,25 +88,25 @@ export interface WaveCfg {
    /** 路径类型 路径='sequence' 阵型='spawn' 休眠='sleep' */
    type:string,
    /** planeID 关联plane表 */
-   planeID:number,
+   planeID?:number,
    /** 数量 */
-   count:number,
+   count?:number,
    /** 飞行时间 */
-   duration:number,
+   duration?:number,
    /** 生成间隔 */
-   interval:number,
+   interval?:number,
    /** 路径 关联Path表 sequence激活 */
-   path:string,
+   path?:string,
    /** 出生点索引 spawn激活 */
-   indexs:number[],
+   indexs?:number[],
    /** 休眠时间 sleep激活 */
-   time:number,
+   time?:number,
    /** 垂直终点 */
    dy:number,
    /** 飞行速度 */
-   speed:number,
+   speed?:number,
    /** 波次同步 */
-   nextWave:boolean,
+   nextWave?:boolean,
 }
 
 export interface WeaponCfg { 
