@@ -28,7 +28,8 @@ interface GroupConfig {
 function generateStartPoints(): cc.Vec2[] {
     const unitX = 70;
     const unitY = 70;
-    const startX = -cc.winSize.width / 2 + unitX / 2;
+    const startX = -((9 * unitX) / 2) + unitX / 2;
+    // const startX = -cc.winSize.width / 2 + unitX / 2;
     const startY = cc.winSize.height / 2 + unitY * 4;
     const array: cc.Vec2[] = [];
 
