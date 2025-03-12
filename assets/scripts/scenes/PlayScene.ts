@@ -1,3 +1,4 @@
+import ResourceManager from '../../framework/resourceManager/ResourceManager';
 import GeneratorPlane from '../plane/GeneratorPlane';
 import Plane from '../plane/Plane';
 
@@ -103,7 +104,7 @@ export default class PlayScene extends cc.Component {
      */
     onClickStart() {
         this.nodeStart.active = false;
-        this.planeGenerator.getComponent(GeneratorPlane).startGame();
+        this.planeGenerator.getComponent(GeneratorPlane).startGame(3);
     }
 
     /**
@@ -112,6 +113,18 @@ export default class PlayScene extends cc.Component {
      */
     onClicKAgain() {
         this.nodeResult.active = false;
-        cc.game.restart();
+        // Clear all event listeners first
+        cc.game.off('pass-stage', this._passStage, this);
+        cc.game.off('player-under-attack', this._onPlayerUnderAttack, this);
+        cc.game.off('enemy-plane-destroy', this._onEnemyPlaneDestroy, this);
+        
+        // Reset score
+        this._score = 0;
+        if (this.scoreLabel) {
+            this.scoreLabel.string = '0';
+        }
+        
+        // Restart the game
+        cc.director.loadScene('PlayScene');
     }
 }

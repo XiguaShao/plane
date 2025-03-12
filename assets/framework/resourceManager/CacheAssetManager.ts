@@ -58,7 +58,7 @@ export default class CacheAssetManager extends Singleton {
 			this.cachedAssets.set(url, {count: cachedAsset.count - 1, asset: cachedAsset.asset});
 		} else {
 			this.cachedAssets.delete(url);
-			cc.assetManager.releaseAsset(cachedAsset.asset);
+			cc.loader.releaseAsset(cachedAsset.asset);
 		}
 	}
 

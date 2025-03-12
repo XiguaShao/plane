@@ -82,8 +82,8 @@ export default class GeneratorPlane extends cc.Component {
         });
     }
 
-    loadStage() {
-        ResourceManager.ins().loadRes("config/Stage5", cc.JsonAsset, (err, asset) => {
+    loadStage(chapter: number) {
+        ResourceManager.ins().loadRes(`config/Stage${chapter}`, cc.JsonAsset, (err, asset) => {
             if (err) {
                 cc.error("加载 stage1.json 失败:", err);
                 return;
@@ -105,8 +105,8 @@ export default class GeneratorPlane extends cc.Component {
         });
     }
 
-    startGame() {
-        this.loadStage();
+    startGame(chapter: number) {
+        this.loadStage(chapter);
     }
 
 
