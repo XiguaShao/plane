@@ -147,6 +147,7 @@ export default class GeneratorPlane extends cc.Component {
             plane.parent = this.target;
             plane.position = cc.v3(pathConfig.points[0][0]);
             const duration = (groupConfig.duration || 6) / pathConfig.points.length;
+            let repeat = groupConfig.repeat;
             let actions: any[] = null;
             if(pathConfig.style === 1) {
                 // Line mode: create moveTo actions between points
@@ -166,25 +167,13 @@ export default class GeneratorPlane extends cc.Component {
                         distance = pathConfig.distances[index];
                     }
                     const array = param.slice(1).map(p => cc.v2(p));
-                    return cc.bezierTo(distance/groupConfig.speed, array);
+                    const _time = distance/groupConfig.speed;
+                    return cc.bezierTo(_time, [].concat(array));
 
                     index++;
 
                 });
             }
-
-            let finalAction: cc.ActionInterval;
-            if (groupConfig.repeat === undefined) {
-                // 不循环
-                finalAction = null;
-            } else if (groupConfig.repeat === 0) {
-                // 永久循环
-                finalAction = cc.repeatForever(cc.sequence(actions));
-            } else {
-                // 循环指定次数
-                finalAction = cc.repeat(cc.sequence(actions), groupConfig.repeat);
-            }
-
             //停止移动
             const callFunc = cc.callFunc(() => {
                 if (plane.isValid) {
@@ -197,17 +186,46 @@ export default class GeneratorPlane extends cc.Component {
                     }
                 }
             });
-
-            if(finalAction) {
-                if(groupConfig.repeat === 0) {
-                    plane.runAction(finalAction);
-                } else {
-                    plane.runAction(cc.sequence([finalAction, callFunc]));
-                }
-                
-            } else {
+            let finalAction: cc.ActionInterval | cc.FiniteTimeAction;
+            if (groupConfig.repeat === undefined) {
+                // 不循环
                 plane.runAction(cc.sequence([...actions, callFunc]));
+            } else if (groupConfig.repeat === 0) {
+                // 永久循环
+                actions.push(cc.callFunc(() => {
+                    plane.position = cc.v3(pathConfig.points[0][0]);
+                    plane.stopAction(finalAction);
+                    finalAction = originAction.clone();
+                    plane.runAction(finalAction)
+                }))
+                const originAction = cc.sequence(actions)
+                finalAction = originAction.clone();
+                plane.runAction(finalAction)
+                // finalAction = cc.repeatForever(cc.sequence(actions));
+            } else {
+                // 循环指定次数
+                if(groupConfig.repeat > 1) {
+                    actions.push(cc.callFunc(() => {
+                        plane.position = cc.v3(pathConfig.points[0][0]);
+                        repeat--;
+                        // plane.stopAction(finalAction);
+                        finalAction = originAction.clone();
+                        if(repeat === 1) {
+                            plane.runAction(cc.sequence([finalAction,callFunc]))
+                        } else {
+                            plane.runAction(finalAction)
+                        }
+                    }))
+
+                    const originAction = cc.sequence(actions)
+                    finalAction = originAction.clone();
+                    plane.runAction(finalAction)
+                } else {
+                    plane.runAction(cc.sequence([...actions, callFunc]));
+                }
+                finalAction = cc.repeat(cc.sequence(actions), groupConfig.repeat);
             }
+
             this.scheduleOnce(() => cb(null, plane), groupConfig.interval || 0);
 
             //监听击落
