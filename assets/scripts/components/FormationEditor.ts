@@ -23,12 +23,26 @@ export default class FormationEditor extends cc.Component {
     @property(cc.Button)
     exportButton: cc.Button | null = null;
 
+    @property(cc.JsonAsset)
+    assetJson: cc.JsonAsset | null = null;    // Path.json 配置文件
+
+    @property
+    waveId: number = 1;    // 当前编辑的路径ID
+
+    @property(cc.Button)
+    loadButton: cc.Button | null = null;    // 加载按钮
+
+    private _initLoadButton(): void {
+        if (!this.loadButton) return;
+        this.loadButton.node.on('click', () => this.loadPath(), this);
+    }
     private cells: cc.Node[] = [];
     private selectedIndexes: Set<number> = new Set();
 
     onLoad(): void {
         this._initGrid();
         this._initButtons();
+        this._initLoadButton();  // 添加加载按钮初始化
     }
 
     private _initGrid(): void {
@@ -136,6 +150,31 @@ export default class FormationEditor extends cc.Component {
         }
         if (this.exportButton) {
             this.exportButton.node.on('click', this._onExport, this);
+        }
+    }
+
+    loadPath(): void {
+        if (!this.assetJson || !this.assetJson.json || !this.assetJson.json[this.waveId]) {
+            cc.warn(`找不到路径ID: ${this.waveId}`);
+            return;
+        }
+        
+        const waveData = this.assetJson.json[this.waveId];
+        if (waveData.type === 'spawn') {
+            // 先重置所有格子
+            this._onReset();
+            
+            // 加载选中的格子
+            waveData.indexs.forEach((index: number) => {
+                if (index > 0 && index <= this.cells.length) {
+                    const cell = this.cells[index - 1];
+                    const sprite = cell.getComponent(cc.Sprite);
+                    if (sprite) {
+                        this.selectedIndexes.add(index);
+                        this._updateSpriteColor(sprite, this.selectedColor);
+                    }
+                }
+            });
         }
     }
 }

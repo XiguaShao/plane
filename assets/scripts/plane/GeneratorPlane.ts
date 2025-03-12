@@ -199,7 +199,12 @@ export default class GeneratorPlane extends cc.Component {
             });
 
             if(finalAction) {
-                plane.runAction(cc.sequence([finalAction, callFunc]));
+                if(groupConfig.repeat === 0) {
+                    plane.runAction(finalAction);
+                } else {
+                    plane.runAction(cc.sequence([finalAction, callFunc]));
+                }
+                
             } else {
                 plane.runAction(cc.sequence([...actions, callFunc]));
             }
