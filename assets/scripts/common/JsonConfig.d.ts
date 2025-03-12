@@ -28,7 +28,7 @@ export interface ChapterCfg {
    /** 关卡调用 */
    level:number,
    /** 名称 */
-   name:number,
+   name:string,
    /** 介绍 */
    introduce:string,
    /** 经验奖励 */

@@ -1,6 +1,7 @@
 import ResourceManager from '../../framework/resourceManager/ResourceManager';
 import { ChapterCfg } from '../common/JsonConfig';
 import { TempConfig } from '../common/ResConst';
+import { PLAYER_DATE_TYPE } from '../data/GamePlayerData';
 import GeneratorPlane from '../plane/GeneratorPlane';
 import Plane from '../plane/Plane';
 
@@ -26,14 +27,55 @@ export default class PlayScene extends cc.Component {
 
     private _score: number = 0;
 
+    @property(cc.Node)
+    chapterList: cc.Node = null;    // 章节列表节点
+
+    @property(cc.Prefab)
+    chapterItemPrefab: cc.Prefab = null;    // 章节项预制体
+
+    private _currentChapter: number = 1;
     start(): void {
+        App.initGameData();
         this._score = 0;
         cc.game.on('pass-stage', this._passStage, this);
         cc.game.on('player-under-attack', this._onPlayerUnderAttack, this);
         cc.game.on('enemy-plane-destroy', this._onEnemyPlaneDestroy, this);
-        // if (this.passLabel) {
-        //     this.passLabel.node.active = false;
-        // }
+        this._currentChapter = App.Rms.getDataByType(PLAYER_DATE_TYPE.chapter);
+        this.loadChapter();  // 加载章节配置
+    }
+
+    loadChapter() {
+        ResourceManager.ins().loadRes(TempConfig.ChapterConfig, cc.JsonAsset, (err, asset) => {
+            if (err) {
+                cc.error("加载 chapter.json 失败:", err);
+                return;
+            }
+            const chapter = asset.json;
+            const chapters: ChapterCfg[] = Object.values(chapter);
+            
+            // 创建章节列表
+            chapters.forEach((chapterCfg, index) => {
+                if (!this.chapterItemPrefab || !this.chapterList) return;
+                
+                const item = cc.instantiate(this.chapterItemPrefab);
+                item.parent = this.chapterList;
+                item.children[1].active = this._currentChapter === chapterCfg.level;
+                // 设置章节信息
+                const titleLabel = item.getChildByName('titleLabel').getComponent(cc.Label);
+                titleLabel.string = chapterCfg.name;
+                
+                
+                // 添加点击事件
+                const button = item.getComponent(cc.Button);
+                button.node.on('click', () => {
+                    this.chapterList.children.forEach(element => {
+                        element.children[1].active = false;
+                    });
+                    item.children[1].active = true;
+                    this._currentChapter = chapterCfg.level;
+                }, this);
+            });
+        });
     }
 
     /**
@@ -106,7 +148,8 @@ export default class PlayScene extends cc.Component {
      */
     onClickStart() {
         this.nodeStart.active = false;
-        this.planeGenerator.getComponent(GeneratorPlane).startGame(3);
+        this.planeGenerator.getComponent(GeneratorPlane).startGame(this._currentChapter);
+        // this.planeGenerator.getComponent(GeneratorPlane).startGame(3);
     }
 
     /**
@@ -128,18 +171,5 @@ export default class PlayScene extends cc.Component {
         
         // Restart the game
         cc.director.loadScene('PlayScene');
-    }
-
-    loadChapter() {
-        ResourceManager.ins().loadRes(TempConfig.ChapterConfig, cc.JsonAsset, (err, asset) => {
-            if (err) {
-                cc.error("加载 chapter.json 失败:", err);
-                return;
-            }
-            const chapter = asset.json;
-            const chapters: ChapterCfg[] = Object.values(chapter);
-            // TODO:
-
-        });
     }
 }
