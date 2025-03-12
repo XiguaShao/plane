@@ -5,6 +5,7 @@ const RADIAN = 2 * Math.PI / 360;
 
 function getEndPoint(rotation: number, r: number): cc.Vec2 {
     //let r = cc.winSize.width;
+	
     const x = r * Math.sin(rotation * RADIAN);
     const y = r * Math.cos(rotation * RADIAN);
     return cc.v2(x, y);
