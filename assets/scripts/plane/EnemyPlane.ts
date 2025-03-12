@@ -21,15 +21,18 @@ export default class EnemyPlane extends Plane {
     onCollisionEnter(other: cc.Collider): void {
         if (other.node.group === 'player') {
             //碰到玩家飞机
-            this._playDestroy();
+            // this._playDestroy();
+            this.takeDamage(2);
+            if (this.hp > 0) {
+                this._progressBar.node.runAction(cc.fadeOut(1));
+            }
         } else {
             //碰到玩家子弹
             this._progressBar.node.opacity = 255;
             const bullet = other.getComponent('Bullet');
-            this.hp -= bullet.getDamageValue();
-            if (this.hp <= 0) {
-                this._playDestroy();  
-            } else {
+            this.takeDamage(bullet.getDamageValue())
+            // this.hp -= bullet.getDamageValue();
+            if (this.hp > 0) {
                 this._progressBar.node.runAction(cc.fadeOut(1));
             }
         }

@@ -15,13 +15,27 @@ export default class Dragable extends cc.Component {
     }
 
     private _onTouchMove(touchEvent: cc.Event.EventTouch): void {
-        //获取触摸移动增量
         const delta = touchEvent.getDelta();
         const node = this.target || this.node;
-        //当前节点位置+增量，更新节点位置
+        
+        // 计算新位置
+        const newX = node.position.x + delta.x;
+        const newY = node.position.y + delta.y;
+        
+        // 获取屏幕尺寸
+        const screenWidth = cc.winSize.width;
+        const screenHeight = cc.winSize.height;
+        
+        // 限制在屏幕范围内
+        const halfWidth = node.width / 2;
+        const halfHeight = node.height / 2;
+        const clampedX = cc.misc.clampf(newX, -screenWidth/2 + halfWidth, screenWidth/2 - halfWidth);
+        const clampedY = cc.misc.clampf(newY, -screenHeight/2 + halfHeight, screenHeight/2 - halfHeight);
+
+        // 更新位置
         node.position = new cc.Vec3(
-            node.position.x + delta.x,
-            node.position.y + delta.y,
+            clampedX,
+            clampedY,
             node.position.z || 0
         );
     }
