@@ -34,12 +34,20 @@ export default class BezierEditor extends cc.Component {
     @property(cc.Button)
     vMirrorButton: cc.Button | null = null;    // 垂直镜像按钮
 
+    @property(cc.Button)
+    loadButton: cc.Button | null = null;    // 加载按钮
+
     onLoad(): void {
         this._initEvents();
         this._initResetButton();
         this._initMirrorButtons();
-        // 初始化时绘制标尺
+        this._initLoadButton();  // 添加加载按钮初始化
         this._drawRuler();
+    }
+
+    private _initLoadButton(): void {
+        if (!this.loadButton) return;
+        this.loadButton.node.on('click', () => this.loadPath(), this);
     }
 
     @property(cc.Prefab)
@@ -276,6 +284,12 @@ export default class BezierEditor extends cc.Component {
         }
     }
 
+    @property(cc.JsonAsset)
+    assetJson: cc.JsonAsset | null = null;    // Path.json 配置文件
+
+    @property
+    pathId: number = 1;    // 当前编辑的路径ID
+
     exportPath(): void {
         if (this.points.length < 2) {
             cc.warn('需要至少2个点才能导出路径');
@@ -285,14 +299,12 @@ export default class BezierEditor extends cc.Component {
         const groups: Point[][] = [];
         const distances: number[] = [];
         if (this.isLineMode) {
-            // 直线模式导出 - 所有点合并到一个数组
             const linePoints: Point[] = this.points.map(point => ({
                 x: Math.round(point.position.x),
                 y: Math.round(point.position.y)
             }));
             groups.push(linePoints);
         } else {
-            // 原有的贝塞尔曲线导出逻辑
             for (let i = 0; i < this.points.length - 3; i += 3) {
                 const group = [];
                 const p0 = i === 0 ? this.points[0] : this.points[i];
@@ -310,7 +322,7 @@ export default class BezierEditor extends cc.Component {
         }
     
         const pathData = {
-            id: 1,
+            id: this.pathId,
             style: this.isLineMode ? 1 : 2,
             type: 1,
             points: groups
@@ -319,19 +331,72 @@ export default class BezierEditor extends cc.Component {
         if(distances.length > 0) {
             pathData["distances"] = distances;
         }
-    
-        console.log(JSON.stringify(pathData, null, 2));
+
+        if (this.assetJson && this.assetJson.json) {
+            this.assetJson.json[this.pathId] = pathData;
+            console.log("完整的 Path.json 数据：", JSON.stringify(this.assetJson.json, null, 2));
+        }
+        
+        console.log("当前路径数据：", JSON.stringify(pathData, null, 2));
     }
-    private _getBezierLength(p0: cc.Vec2, p1: cc.Vec2, p2: cc.Vec2, p3: cc.Vec2): number {
+
+    loadPath(): void {
+        if (!this.assetJson || !this.assetJson.json || !this.assetJson.json[this.pathId]) {
+            cc.warn(`找不到路径ID: ${this.pathId}`);
+            return;
+        }
+
+        const pathData = this.assetJson.json[this.pathId];
+        this._onReset();
+        this.isLineMode = pathData.style === 1;
+        
+        if (this.isLineMode) {
+            // 直线模式：加载所有点
+            pathData.points[0].forEach(point => {
+                if (!this.pointPrefab || !this.canvas) return;
+                const newPoint = cc.instantiate(this.pointPrefab);
+                newPoint.parent = this.canvas;
+                newPoint.position = cc.v3(point.x, point.y);
+                this.points.push(newPoint);
+            });
+        } else {
+            // 曲线模式：第一组保留4个点，后面的组只取后3个点
+            pathData.points.forEach((group, index) => {
+                if (index === 0) {
+                    // 第一组：加载所有4个点
+                    group.forEach(point => {
+                        if (!this.pointPrefab || !this.canvas) return;
+                        const newPoint = cc.instantiate(this.pointPrefab);
+                        newPoint.parent = this.canvas;
+                        newPoint.position = cc.v3(point.x, point.y);
+                        this.points.push(newPoint);
+                    });
+                } else {
+                    // 后续组：只加载后3个点
+                    group.slice(1).forEach(point => {
+                        if (!this.pointPrefab || !this.canvas) return;
+                        const newPoint = cc.instantiate(this.pointPrefab);
+                        newPoint.parent = this.canvas;
+                        newPoint.position = cc.v3(point.x, point.y);
+                        this.points.push(newPoint);
+                    });
+                }
+            });
+        }
+        
+        this._updateCurve();
+    }
+
+    private _getBezierLength(p0: Point, p1: Point, p2: Point, p3: Point): number {
         const steps = 30; // 减少采样点数量以提高性能
         let length = 0;
         let lastPoint = p0;
 
         for (let i = 1; i <= steps; i++) {
             const t = i / steps;
-            const point = this._getBezierPoint(cc.v3(p0), cc.v3(p1), cc.v3(p2), cc.v3(p3), t);
+            const point = this._getBezierPoint(cc.v3(p0.x, p0.y), cc.v3(p1.x, p1.y), cc.v3(p2.x, p2.y), cc.v3(p3.x, p3.y), t);
             const currentPoint = cc.v2(point.x, point.y);
-            length += currentPoint.sub(lastPoint).mag();
+            length += cc.v2(currentPoint.x - lastPoint.x, currentPoint.y - lastPoint.y).mag();
             lastPoint = currentPoint;
         }
         return Math.round(length);
@@ -348,7 +413,7 @@ export default class BezierEditor extends cc.Component {
                  3 * (1 - t) * Math.pow(t, 2) * p2.y + 
                  Math.pow(t, 3) * p3.y;
         
-        return { x, y };
+        return { x: x, y: y };
     }
 }
 
