@@ -20,6 +20,23 @@ export interface BulletCfg {
    colliderParam?:object,
 }
 
+export interface ChapterCfg { 
+   /** ID 主键 */
+   id:number,
+   /** 挑战消耗 [道具id，消耗数量] */
+   spend:number[],
+   /** 关卡调用 */
+   level:number,
+   /** 名称 */
+   name:number,
+   /** 介绍 */
+   introduce:string,
+   /** 经验奖励 */
+   expreward:number,
+   /** 首通奖励组 [道具id，道具数量]  */
+   firstreward:number[][],
+}
+
 export interface PathCfg { 
    /** 路径ID */
    id:number,
@@ -28,7 +45,7 @@ export interface PathCfg {
    /** 相对或绝对绝对(xxxTo)=1相对(xxxBy)=2 */
    type:number,
    /** 路径参数点 */
-   points:any,
+   points:object,
    /** 曲线长度 */
    distances?:number[],
 }

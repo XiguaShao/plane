@@ -1,0 +1,37 @@
+{
+   "1": {
+      "id": 1,
+      "level": 1,
+      "name": "ch.1",
+      "introduce": "ch.1介绍",
+      "expreward": 1000
+   },
+   "2": {
+      "id": 2,
+      "level": 2,
+      "name": "ch.2",
+      "introduce": "ch.2介绍",
+      "expreward": 2000
+   },
+   "3": {
+      "id": 3,
+      "level": 3,
+      "name": "ch.3",
+      "introduce": "ch.3介绍",
+      "expreward": 3000
+   },
+   "4": {
+      "id": 4,
+      "level": 4,
+      "name": "ch.4",
+      "introduce": "ch.4介绍",
+      "expreward": 4000
+   },
+   "5": {
+      "id": 5,
+      "level": 5,
+      "name": "ch.5",
+      "introduce": "ch.5介绍",
+      "expreward": 5000
+   }
+}
