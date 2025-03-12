@@ -2,49 +2,118 @@
    "Wave1": {
       "id": "Wave1",
       "subwaves": [
-         100,
-         10,
-         0
+         101,
+         102,
+         1
       ]
    },
    "Wave2": {
       "id": "Wave2",
       "subwaves": [
-         111,
-         11,
-         1
+         10,
+         2
       ]
    },
    "Wave3": {
       "id": "Wave3",
       "subwaves": [
-         112,
-         12,
-         0
+         107,
+         108,
+         103,
+         3
       ]
    },
    "Wave4": {
       "id": "Wave4",
       "subwaves": [
-         102,
-         13,
-         2
+         11,
+         1
       ]
    },
    "Wave5": {
       "id": "Wave5",
       "subwaves": [
-         101,
-         14,
-         1
+         109,
+         110,
+         105,
+         3
       ]
    },
    "Wave6": {
       "id": "Wave6",
       "subwaves": [
-         116,
+         12,
+         1
+      ]
+   },
+   "Wave7": {
+      "id": "Wave7",
+      "subwaves": [
+         104,
+         105,
+         1
+      ]
+   },
+   "Wave8": {
+      "id": "Wave8",
+      "subwaves": [
+         101,
+         102,
+         1
+      ]
+   },
+   "Wave9": {
+      "id": "Wave9",
+      "subwaves": [
          10,
+         2
+      ]
+   },
+   "Wave10": {
+      "id": "Wave10",
+      "subwaves": [
+         107,
+         108,
+         103,
          3
+      ]
+   },
+   "Wave11": {
+      "id": "Wave11",
+      "subwaves": [
+         11,
+         1
+      ]
+   },
+   "Wave12": {
+      "id": "Wave12",
+      "subwaves": [
+         109,
+         110,
+         105,
+         3
+      ]
+   },
+   "Wave13": {
+      "id": "Wave13",
+      "subwaves": [
+         12,
+         1
+      ]
+   },
+   "Wave14": {
+      "id": "Wave14",
+      "subwaves": [
+         104,
+         105,
+         1
+      ]
+   },
+   "Wave15": {
+      "id": "Wave15",
+      "subwaves": [
+         19,
+         2
       ]
    }
 }
