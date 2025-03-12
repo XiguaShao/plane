@@ -1,3 +1,4 @@
+import ResourceManager from "../../framework/resourceManager/ResourceManager";
 import NodePoolManager from "../../framework/utils/NodePoolManager";
 import GamePlayerData from "../data/GamePlayerData";
 
@@ -9,11 +10,13 @@ export default class Game {
     public gameGlobal: any = null;
     public nodePoolMgr: NodePoolManager = null;
     public Rms: GamePlayerData = null;
+    public ResManager: ResourceManager = null;
     public init() {
         if (!this.inited) {
             // 初始化管理类和utils类
             this.nodePoolMgr = new NodePoolManager();
             this.Rms = new GamePlayerData();
+            this.ResManager = new ResourceManager();
         }
         
         this.inited = true;

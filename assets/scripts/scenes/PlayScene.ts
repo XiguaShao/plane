@@ -91,23 +91,12 @@ export default class PlayScene extends cc.Component {
      * 过关
      */
     private _passStage(generator: GeneratorPlane, wave: any[]): void {
-        // if (!this.passLabel) return;
-        // this.passLabel.node.active = true;
-        // this.passLabel.string = '恭喜过关';
-
         this.nodeResult.active = true;
         this.nodeResult.getChildByName("passLabel").getComponent(cc.Label).string = `得分：${this._score.toString()}`;
         this.nodeResult.getChildByName("spWin").active = true;
         this.nodeResult.getChildByName("spLose").active = false;
         this.nodeResult.scale = 0.1;
         const scale = cc.scaleTo(0.3, 1).easing(cc.easeBounceOut());
-        // const callFunc = cc.callFunc(() => {
-        //     if (this.passLabel) {
-        //         this.passLabel.node.active = false;
-        //         generator.init(wave);
-        //     }
-        // });
-        // const delayTime = cc.delayTime(3);
         this.nodeResult.runAction(scale);
         // 存储数据
         const nChapter = App.Rms.getDataByType(PLAYER_DATE_TYPE.chapter);
@@ -120,13 +109,7 @@ export default class PlayScene extends cc.Component {
      * 玩家受伤
      */
     private _onPlayerUnderAttack(playerPlane: Plane): void {
-        // if (!this.passLabel) return;
-
         if (playerPlane.hp <= 0) {
-            // this.passLabel.node.active = true;
-            // this.passLabel.string = 'GAME OVER';
-            // this.passLabel.node.scale = 0.1;
-
             this.nodeResult.active = true;
             this.nodeResult.getChildByName("passLabel").getComponent(cc.Label).string = `得分：${this._score.toString()}`;
             this.nodeResult.getChildByName("spWin").active = false;
@@ -134,15 +117,6 @@ export default class PlayScene extends cc.Component {
             this.nodeResult.scale = 0.1;
             const scale = cc.scaleTo(0.3, 1).easing(cc.easeBounceOut());
             this.nodeResult.runAction(scale);
-
-            // const callFunc = cc.callFunc(() => {
-            //     if (this.passLabel) {
-            //         this.passLabel.node.active = false;
-            //         cc.game.restart();
-            //     }
-            // });
-            // const delayTime = cc.delayTime(5);
-            // this.passLabel.node.runAction(cc.sequence(scale, delayTime, callFunc));
         }
     }
 
@@ -163,7 +137,6 @@ export default class PlayScene extends cc.Component {
     onClickStart() {
         this.nodeStart.active = false;
         this.planeGenerator.getComponent(GeneratorPlane).startGame(this._currentChapter);
-        // this.planeGenerator.getComponent(GeneratorPlane).startGame(3);
     }
 
     /**
