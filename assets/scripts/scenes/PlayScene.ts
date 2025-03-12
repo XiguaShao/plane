@@ -34,13 +34,16 @@ export default class PlayScene extends cc.Component {
     chapterItemPrefab: cc.Prefab = null;    // 章节项预制体
 
     private _currentChapter: number = 1;
+    private _unlockChapter: number = 1;
+    private _maxChapter: number = 1;
     start(): void {
         App.initGameData();
         this._score = 0;
         cc.game.on('pass-stage', this._passStage, this);
         cc.game.on('player-under-attack', this._onPlayerUnderAttack, this);
         cc.game.on('enemy-plane-destroy', this._onEnemyPlaneDestroy, this);
-        this._currentChapter = App.Rms.getDataByType(PLAYER_DATE_TYPE.chapter);
+        this._unlockChapter = App.Rms.getDataByType(PLAYER_DATE_TYPE.chapter);
+        this._currentChapter = this._unlockChapter;
         this.loadChapter();  // 加载章节配置
     }
 
@@ -52,29 +55,33 @@ export default class PlayScene extends cc.Component {
             }
             const chapter = asset.json;
             const chapters: ChapterCfg[] = Object.values(chapter);
-            
+            this.chapterList.width = chapters.length*210;
             // 创建章节列表
             chapters.forEach((chapterCfg, index) => {
                 if (!this.chapterItemPrefab || !this.chapterList) return;
-                
+                this._maxChapter = Math.max(1, chapterCfg.level);
                 const item = cc.instantiate(this.chapterItemPrefab);
                 item.parent = this.chapterList;
                 item.children[1].active = this._currentChapter === chapterCfg.level;
                 // 设置章节信息
                 const titleLabel = item.getChildByName('titleLabel').getComponent(cc.Label);
                 titleLabel.string = chapterCfg.name;
-                
-                
+                const bLock = chapterCfg.level > this._unlockChapter
+                item.children[3].active = bLock; 
                 // 添加点击事件
                 const button = item.getComponent(cc.Button);
+
                 button.node.on('click', () => {
                     this.chapterList.children.forEach(element => {
                         element.children[1].active = false;
                     });
                     item.children[1].active = true;
+                    if(bLock) return;
                     this._currentChapter = chapterCfg.level;
                 }, this);
             });
+
+            
         });
     }
 
@@ -100,6 +107,11 @@ export default class PlayScene extends cc.Component {
         // });
         // const delayTime = cc.delayTime(3);
         this.nodeResult.runAction(scale);
+        // 存储数据
+        const nChapter = App.Rms.getDataByType(PLAYER_DATE_TYPE.chapter);
+        if(this._currentChapter >= nChapter) {
+            App.Rms.updateDataByType(PLAYER_DATE_TYPE.chapter, Math.min(nChapter + 1, this._maxChapter));
+        }
     }
 
     /**
