@@ -56,6 +56,8 @@ export default class PlayScene extends cc.Component {
             const chapter = asset.json;
             const chapters: ChapterCfg[] = Object.values(chapter);
             this.chapterList.width = chapters.length*210;
+            const percent = this._unlockChapter/ chapters.length;
+            this.chapterList.parent.parent.getComponent(cc.ScrollView).scrollToPercentHorizontal(percent)
             // 创建章节列表
             chapters.forEach((chapterCfg, index) => {
                 if (!this.chapterItemPrefab || !this.chapterList) return;
