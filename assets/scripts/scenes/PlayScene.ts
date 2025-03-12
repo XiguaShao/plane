@@ -1,5 +1,6 @@
 import ResourceManager from '../../framework/resourceManager/ResourceManager';
 import { ChapterCfg } from '../common/JsonConfig';
+import { TempConfig } from '../common/ResConst';
 import GeneratorPlane from '../plane/GeneratorPlane';
 import Plane from '../plane/Plane';
 
@@ -130,15 +131,15 @@ export default class PlayScene extends cc.Component {
     }
 
     loadChapter() {
-        ResourceManager.ins().loadRes(`config/Chapter`, cc.JsonAsset, (err, asset) => {
+        ResourceManager.ins().loadRes(TempConfig.ChapterConfig, cc.JsonAsset, (err, asset) => {
             if (err) {
-                cc.error("加载 stage1.json 失败:", err);
+                cc.error("加载 chapter.json 失败:", err);
                 return;
             }
             const chapter = asset.json;
             const chapters: ChapterCfg[] = Object.values(chapter);
             // TODO:
-            
+
         });
     }
 }

@@ -3,7 +3,7 @@ export const TempConfig = {
     StageConfig: ConfigBasePath + "Stage2",
     PathConfig: ConfigBasePath + "Path",
     WaveConfig: ConfigBasePath + "Wave",
-    GlobalConfig: ConfigBasePath + "global",
+    ChapterConfig: ConfigBasePath + "Chapter",
     AttributeConfig: ConfigBasePath + "attribute",
     DropConfig: ConfigBasePath + "drop",
     ItemConfig: ConfigBasePath + "item",
