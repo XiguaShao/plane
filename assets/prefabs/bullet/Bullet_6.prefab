@@ -43,13 +43,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 50
+      "width": 62,
+      "height": 1280
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.5
+      "y": 0
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -107,13 +107,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 27,
-      "height": 46
+      "width": 62,
+      "height": 1280
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.5
+      "y": 0
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -127,7 +127,7 @@
         0,
         1,
         1,
-        -1,
+        1,
         1
       ]
     },
@@ -160,10 +160,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "a0a4535a-d9d5-4879-a369-b2ce2415f4c4"
+      "__uuid__": "415b8c70-8d44-4e78-a2c6-87bbd031f418"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -182,7 +182,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "a273052d-29b6-4ea7-b2ea-f44a24d547ef"
+      "__uuid__": "4b4abdc5-ce0e-4e8b-9885-c6bd9b74dba4"
     },
     "fileId": "caWijgoKlN75g8qCQuh0/8",
     "sync": false
@@ -199,7 +199,7 @@
     "_id": ""
   },
   {
-    "__type__": "cc.CircleCollider",
+    "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -210,9 +210,13 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 10.2
+      "y": 640
     },
-    "_radius": 10.9,
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 62,
+      "height": 1280
+    },
     "_id": ""
   },
   {
@@ -221,7 +225,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "a273052d-29b6-4ea7-b2ea-f44a24d547ef"
+      "__uuid__": "4b4abdc5-ce0e-4e8b-9885-c6bd9b74dba4"
     },
     "fileId": "b8ySjVxGxMV7lvnMRxL6IZ",
     "sync": false
