@@ -786,8 +786,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_hp": 500,
+    "_hp": 400,
     "defense": 0,
+    "damageCooldown": 0,
     "dropItems": [],
     "_id": ""
   },

@@ -584,7 +584,7 @@
     "_enabled": true,
     "_hp": 4,
     "defense": 0,
-    "damageCooldown": 0.5,
+    "damageCooldown": 0,
     "dropItems": [
       {
         "__uuid__": "b0fb2992-6bd3-415d-99d9-98372fe27c73"
