@@ -28,6 +28,12 @@ export default class PlayScene extends cc.Component {
     /** 血量*/
     @property({ type: cc.Label, tooltip: CC_DEV && "血量" })
     lbHp: cc.Label | null = null;
+    /** 结算节点 */
+    @property({ type: cc.Node, tooltip: CC_DEV && "分数节点" })
+    nodeScore: cc.Node = null;
+    /** 血量节点 */
+    @property({ type: cc.Node, tooltip: CC_DEV && "分数节点" })
+    nodeHp: cc.Node = null;
 
     private _score: number = 0;
 
@@ -52,6 +58,7 @@ export default class PlayScene extends cc.Component {
         cc.game.on('hp-update', this.onUpdateHP, this);
         this._unlockChapter = App.Rms.getDataByType(PLAYER_DATE_TYPE.chapter);
         this._currentChapter = this._unlockChapter;
+        this.initUI();
         this.loadChapter();  // 加载章节配置
     }
 
@@ -93,6 +100,14 @@ export default class PlayScene extends cc.Component {
 
             
         });
+    }
+
+    /**
+     * @description:初始化UI
+     */
+    initUI(){
+         this.nodeScore.active = false;
+         this.nodeHp.active = false;
     }
 
     /**
@@ -148,6 +163,9 @@ export default class PlayScene extends cc.Component {
     onClickStart() {
         this.nodeStart.active = false;
         this.planeGenerator.getComponent(GeneratorPlane).startGame(this._currentChapter);
+
+        this.nodeScore.active = true;
+        this.nodeHp.active = true;
     }
 
     /**
