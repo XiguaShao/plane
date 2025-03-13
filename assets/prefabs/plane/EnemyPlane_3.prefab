@@ -549,12 +549,10 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_hp": 20,
+    "_hp": 6,
     "defense": 0,
+    "damageCooldown": 0.5,
     "dropItems": [
-      {
-        "__uuid__": "fee06e10-297f-43f4-8906-45db941ad321"
-      },
       {
         "__uuid__": "0fb8376e-0757-4763-b429-1584d6de1e3d"
       }
@@ -580,7 +578,7 @@
     "rotation": 0,
     "rate": 1.5,
     "speed": 450,
-    "count": 10,
+    "count": 1,
     "_id": ""
   },
   {
