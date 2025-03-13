@@ -10,6 +10,6 @@ export enum ItemType  {
 }
 
 export const ItemConfigs = new Map<ItemType, PropConfig>([
-    [ItemType.Shield, { duration: 3 }],
+    [ItemType.Shield, { duration: 4 }],
     [ItemType.HP, { healAmount: 3 }],
 ]);
