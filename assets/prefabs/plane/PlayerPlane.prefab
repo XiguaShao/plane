@@ -508,8 +508,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_hp": 3,
+    "_hp": 5,
     "defense": 0,
+    "damageCooldown": 0.5,
     "_id": ""
   },
   {
