@@ -42,9 +42,10 @@ export default class EnemyPlane extends Plane {
 
     @property({
         type: [cc.Float],
-        tooltip: "对应物品的掉落概率 (0-1)",
-        range: [0, 1],
-        slide: true
+        tooltip: "对应物品的掉落概率 (0-100)",
+        range: [0, 100],
+        slide: true,
+        step: 1
     })
     dropRates: number[] = [];
 
@@ -53,7 +54,7 @@ export default class EnemyPlane extends Plane {
         
         // 掉落物品
         if (this.dropItems.length) {
-            const random = Math.random(); // 随机值 0-1
+            const random = Math.random() * 100; // 随机值 0-100
             let currentSum = 0;
             let bDrop = false;
             // 根据概率选择道具
