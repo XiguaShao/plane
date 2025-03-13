@@ -23,7 +23,7 @@ export default class PlayerPlane extends Plane {
         } else {
             const enemyPlane = other.getComponent(Plane);
             if (enemyPlane) {
-                this.hp -= enemyPlane.hp;
+                this.hp -= 2;
             }
         }
 
