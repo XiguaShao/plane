@@ -4,6 +4,7 @@ import { TempConfig } from '../common/ResConst';
 import { PLAYER_DATE_TYPE } from '../data/GamePlayerData';
 import GeneratorPlane from '../plane/GeneratorPlane';
 import Plane from '../plane/Plane';
+import PlayerPlane from '../plane/PlayerPlane';
 
 const { ccclass, property } = cc._decorator;
 
@@ -24,6 +25,9 @@ export default class PlayScene extends cc.Component {
     /** 刷怪 */
     @property({ type: cc.Node, tooltip: CC_DEV && "刷怪" })
     planeGenerator: cc.Node = null;
+    /** 血量*/
+    @property({ type: cc.Label, tooltip: CC_DEV && "血量" })
+    lbHp: cc.Label | null = null;
 
     private _score: number = 0;
 
@@ -40,6 +44,7 @@ export default class PlayScene extends cc.Component {
         App.initGameData();
         this._score = 0;
         cc.game.on('pass-stage', this._passStage, this);
+        cc.game.on('player-init', this.onPlayerInit, this);
         cc.game.on('player-under-attack', this._onPlayerUnderAttack, this);
         cc.game.on('enemy-plane-destroy', this._onEnemyPlaneDestroy, this);
         cc.game.on('shield-activate', this.onShowShield, this);
@@ -121,6 +126,9 @@ export default class PlayScene extends cc.Component {
             const scale = cc.scaleTo(0.3, 1).easing(cc.easeBounceOut());
             this.nodeResult.runAction(scale);
         }
+        if (playerPlane) {
+            this.lbHp && (this.lbHp.string = playerPlane.hp.toString());
+        }
     }
 
     private _onEnemyPlaneDestroy(plane: Plane): void {
@@ -179,6 +187,15 @@ export default class PlayScene extends cc.Component {
     }
 
     /**
+     * @desc:玩家初始化
+     */
+    onPlayerInit(playerPlane: Plane) {
+        if (playerPlane) {
+            this.lbHp && (this.lbHp.string = playerPlane.hp.toString());
+        }
+    }
+
+    /**
      * @description:更新血量
      * @param planeNode 
      * @param prevHP 
@@ -187,6 +204,7 @@ export default class PlayScene extends cc.Component {
     onUpdateHP(planeNode: cc.Node, prevHP: number, curHp: number) {
         let hpNode = planeNode.getChildByName("hp");
         if (!hpNode) return;
+        this.onPlayerInit(planeNode.getComponent(PlayerPlane));
         hpNode.active = true;
         let anima = hpNode.getComponent(cc.Animation);
         let lbHp = hpNode.getChildByName("lbHp");

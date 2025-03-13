@@ -9,7 +9,10 @@ export default class PlayerPlane extends Plane {
     public activeEffects = new Map<string, number>();
     /**无敌*/
     public isInvincible: boolean = false;
-    onLoad(): void {
+
+    start(): void {
+       super.start(); 
+       cc.game.emit('player-init', this);
     }
 
     protected _updateHp(): void {

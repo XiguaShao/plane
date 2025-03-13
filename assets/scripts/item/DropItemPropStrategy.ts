@@ -73,7 +73,6 @@ export class ShieldStrategy extends DurationStrategy {
      // 配置参数
      private readonly _config = {
         duration: 3,
-        shieldValue: 100
     };
 
     getConfig() {
@@ -99,7 +98,7 @@ export class ShieldStrategy extends DurationStrategy {
 // 治疗策略（立即生效）
 export class HealStrategy extends PropStrategy {
     private readonly _config = {
-        healAmount: 50
+        healAmount: 3
     };
 
     getConfig() {
