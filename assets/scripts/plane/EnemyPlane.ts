@@ -9,6 +9,13 @@ export default class EnemyPlane extends Plane {
     @property([cc.Prefab])
     dropItems: cc.Prefab[] = []; //掉落物品
 
+    @property({
+        tooltip: "掉落概率 (0-1)",
+        range: [0, 1],
+        slide: true
+    })
+    dropRate: number = 0.3; // 掉落概率，默认30%
+
     onLoad(): void {
         const updateRotation = this.node.addComponent(UpdateRotation);
         updateRotation.offsetRotation = 180;
@@ -41,7 +48,7 @@ export default class EnemyPlane extends Plane {
     protected _playDestroy(): void {
         cc.game.emit('enemy-plane-destroy', this);
         //掉落物品
-        if (this.dropItems.length) {
+        if (this.dropItems.length && Math.random() < this.dropRate) {
             const prefab = _.sample(this.dropItems);
             const node = cc.instantiate(prefab);
             node.parent = this.node.parent;
