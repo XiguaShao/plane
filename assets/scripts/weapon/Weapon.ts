@@ -77,7 +77,11 @@ export default class Weapon extends cc.Component {
         } else {
             node.group = 'enemy-bullet';
         }
-        return node.getComponent('Bullet');
+        let bullet = node.getComponent(Bullet);
+        if(bullet.followTargetX) {
+            bullet.target = this.plane.node;
+        }
+        return bullet;
     }
 
     assignParam(weapon: Weapon): void {

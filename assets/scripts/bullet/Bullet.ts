@@ -18,8 +18,15 @@ export default class Bullet extends cc.Component {
     @property
     attack: number = 2;  //攻击力
 
+    @property({
+        tooltip: "是否跟随目标X轴"
+    })
+    followTargetX: boolean = false;
+
     private _plane!: Plane;
     private _weapon!: Weapon;
+
+    public target: cc.Node = null;
 
     private _getMoveAction(weapon: Weapon): cc.ActionInterval {
         let distance: number, endPoint: cc.Vec2, moveAction: cc.ActionInterval;
@@ -59,6 +66,11 @@ export default class Bullet extends cc.Component {
 
     update(): void {
         if (!this.node.parent) return;
+        // 跟随
+        if(this.target && this.followTargetX) {
+            this.node.x = this.target.x;
+        }
+
         const rect = this.node.parent.getBoundingBox();
         if (!rect.contains(cc.v2(this.node.position.x, this.node.position.y))) {
             this.node.destroy();
