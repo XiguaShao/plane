@@ -1399,9 +1399,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_hp": 10,
+    "_hp": 6,
     "defense": 0,
-    "damageCooldown": 1,
+    "damageCooldown": 0,
     "_id": ""
   },
   {
