@@ -42,6 +42,9 @@ export default class PlayScene extends cc.Component {
         cc.game.on('pass-stage', this._passStage, this);
         cc.game.on('player-under-attack', this._onPlayerUnderAttack, this);
         cc.game.on('enemy-plane-destroy', this._onEnemyPlaneDestroy, this);
+        cc.game.on('shield-activate', this.onShowShield, this);
+        cc.game.on('shield-deactivate', this.onHideShield, this);
+        cc.game.on('hp-update', this.onUpdateHP, this);
         this._unlockChapter = App.Rms.getDataByType(PLAYER_DATE_TYPE.chapter);
         this._currentChapter = this._unlockChapter;
         this.loadChapter();  // 加载章节配置
@@ -158,5 +161,47 @@ export default class PlayScene extends cc.Component {
         
         // Restart the game
         cc.director.loadScene('PlayScene');
+    }
+
+     /**
+     * @description:显示护盾
+     * @param planeNode 
+     */
+     onShowShield(planeNode: cc.Node) {
+        planeNode.getChildByName("hudun").active = true;
+    }
+    /**
+     * @description
+     * @param planeNode 
+     */
+    onHideShield(planeNode: cc.Node) {
+        planeNode.getChildByName("hudun").active = false;
+    }
+
+    /**
+     * @description:更新血量
+     * @param planeNode 
+     * @param prevHP 
+     * @param curHp 
+     */
+    onUpdateHP(planeNode: cc.Node, prevHP: number, curHp: number) {
+        let hpNode = planeNode.getChildByName("hp");
+        if (!hpNode) return;
+        hpNode.active = true;
+        let anima = hpNode.getComponent(cc.Animation);
+        let lbHp = hpNode.getChildByName("lbHp");
+        lbHp.getComponent(cc.Label).string = " + " + prevHP.toString();
+        // 移除原有complete监听
+        anima.off(cc.Animation.EventType.FINISHED); // 先移除旧监听避免重复
+
+        // 添加新的帧事件监听
+        anima.on(cc.Animation.EventType.FINISHED, (event: any) => {
+            hpNode.active = false;
+        });
+
+        if (anima.getAnimationState('hp').isPlaying) {
+            return;
+        }
+        anima.play();
     }
 }
