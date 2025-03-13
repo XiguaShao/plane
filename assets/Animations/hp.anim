@@ -1,0 +1,51 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "hp",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "y": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 0.25,
+          "value": 32
+        }
+      ]
+    },
+    "paths": {
+      "lbHp": {
+        "comps": {
+          "cc.Label": {
+            "fontSize": [
+              {
+                "frame": 0,
+                "value": 20
+              },
+              {
+                "frame": 0.25,
+                "value": 40
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.25,
+      "func": "complete",
+      "params": [
+        "00"
+      ]
+    }
+  ]
+}

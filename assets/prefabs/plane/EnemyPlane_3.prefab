@@ -549,15 +549,28 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_hp": 20,
+    "_hp": 8,
     "defense": 0,
+    "damageCooldown": 0,
     "dropItems": [
       {
         "__uuid__": "fee06e10-297f-43f4-8906-45db941ad321"
       },
       {
+        "__uuid__": "b0fb2992-6bd3-415d-99d9-98372fe27c73"
+      },
+      {
         "__uuid__": "0fb8376e-0757-4763-b429-1584d6de1e3d"
+      },
+      {
+        "__uuid__": "52502082-11ce-4b96-923b-5d2218a5e2ed"
       }
+    ],
+    "dropRates": [
+      15,
+      10,
+      10,
+      1
     ],
     "_id": ""
   },
@@ -580,7 +593,7 @@
     "rotation": 0,
     "rate": 1.5,
     "speed": 450,
-    "count": 10,
+    "count": 1,
     "_id": ""
   },
   {

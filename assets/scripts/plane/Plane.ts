@@ -93,9 +93,9 @@ export default class Plane extends cc.Component {
      */
     takeDamage(damage: number): boolean {
         const now = cc.director.getTotalTime() / 1000; // 转换为秒
-        if (now - this._lastDamageTime < this.damageCooldown) {
-            return false; // 在冷却时间内，不受伤害
-        }
+        // if (now - this._lastDamageTime < this.damageCooldown) {
+        //     return false; // 在冷却时间内，不受伤害
+        // }
 
         const actualDamage = Math.max(1, damage - this.defense);
         this.hp -= actualDamage;
