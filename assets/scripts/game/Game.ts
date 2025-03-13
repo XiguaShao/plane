@@ -26,6 +26,7 @@ export default class Game {
      * 初始化游戏数据
      */
     public initGameData() {
+        cc.debug.setDisplayStats(false);
         this.Rms.initData();
     }   
 
