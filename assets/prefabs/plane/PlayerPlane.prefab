@@ -1399,7 +1399,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_hp": 5,
+    "_hp": 10,
     "defense": 0,
     "damageCooldown": 1,
     "_id": ""
