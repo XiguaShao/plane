@@ -1,6 +1,8 @@
 import { ItemConfigs, ItemType, PropConfig } from "./ItemConst";
 import { PropStrategy, HealStrategy, ShieldStrategy } from "./DropItemPropStrategy";
-
+/**
+ * @description:策略管理类
+ */
 export class PropStrategyManager {
     private static _instance: PropStrategyManager;
     private _strategyMap = new Map<ItemType, PropStrategy>();
@@ -21,6 +23,11 @@ export class PropStrategyManager {
         this.registerStrategy(ItemType.HP, new HealStrategy());
     }
 
+    /**
+     * @desc:注册策略类
+     * @param type 
+     * @param strategy 
+     */
     public registerStrategy(type: ItemType, strategy: PropStrategy) {
         const config:PropConfig = ItemConfigs.get(type);
         if (config) Object.assign(strategy.getConfig(), config);
