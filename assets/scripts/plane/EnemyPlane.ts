@@ -53,19 +53,13 @@ export default class EnemyPlane extends Plane {
         
         // 掉落物品
         if (this.dropItems.length) {
-            // 计算总概率
-            const totalRate = this.dropRates.reduce((sum, rate, index) => {
-                return index < this.dropItems.length ? sum + rate : sum;
-            }, 0);
-            
-            // 随机值
-            const random = Math.random() * totalRate;
+            const random = Math.random(); // 随机值 0-1
             let currentSum = 0;
             
             // 根据概率选择道具
             for (let i = 0; i < this.dropItems.length; i++) {
                 currentSum += this.dropRates[i] || 0;
-                if (random <= currentSum) {
+                if (random <= currentSum && random > (currentSum - this.dropRates[i])) {
                     // 生成选中的道具
                     const node = cc.instantiate(this.dropItems[i]);
                     node.parent = this.node.parent;
