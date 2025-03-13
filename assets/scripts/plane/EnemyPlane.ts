@@ -55,7 +55,7 @@ export default class EnemyPlane extends Plane {
         if (this.dropItems.length) {
             const random = Math.random(); // 随机值 0-1
             let currentSum = 0;
-            
+            let bDrop = false;
             // 根据概率选择道具
             for (let i = 0; i < this.dropItems.length; i++) {
                 currentSum += this.dropRates[i] || 0;
@@ -78,8 +78,12 @@ export default class EnemyPlane extends Plane {
                     const moveTo = cc.moveTo(duration, cc.v2(p.x, y)).easing(cc.easeSineOut());
                     const removeSelf = cc.removeSelf();
                     node.runAction(cc.sequence(jumpBy, moveTo, removeSelf));
+                    bDrop = true;
                     break;
                 }
+            }
+            if(!bDrop) {
+                console.log("掉落未命中")
             }
         }
 
