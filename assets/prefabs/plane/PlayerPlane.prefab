@@ -1401,7 +1401,7 @@
     "_enabled": true,
     "_hp": 5,
     "defense": 0,
-    "damageCooldown": 0.5,
+    "damageCooldown": 1,
     "_id": ""
   },
   {
