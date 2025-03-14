@@ -165,7 +165,7 @@
       "y": 30
     },
     "rotation": 0,
-    "rate": 0.1,
+    "rate": 0.0001,
     "speed": 3000,
     "count": 0,
     "_id": ""

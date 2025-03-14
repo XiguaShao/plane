@@ -1,1 +1,47 @@
-{}
+{
+   "1": {
+      "id": 1,
+      "asset": "Bullet_1",
+      "attack": 2
+   },
+   "2": {
+      "id": 2,
+      "asset": "Bullet_2",
+      "attack": 2
+   },
+   "3": {
+      "id": 3,
+      "asset": "Bullet_3",
+      "attack": 2
+   },
+   "4": {
+      "id": 4,
+      "asset": "Bullet_4",
+      "attack": 1
+   },
+   "5": {
+      "id": 5,
+      "asset": "Bullet_5",
+      "attack": 1
+   },
+   "6": {
+      "id": 6,
+      "asset": "Bullet_6",
+      "attack": 1
+   },
+   "7": {
+      "id": 7,
+      "asset": "Bullet",
+      "attack": 2
+   },
+   "8": {
+      "id": 8,
+      "asset": "Bullet1",
+      "attack": 2
+   },
+   "9": {
+      "id": 9,
+      "asset": "Bullet2",
+      "attack": 2
+   }
+}

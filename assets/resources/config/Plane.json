@@ -1,1 +1,224 @@
-{}
+{
+   "10101": {
+      "id": 10101,
+      "name": "普通掠夺者",
+      "introduce": "普通掠夺者",
+      "asset": "EnemyPlane_2001",
+      "hp": 5,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10301
+      ],
+      "dropItemRates": [
+         15,
+         10,
+         10,
+         5
+      ],
+      "weapons": [
+         1020011
+      ]
+   },
+   "10102": {
+      "id": 10102,
+      "name": "普通守卫者",
+      "introduce": "普通守卫者",
+      "asset": "EnemyPlane_2006",
+      "hp": 6,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10311
+      ],
+      "dropItemRates": [
+         15,
+         10,
+         10,
+         5
+      ],
+      "weapons": [
+         1020021
+      ]
+   },
+   "10103": {
+      "id": 10103,
+      "name": "普通护卫者",
+      "introduce": "普通护卫者",
+      "asset": "EnemyPlane_2007",
+      "hp": 7,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10301
+      ],
+      "dropItemRates": [
+         15,
+         10,
+         10,
+         5
+      ],
+      "weapons": [
+         1020031
+      ]
+   },
+   "10104": {
+      "id": 10104,
+      "name": "精英掠夺者",
+      "introduce": "精英掠夺者",
+      "asset": "EnemyPlane_2008",
+      "hp": 9,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10301
+      ],
+      "dropItemRates": [
+         15,
+         10,
+         10,
+         5
+      ],
+      "weapons": [
+         1020011
+      ]
+   },
+   "10105": {
+      "id": 10105,
+      "name": "精英守卫者",
+      "introduce": "精英守卫者",
+      "asset": "EnemyPlane_2009",
+      "hp": 10,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10311
+      ],
+      "dropItemRates": [
+         15,
+         10,
+         10,
+         5
+      ],
+      "weapons": [
+         1020021
+      ]
+   },
+   "10106": {
+      "id": 10106,
+      "name": "精英护卫者",
+      "introduce": "精英护卫者",
+      "asset": "EnemyPlane_2010",
+      "hp": 11,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10301
+      ],
+      "dropItemRates": [
+         15,
+         10,
+         10,
+         5
+      ],
+      "weapons": [
+         1020031
+      ]
+   },
+   "10107": {
+      "id": 10107,
+      "name": "超级掠夺者",
+      "introduce": "超级掠夺者",
+      "asset": "EnemyPlane_2011",
+      "hp": 15,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10301
+      ],
+      "dropItemRates": [
+         15,
+         10,
+         10,
+         5
+      ],
+      "weapons": [
+         1020011
+      ]
+   },
+   "10108": {
+      "id": 10108,
+      "name": "超级守卫者",
+      "introduce": "超级守卫者",
+      "asset": "EnemyPlane_2012",
+      "hp": 16,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10311
+      ],
+      "dropItemRates": [
+         15,
+         10,
+         10,
+         5
+      ],
+      "weapons": [
+         1020021
+      ]
+   },
+   "10109": {
+      "id": 10109,
+      "name": "超级护卫者",
+      "introduce": "超级护卫者",
+      "asset": "EnemyPlane_2013",
+      "hp": 17,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10301
+      ],
+      "dropItemRates": [
+         15,
+         10,
+         10,
+         5
+      ],
+      "weapons": [
+         1020031
+      ]
+   },
+   "10191": {
+      "id": 10191,
+      "name": "F22",
+      "boss": 1,
+      "introduce": "隐形战机",
+      "asset": "BossPlane _xiaoboss",
+      "hp": 100,
+      "defense": 0,
+      "weapons": [
+         1020041,
+         1020042,
+         1020043,
+         1020044
+      ]
+   }
+}

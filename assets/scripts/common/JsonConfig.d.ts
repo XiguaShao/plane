@@ -12,12 +12,6 @@ export interface BulletCfg {
    asset:string,
    /** 伤害 */
    attack:number,
-   /** 碰撞组 */
-   group?:string,
-   /** 碰撞类型 */
-   colliderType?:string,
-   /** 碰撞参数 */
-   colliderParam?:object,
 }
 
 export interface ChapterCfg { 
@@ -28,7 +22,7 @@ export interface ChapterCfg {
    /** 关卡调用 */
    level:number,
    /** 名称 */
-   name:string,
+   name:number,
    /** 介绍 */
    introduce:string,
    /** 经验奖励 */
@@ -51,29 +45,35 @@ export interface PathCfg {
 }
 
 export interface PlaneCfg { 
-   /** 飞机ID */
+   /** 飞机ID 命名规则： 1[xx：关卡名字][xx:飞机序号] boss的序号可以从91开始 */
    id:number,
-   /** 资产  */
+   /** 名称 */
+   name:string,
+   /** BOSS */
+   boss?:boolean,
+   /** 介绍 */
+   introduce:string,
+   /** 资产 预制体名字 boss在bossPlanes 非boss在enemyPlanes */
    asset:string,
    /** 生命值 */
    hp:number,
    /** 防御 */
    defense:number,
-   /** 击杀掉落 */
+   /** 击杀掉落  */
    dropItems:number[],
+   /** 击杀掉落概率（百分比） 0-100 总合小于100 长度同dropItems  */
+   dropItemRates:number[],
    /** 武器 关联Weapon表 */
    weapons:number[],
-   /** 碰撞组 */
-   group:string,
-   /** 碰撞类型 */
-   colliderType:string,
-   /** 碰撞参数 */
-   colliderParam:object,
 }
 
 export interface PropCfg { 
-   /** 道具ID */
+   /** 道具ID 1[类型][序号] */
    id:number,
+   /** 名称 */
+   name:string,
+   /** 介绍 */
+   introduce:string,
    /** 资产  */
    asset:string,
    /** 道具类型 货币=1 武器=2 效果=3 */
@@ -82,16 +82,12 @@ export interface PropCfg {
    count?:number,
    /** 是否可覆盖 */
    isOverlap?:boolean,
-   /** 标记 */
+   /** 标记  */
    tag?:number,
    /** 武器或效果ID 关联Weapon表 */
    weapons?:number[],
-   /** 碰撞组 */
-   group?:string,
-   /** 碰撞类型 */
-   colliderType?:string,
-   /** 碰撞参数 */
-   colliderParam?:object,
+   /** 应用效果 */
+   applyEffect?:object,
 }
 
 export interface StageCfg { 
@@ -131,12 +127,12 @@ export interface WaveCfg {
 }
 
 export interface WeaponCfg { 
-   /** 武器ID */
+   /** 武器ID 101[001][1] 001:武器组 1：发射点序号 */
    id:number,
+   /** 介绍 */
+   introduce:string,
    /** 武器类型 基础=1 扇形=2 曲线=3 */
    type:number,
-   /** 资产  */
-   asset:string,
    /** 偏移位置 */
    offset?:number[],
    /** 角度 */
