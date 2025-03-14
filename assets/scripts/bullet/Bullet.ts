@@ -1,3 +1,4 @@
+import { BulletCfg } from '../common/JsonConfig';
 import Plane from '../plane/Plane';
 import Weapon from '../weapon/Weapon';
 
@@ -61,7 +62,8 @@ export default class Bullet extends cc.Component {
      * 碰撞后销毁
      */
     onCollisionEnter(): void {
-        this.node.destroy();
+        App.nodePoolMgr.putNode(this.node, true);
+        // this.node.destroy();
     }
 
     update(): void {
@@ -75,5 +77,9 @@ export default class Bullet extends cc.Component {
         if (!rect.contains(cc.v2(this.node.position.x, this.node.position.y))) {
             this.node.destroy();
         }
+    }
+
+    initByCfg(cfg: BulletCfg) {
+        this.attack = cfg.attack;
     }
 }

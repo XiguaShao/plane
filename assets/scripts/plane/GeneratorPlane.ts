@@ -67,21 +67,6 @@ export default class GeneratorPlane extends cc.Component {
     private _startPoints: cc.Vec2[] = [];
     private _waves: StageCfg[] = [];
 
-    start(): void {
-        ResourceManager.ins().loadRes(TempConfig.WaveConfig, cc.JsonAsset, (err, asset) => {
-            if (err) {
-                cc.error("加载 Wave.json 失败:", err);
-                return;
-            }
-        });
-
-        ResourceManager.ins().loadRes(TempConfig.PathConfig, cc.JsonAsset, (err, asset) => {
-            if (err) {
-                cc.error("加载 Wave.json 失败:", err);
-                return;
-            }
-        });
-    }
 
     loadStage(chapter: number) {
         ResourceManager.ins().loadRes(`config/Stage${chapter}`, cc.JsonAsset, (err, asset) => {

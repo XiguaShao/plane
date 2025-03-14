@@ -1,5 +1,8 @@
 import Plane from '../plane/Plane';
 import Bullet from '../bullet/Bullet';
+import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
+import ResourceManager from '../../framework/resourceManager/ResourceManager';
+import { BulletCfg, WeaponCfg } from '../common/JsonConfig';
 
 const { ccclass, property } = cc._decorator;
 
@@ -27,6 +30,9 @@ export default class Weapon extends cc.Component {
     private _duration: number = 0;
     private _count: number = 0;
 
+    private _bulletCfg: BulletCfg = null;
+    private _bulletAssetPath: string = "";
+
     start(): void {
         this.plane = this.node.getComponent(Plane);
         if (!this.plane) {
@@ -41,7 +47,8 @@ export default class Weapon extends cc.Component {
         }
     }
 
-    protected _fire(dt?: number): void {
+    protected async _fire(dt?: number) {
+        if(!App.gameDataInited) return;
         if (dt) {
             this._duration += dt;
         }
@@ -54,7 +61,7 @@ export default class Weapon extends cc.Component {
             return;
         }
 
-        const bullet = this._createBullet();
+        const bullet = await this._createBullet();
         if (bullet) {
             bullet.run(this.plane, this);
         }
@@ -63,10 +70,10 @@ export default class Weapon extends cc.Component {
     /**
      * 创建子弹
      */
-    protected _createBullet(): Bullet | null {
+    protected async _createBullet(): Promise<Bullet | null> {
         if (!this.bulletPrefab) return null;
-        
-        const node = cc.instantiate(this.bulletPrefab);
+        let node = await App.nodePoolMgr.getNode(this._bulletAssetPath);
+        // const node = cc.instantiate(this.bulletPrefab);
         const p = this.node.convertToWorldSpaceAR(cc.v2(0, 0));
         node.position = cc.v3(this.node.parent.convertToNodeSpaceAR(p).add(this.offset));
         node.angle = this.node.angle - this.rotation;
@@ -78,6 +85,7 @@ export default class Weapon extends cc.Component {
             node.group = 'enemy-bullet';
         }
         let bullet = node.getComponent(Bullet);
+        bullet.initByCfg(this._bulletCfg);
         if(bullet.followTargetX) {
             bullet.target = this.plane.node;
         }
@@ -92,4 +100,15 @@ export default class Weapon extends cc.Component {
         weapon.rotation = this.rotation;
         weapon.offset = cc.v2(this.offset);
     } 
+
+    initByCfg(cfg: WeaponCfg) {
+        this._bulletCfg = ResourceManager.ins().getJsonById<BulletCfg>(TempConfig.BulletConfig, cfg.bulletId);
+        this._bulletAssetPath = getPrefabPath(this._bulletCfg.asset, TPrefab.Bullet);
+        
+        this.rate = cfg.rate;
+        this.speed = cfg.speed;
+        this.count = cfg.count;
+        this.rotation = cfg.rotation || 0;
+        this.offset = cc.v2(cfg.offset[0], cfg.offset[1]);
+    }
 }

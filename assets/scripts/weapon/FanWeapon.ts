@@ -5,22 +5,26 @@ const { ccclass } = cc._decorator;
 
 @ccclass
 export default class FanWeapon extends Weapon {
-    protected _fire(): void {
-        if (!this.plane) {
-            cc.log('请设置武器的plane属性');
+    protected async _fire(dt?: number): Promise<void> {
+        if (dt) {
+            this._duration += dt;
+        }
+        if (this.count !== 0 && this._count++ >= this.count) {
+            this.unschedule(this._fire);
+            if (this.plane.onWeaponRemove) {
+                this.plane.onWeaponRemove();
+                this.node.removeComponent(this);
+            }
             return;
         }
 
-        const startRotation = -this.rotation * (this.count - 1) / 2;
-        
-        _.forEach(_.range(0, this.count), (index) => {
-            const bullet = this._createBullet();
-            if (bullet && bullet.node) {
-                let curRotation = startRotation + index * this.rotation;
-                bullet.node.angle = -curRotation;
-                bullet.node.zIndex = Math.abs(bullet.node.angle);
+        const rotations = this._getRotations();
+        for (const rotation of rotations) {
+            this.rotation = rotation;
+            const bullet = await this._createBullet();
+            if (bullet) {
                 bullet.run(this.plane, this);
             }
-        });
+        }
     }
 }
