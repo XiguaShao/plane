@@ -87,5 +87,351 @@
       "applyEffect": {
          "duration": 3
       }
+   },
+   "20101": {
+      "id": 20101,
+      "name": "晶石",
+      "introduce": "晶石",
+      "asset": "DropItemGold",
+      "type": 1,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 0
+   },
+   "20201": {
+      "id": 20201,
+      "name": "武器-双行",
+      "introduce": "武器-双行",
+      "asset": "DropItemBullet_1",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 1,
+      "weapons": [
+         2010011,
+         2010012
+      ]
+   },
+   "20202": {
+      "id": 20202,
+      "name": "武器-扇形",
+      "introduce": "武器-扇形",
+      "asset": "DropItemBullet_2",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 2,
+      "weapons": [
+         2010021
+      ]
+   },
+   "20203": {
+      "id": 20203,
+      "name": "武器-激光",
+      "introduce": "武器-激光",
+      "asset": "DropItemBullet_3",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 3,
+      "weapons": [
+         2010031
+      ]
+   },
+   "20301": {
+      "id": 20301,
+      "name": "血包+1",
+      "introduce": "血包+1",
+      "asset": "DropItemHpProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 4,
+      "applyEffect": {
+         "value": 2
+      }
+   },
+   "20302": {
+      "id": 20302,
+      "name": "血宝+2",
+      "introduce": "血宝+2",
+      "asset": "DropItemHpProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 5,
+      "applyEffect": {
+         "value": 4
+      }
+   },
+   "20311": {
+      "id": 20311,
+      "name": "护盾",
+      "introduce": "护盾",
+      "asset": "DropItemShieldProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 6,
+      "applyEffect": {
+         "duration": 3
+      }
+   },
+   "30101": {
+      "id": 30101,
+      "name": "晶石",
+      "introduce": "晶石",
+      "asset": "DropItemGold",
+      "type": 1,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 0
+   },
+   "30201": {
+      "id": 30201,
+      "name": "武器-双行",
+      "introduce": "武器-双行",
+      "asset": "DropItemBullet_1",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 1,
+      "weapons": [
+         3010011,
+         3010012
+      ]
+   },
+   "30202": {
+      "id": 30202,
+      "name": "武器-扇形",
+      "introduce": "武器-扇形",
+      "asset": "DropItemBullet_2",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 2,
+      "weapons": [
+         3010021
+      ]
+   },
+   "30203": {
+      "id": 30203,
+      "name": "武器-激光",
+      "introduce": "武器-激光",
+      "asset": "DropItemBullet_3",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 3,
+      "weapons": [
+         3010031
+      ]
+   },
+   "30301": {
+      "id": 30301,
+      "name": "血包+1",
+      "introduce": "血包+1",
+      "asset": "DropItemHpProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 4,
+      "applyEffect": {
+         "value": 3
+      }
+   },
+   "30302": {
+      "id": 30302,
+      "name": "血宝+2",
+      "introduce": "血宝+2",
+      "asset": "DropItemHpProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 5,
+      "applyEffect": {
+         "value": 5
+      }
+   },
+   "30311": {
+      "id": 30311,
+      "name": "护盾",
+      "introduce": "护盾",
+      "asset": "DropItemShieldProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 6,
+      "applyEffect": {
+         "duration": 3
+      }
+   },
+   "40101": {
+      "id": 40101,
+      "name": "晶石",
+      "introduce": "晶石",
+      "asset": "DropItemGold",
+      "type": 1,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 0
+   },
+   "40201": {
+      "id": 40201,
+      "name": "武器-双行",
+      "introduce": "武器-双行",
+      "asset": "DropItemBullet_1",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 1,
+      "weapons": [
+         4010011,
+         4010012
+      ]
+   },
+   "40202": {
+      "id": 40202,
+      "name": "武器-扇形",
+      "introduce": "武器-扇形",
+      "asset": "DropItemBullet_2",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 2,
+      "weapons": [
+         4010021
+      ]
+   },
+   "40203": {
+      "id": 40203,
+      "name": "武器-激光",
+      "introduce": "武器-激光",
+      "asset": "DropItemBullet_3",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 3,
+      "weapons": [
+         4010031
+      ]
+   },
+   "40301": {
+      "id": 40301,
+      "name": "血包+1",
+      "introduce": "血包+1",
+      "asset": "DropItemHpProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 4,
+      "applyEffect": {
+         "value": 4
+      }
+   },
+   "40302": {
+      "id": 40302,
+      "name": "血宝+2",
+      "introduce": "血宝+2",
+      "asset": "DropItemHpProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 5,
+      "applyEffect": {
+         "value": 6
+      }
+   },
+   "40311": {
+      "id": 40311,
+      "name": "护盾",
+      "introduce": "护盾",
+      "asset": "DropItemShieldProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 6,
+      "applyEffect": {
+         "duration": 3
+      }
+   },
+   "50201": {
+      "id": 50201,
+      "name": "武器-双行",
+      "introduce": "武器-双行",
+      "asset": "DropItemBullet_1",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 1,
+      "weapons": [
+         5010011,
+         5010012
+      ]
+   },
+   "50202": {
+      "id": 50202,
+      "name": "武器-扇形",
+      "introduce": "武器-扇形",
+      "asset": "DropItemBullet_2",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 2,
+      "weapons": [
+         5010021
+      ]
+   },
+   "50203": {
+      "id": 50203,
+      "name": "武器-激光",
+      "introduce": "武器-激光",
+      "asset": "DropItemBullet_3",
+      "type": 2,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 3,
+      "weapons": [
+         5010031
+      ]
+   },
+   "50301": {
+      "id": 50301,
+      "name": "血包+1",
+      "introduce": "血包+1",
+      "asset": "DropItemHpProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 4,
+      "applyEffect": {
+         "value": 5
+      }
+   },
+   "50302": {
+      "id": 50302,
+      "name": "血宝+2",
+      "introduce": "血宝+2",
+      "asset": "DropItemHpProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 5,
+      "applyEffect": {
+         "value": 7
+      }
+   },
+   "50311": {
+      "id": 50311,
+      "name": "护盾",
+      "introduce": "护盾",
+      "asset": "DropItemShieldProp",
+      "type": 3,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 6,
+      "applyEffect": {
+         "duration": 3
+      }
    }
 }
