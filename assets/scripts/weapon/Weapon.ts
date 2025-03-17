@@ -31,7 +31,7 @@ export default class Weapon extends cc.Component {
     private _count: number = 0;
 
     private _bulletCfg: BulletCfg = null;
-    private _bulletAssetPath: string = "";
+    private _bulletAssetPath: string = getPrefabPath("Bullet_1", TPrefab.Bullet);
 
     start(): void {
         this.plane = this.node.getComponent(Plane);
@@ -71,13 +71,13 @@ export default class Weapon extends cc.Component {
      * 创建子弹
      */
     protected async _createBullet(): Promise<Bullet | null> {
-        if (!this.bulletPrefab) return null;
+        // if (!this.bulletPrefab) return null;
         let node = await App.nodePoolMgr.getNode(this._bulletAssetPath);
         // const node = cc.instantiate(this.bulletPrefab);
         const p = this.node.convertToWorldSpaceAR(cc.v2(0, 0));
         node.position = cc.v3(this.node.parent.convertToNodeSpaceAR(p).add(this.offset));
         node.angle = this.node.angle - this.rotation;
-        node.parent = this.node.parent;
+        node.parent = App.gameGlobal.bulletLayer;
 
         if (this.node.group === 'player') {
             node.group = 'player-bullet';

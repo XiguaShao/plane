@@ -1,6 +1,9 @@
 import * as _ from 'lodash';
 import Plane from './Plane';
 import UpdateRotation from '../../scripts/components/UpdateRotation';
+import ResourceManager from '../../framework/resourceManager/ResourceManager';
+import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
+import { PropCfg } from '../common/JsonConfig';
 
 const { ccclass, property } = cc._decorator;
 
@@ -49,23 +52,30 @@ export default class EnemyPlane extends Plane {
     })
     dropRates: number[] = [];
 
-    protected _playDestroy(): void {
+    protected async _playDestroy() {
         cc.game.emit('enemy-plane-destroy', this);
-        
+
         // 掉落物品
-        if (this.dropItems.length) {
+        let dropItems = this.getDropItems();
+        let dropItemRates = this.getDropItemRates();
+        if (dropItems.length) {
             const random = Math.random() * 100; // 随机值 0-100
             let currentSum = 0;
             let bDrop = false;
             // 根据概率选择道具
-            for (let i = 0; i < this.dropItems.length; i++) {
-                currentSum += this.dropRates[i] || 0;
-                if (random <= currentSum && random > (currentSum - this.dropRates[i])) {
+            for (let i = 0; i < dropItems.length; i++) {
+                currentSum += dropItemRates[i] || 0;
+                if (random <= currentSum && random > (currentSum - dropItemRates[i])) {
                     // 生成选中的道具
-                    const node = cc.instantiate(this.dropItems[i]);
-                    node.parent = this.node.parent;
-                    node.position = this.node.position;
+                    // const node = cc.instantiate(this.dropItems[i]);
+                    // node.parent = App.gameGlobal.dropLayer;
+                    // node.position = this.node.position;
 
+                    const node = await this.createDropNode(dropItems[i]);
+                    if (!node) {
+                        console.error("没有掉落")
+                        return;
+                    }
                     const p = cc.v2(node.x + (Math.random() > 0.5 ? -50 : 50), node.y);
                     const array = [
                         cc.v2(node.x, node.y + 100),
@@ -83,11 +93,35 @@ export default class EnemyPlane extends Plane {
                     break;
                 }
             }
-            if(!bDrop) {
+            if (!bDrop) {
                 console.log("掉落未命中")
             }
         }
 
         super._playDestroy();
+    }
+
+    /**
+     * @description:创建掉落节点
+     * @param dropId 
+     */
+    async createDropNode(dropId): Promise<cc.Node> {
+        if (!dropId) {
+            console.error("dropId is null")
+        }
+        let dropCfg = ResourceManager.ins().getJsonById<PropCfg>(TempConfig.DropConfig, dropId);
+        if (!dropCfg) {
+            console.error(dropId, "dropCfg is null");
+            return null;
+        }
+        let prefab = await ResourceManager.ins().getPrefab(getPrefabPath(dropCfg.asset, TPrefab.Prop));
+        if (prefab) {
+            let node = cc.instantiate(prefab);
+            node.parent = App.gameGlobal.dropLayer;
+            node.position = this.node.position;
+            let dropItem = node.getComponent("DropItem");
+            dropItem.initByCfg(dropCfg);
+            return node;
+        }
     }
 }

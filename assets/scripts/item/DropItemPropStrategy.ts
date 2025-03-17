@@ -1,19 +1,12 @@
+import { PropCfg } from "../common/JsonConfig";
 import PlayerPlane from "../plane/PlayerPlane";
 import { TimerManager } from "../timer/TimerManager";
-
-// 新增配置接口
-interface PropConfig {
-    duration?: number;
-    value?: number;
-    multiplier?: number;
-}
 
 /**
  * 道具策略基类
  */
 export abstract class PropStrategy {
-    // 新增配置获取方法
-    abstract getConfig(): PropConfig;
+    public config: PropCfg = null;
     abstract apply(plane: PlayerPlane): void;
     
     // 使用Plane类的事件系统
@@ -70,22 +63,21 @@ abstract class DurationStrategy extends PropStrategy {
 
 // 护盾策略（持续5秒）
 export class ShieldStrategy extends DurationStrategy {
-     // 配置参数
-     private readonly _config = {
-        duration: 3,
-    };
 
-    getConfig() {
-        return { duration: this._config.duration };
-    }
     apply(plane: PlayerPlane) {
+        // 假设 this.config 是一个 PropCfg 类型，并且它有一个 applyEffect 属性
+        let duration = this.config && this.config.applyEffect && (this.config.applyEffect as any).duration;
+        // 如果 duration 为 undefined，可以设置一个默认值
+        if (duration === undefined) {
+            duration = 3; // 这里假设默认持续时间为 5 秒
+        }
         this.applyEffect(
             plane,
             'shield',
-            this._config.duration,
+            duration,
             () => {
                 plane.isInvincible = true;
-                this.emitEvent('shield-activate', plane.node, this._config.duration);
+                this.emitEvent('shield-activate', plane.node, duration);
             },
             () => {
                 plane.isInvincible = false;
@@ -97,16 +89,10 @@ export class ShieldStrategy extends DurationStrategy {
 
 // 治疗策略（立即生效）
 export class HealStrategy extends PropStrategy {
-    private readonly _config = {
-        healAmount: 3
-    };
-
-    getConfig() {
-        return { value: this._config.healAmount };
-    }
     apply(plane: PlayerPlane) {
+        let value = this.config && this.config.applyEffect && (this.config.applyEffect as any).value;
         const prevHP = plane.hp;
-        plane.hp = Math.min(plane.hp + this._config.healAmount, plane.getMaxHP());
+        plane.hp = Math.min(plane.hp + value, plane.getMaxHP());
         this.emitEvent('hp-update', plane.node, prevHP, plane.hp);
     }
 }

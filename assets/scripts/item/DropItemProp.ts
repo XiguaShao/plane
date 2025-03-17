@@ -1,10 +1,12 @@
+import { PropCfg } from "../common/JsonConfig";
+import DropItem from "./DropItem";
 import { ItemType } from "./ItemConst";
 import { PropStrategyManager } from "./PropStrategyManager";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class DropItemProp extends cc.Component {
+export default class DropItemProp extends DropItem {
     /**道具类型 */
     private _itemType: ItemType = null;
     private itemBg: cc.Node;
@@ -16,6 +18,13 @@ export default class DropItemProp extends cc.Component {
         this.itemIcon = this.node.getChildByName('itemIcon');
         this.itemBg1 = this.node.getChildByName('item_bg1');
     }
+
+    initCfg(cfg: PropCfg): void {
+        super.initByCfg(cfg);
+        let strategy = PropStrategyManager.instance.getStrategy(this.getItemType());
+        strategy.config = cfg;
+    }
+    
     /**
      * @description:碰撞回调
      * @param other 

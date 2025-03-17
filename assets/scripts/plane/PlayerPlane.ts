@@ -15,9 +15,6 @@ export default class PlayerPlane extends Plane {
        cc.game.emit('player-init', this);
     }
 
-    protected _updateHp(): void {
-    }
-
     onCollisionEnter(other: cc.Collider): void {
         if(this.isInvincible) return;
         const bullet = other.getComponent('Bullet');
@@ -26,7 +23,7 @@ export default class PlayerPlane extends Plane {
         } else {
             const enemyPlane = other.getComponent(Plane);
             if (enemyPlane) {
-                this.hp -= 2;
+                this.hp -= enemyPlane.hp;
             }
         }
 

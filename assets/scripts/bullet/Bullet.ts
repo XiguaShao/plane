@@ -2,7 +2,7 @@ import { BulletCfg } from '../common/JsonConfig';
 import Plane from '../plane/Plane';
 import Weapon from '../weapon/Weapon';
 
-const RADIAN = 2 * Math.PI / 360;
+export const RADIAN = 2 * Math.PI / 360;
 
 function getEndPoint(rotation: number, r: number): cc.Vec2 {
     //let r = cc.winSize.width;
@@ -24,8 +24,8 @@ export default class Bullet extends cc.Component {
     })
     followTargetX: boolean = false;
 
-    private _plane!: Plane;
-    private _weapon!: Weapon;
+    public _plane!: Plane;
+    public _weapon!: Weapon;
 
     public target: cc.Node = null;
 
@@ -80,6 +80,7 @@ export default class Bullet extends cc.Component {
     }
 
     initByCfg(cfg: BulletCfg) {
+        if(!cfg) return;
         this.attack = cfg.attack;
     }
 }

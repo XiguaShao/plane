@@ -196,6 +196,7 @@
     },
     "_enabled": true,
     "attack": 2,
+    "followTargetX": false,
     "_id": ""
   },
   {

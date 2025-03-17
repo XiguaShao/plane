@@ -15,16 +15,18 @@ export const TempConfig = {
     SkillConfig: ConfigBasePath + "skill",
 }
 
-export const PlaneBasicPath = "prefabs/plane/bossPlanes/";
-export const PlaneBossPath = "prefabs/plane/enemyPlanes/";
+export const PlaneBasicPath = "prefabs/plane/enemyPlanes/";
+export const PlaneBossPath = "prefabs/plane/bossPlanes/";
 
 export const BulletPath = "prefabs/bullet/";
 export const DropPath = "prefabs/item/";
+export const EffectPath = "prefabs/effect/";
 export enum TPrefab {
     Plane,
     PlaneBoss,
     Bullet,
     Prop,
+    Effect
 }
 
 /**
@@ -39,6 +41,7 @@ export function getPrefabPath(asset:string, type: TPrefab = TPrefab.Plane): stri
         case TPrefab.PlaneBoss: return PlaneBossPath + asset; break;
         case TPrefab.Bullet: return BulletPath + asset; break;
         case TPrefab.Prop: return DropPath + asset; break;
+        case TPrefab.Effect: return EffectPath + asset; break;
     }
     return "";
 }

@@ -11,4 +11,5 @@ export default class DropItemHpProp extends DropItemProp {
        super.onLoad();
        this.setItemType(ItemType.HP);
    }
+
 }

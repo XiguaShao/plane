@@ -9,7 +9,8 @@ const {ccclass, property} = cc._decorator;
 export default class Game {
     public inited = false;
     public gameDataInited = false;
-    public gameGlobal: any = null;
+    public gameGlobal: any = {
+    };
     public nodePoolMgr: NodePoolManager = null;
     public Rms: GamePlayerData = null;
     public ResManager: ResourceManager = null;
@@ -20,8 +21,8 @@ export default class Game {
             this.Rms = new GamePlayerData();
             this.ResManager = new ResourceManager();
         }
-        
         this.inited = true;
+        cc.game.emit("game-init");
     }
 
     /**

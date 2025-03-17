@@ -1,8 +1,9 @@
 import * as _ from 'lodash';
 import * as async from 'async';
 import ResourceManager from '../../framework/resourceManager/ResourceManager';
-import { TempConfig } from '../common/ResConst';
-import { PathCfg, StageCfg, WaveCfg } from '../common/JsonConfig';
+import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
+import { PathCfg, PlaneCfg, StageCfg, WaveCfg } from '../common/JsonConfig';
+import Plane from './Plane';
 
 interface PathPoint {
     points: [cc.Vec2, ...cc.Vec2[]];
@@ -123,13 +124,14 @@ export default class GeneratorPlane extends cc.Component {
         // const pathConfig: PathConfig = this.pathAsset.json[groupConfig.path || ''];
         let destroyCount = 0;
 
-        async.mapSeries(_.range(0, groupConfig.count || 0), (i, cb: (error: Error | null, result?: cc.Node) => void) => {
-            if (!groupConfig.planeID || !this.planePrefabs[groupConfig.planeID - 1]) {
+        async.mapSeries(_.range(0, groupConfig.count || 0), async (i, cb: (error: Error | null, result?: cc.Node) => void) => {
+            if (!groupConfig.planeID) {
                 cb(null);
                 return;
             }
-            const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
-            plane.parent = this.target;
+            // const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
+            // plane.parent = this.target;
+            const plane = await this.createPlane(groupConfig.planeID);
             plane.position = cc.v3(pathConfig.points[0][0]);
             const duration = (groupConfig.duration || 6) / pathConfig.points.length;
             let repeat = groupConfig.repeat;
@@ -235,10 +237,11 @@ export default class GeneratorPlane extends cc.Component {
         const array = groupConfig.indexs || [];
         let destroyCount = 0;
 
-        async.each(array, (index: number, cb: (error?: Error) => void) => {
-            if (!groupConfig.planeID || !this.planePrefabs[groupConfig.planeID - 1]) return;
-            const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
-            plane.parent = this.target;
+        async.each(array, async (index: number, cb: (error?: Error) => void) => {
+            if (!groupConfig.planeID ) return;
+            // const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
+            // plane.parent = this.target;
+            const plane = await this.createPlane(groupConfig.planeID);
             plane.position = this._getStartPos(index - 1);
             const dy = groupConfig.dy || -cc.winSize.height / 2 - plane.y;
             const duration = Math.abs(dy / (groupConfig.speed || 1));
@@ -272,4 +275,22 @@ export default class GeneratorPlane extends cc.Component {
             }
         });
     }
+
+    /**
+     * @description:创建飞机
+     */
+    async createPlane(planeId):Promise<cc.Node> {
+        let planeCfg = ResourceManager.ins().getJsonById<PlaneCfg>(TempConfig.PlaneConfig, planeId);
+        if(!planeCfg){
+            console.error(planeId, "planeCfg is null");
+            return null;
+        }
+        let planeAssetPath = getPrefabPath(planeCfg.asset, TPrefab.Plane);
+            let planeNode = await App.nodePoolMgr.getNodeFromPool(planeCfg.asset, planeAssetPath);
+            let plane:Plane = planeNode.getComponent(Plane);
+            plane.initByCfg(planeCfg);
+            planeNode.parent = App.gameGlobal.planeLayer;
+            return planeNode;
+    }
+    
 }
