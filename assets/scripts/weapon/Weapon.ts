@@ -27,8 +27,8 @@ export default class Weapon extends cc.Component {
     count: number = 10;              //子弹个数, 0表示无限
 
     protected plane!: Plane;
-    private _duration: number = 0;
-    private _count: number = 0;
+    public _duration: number = 0;
+    public _count: number = 0;
 
     private _bulletCfg: BulletCfg = null;
     private _bulletAssetPath: string = getPrefabPath("Bullet_1", TPrefab.Bullet);

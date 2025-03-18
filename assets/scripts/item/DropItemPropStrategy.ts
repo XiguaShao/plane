@@ -135,10 +135,11 @@ export class HealStrategy extends PropStrategy {
  * 武器替换策略
  */
 export class WeaponSwapStrategy extends DurationStrategy {
+    /**武器id */
     private weaponIds: number[] = [];
 
     /**
-     * 设置武器配置（带类型校验）
+     * 设置武器
      */
     setWeaponIds(weapons: number[]): void {
         this.weaponIds = weapons;
@@ -150,12 +151,17 @@ export class WeaponSwapStrategy extends DurationStrategy {
         this.applyEffect(
             plane,
             'weapon-swap',
-            this.duration || 5,
+            this.duration,
             () => this.activateWeapons(plane),
             () => this.restoreWeapons(plane)
         );
     }
 
+    /**
+     * @desc:有效性判断
+     * @param plane 
+     * @returns 
+     */
     private validate(plane: PlayerPlane): boolean {
         if (!plane || !plane.node || !plane.node.isValid) {
             cc.warn("无效的飞机节点");
@@ -172,6 +178,10 @@ export class WeaponSwapStrategy extends DurationStrategy {
         return true;
     }
 
+    /**
+     * @desc:激活新武器
+     * @param plane 
+     */
     private activateWeapons(plane: PlayerPlane) {
         console.log("激活新武器")
         // 禁用现有武器
@@ -192,6 +202,9 @@ export class WeaponSwapStrategy extends DurationStrategy {
         this.emitEvent('weapon-swap-start', plane.node, this.duration);
     }
 
+    /**
+     * @desc:恢复原武器
+     */
     private restoreWeapons(plane: PlayerPlane) {
         console.log("移除新武器，启用原武器")
         // 移除新增武器（通过ID比对）
@@ -216,25 +229,3 @@ export class WeaponSwapStrategy extends DurationStrategy {
     }
 
 }
-
-
-// // 攻击力提升策略（持续5秒）
-// export class AttackStrategy extends DurationStrategy {
-//     apply(plane: PlayerPlane) {
-//         const originalAtk = plane.attack;
-        
-//         this.applyEffect(
-//             plane,
-//             'attack-buff',
-//             5,
-//             () => {
-//                 plane.attack = originalAtk * 1.5;
-//                 this.emitEvent('attack-buff-start', plane.node);
-//             },
-//             () => {
-//                 plane.attack = originalAtk;
-//                 this.emitEvent('attack-buff-end', plane.node);
-//             }
-//         );
-//     }
-// }

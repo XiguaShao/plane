@@ -45,23 +45,4 @@ export default class DropItem extends cc.Component {
         this.node.destroy();
     }
 
-    /**
-     * @desc:创建掉落的武器
-     * @returns 
-     */
-    createWeapon(): Weapon[] {
-        let dropWeapons: Weapon[] = [];
-        console.log("掉落武器", this.dropWeaponIds);
-        this.dropWeaponIds.forEach(weaponId => {
-            let weaponCfg = ResourceManager.ins().getJsonById<WeaponCfg>(TempConfig.WeaponConfig, weaponId);
-            if (!weaponCfg) {
-                console.error("武器表" + weaponId + "没有配置")
-                return;
-            }
-            let comp = new Weapon();
-            comp.initByCfg(weaponCfg);
-            dropWeapons.push(comp);
-        });
-        return dropWeapons;
-    }
 }
