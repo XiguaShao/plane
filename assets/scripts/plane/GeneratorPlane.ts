@@ -2,8 +2,9 @@ import * as _ from 'lodash';
 import * as async from 'async';
 import ResourceManager from '../../framework/resourceManager/ResourceManager';
 import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
-import { PathCfg, PlaneCfg, StageCfg, WaveCfg } from '../common/JsonConfig';
+import { PathCfg, PlaneCfg, StageCfg, WaveCfg, WeaponCfg } from '../common/JsonConfig';
 import Plane from './Plane';
+import Weapon from '../weapon/Weapon';
 
 interface PathPoint {
     points: [cc.Vec2, ...cc.Vec2[]];
@@ -279,18 +280,27 @@ export default class GeneratorPlane extends cc.Component {
     /**
      * @description:创建飞机
      */
-    async createPlane(planeId):Promise<cc.Node> {
+    async createPlane(planeId): Promise<cc.Node> {
         let planeCfg = ResourceManager.ins().getJsonById<PlaneCfg>(TempConfig.PlaneConfig, planeId);
-        if(!planeCfg){
+        if (!planeCfg) {
             console.error(planeId, "planeCfg is null");
             return null;
         }
         let planeAssetPath = getPrefabPath(planeCfg.asset, TPrefab.Plane);
-            let planeNode = await App.nodePoolMgr.getNodeFromPool(planeCfg.asset, planeAssetPath);
-            let plane:Plane = planeNode.getComponent(Plane);
-            plane.initByCfg(planeCfg);
-            planeNode.parent = App.gameGlobal.planeLayer;
-            return planeNode;
+        let planeNode = await App.nodePoolMgr.getNodeFromPool(planeCfg.asset, planeAssetPath);
+        let plane: Plane = planeNode.getComponent(Plane);
+        plane.initByCfg(planeCfg);
+        planeCfg.weapons.forEach(weaponId => {
+            let comp = planeNode.addComponent(Weapon);
+            let weaponCfg = ResourceManager.ins().getJsonById<WeaponCfg>(TempConfig.WeaponConfig, weaponId);
+            if (!weaponCfg) {
+                console.error("武器表" + weaponId + "没有配置")
+                return;
+            }
+            comp.initByCfg(weaponCfg);
+        });
+        planeNode.parent = App.gameGlobal.planeLayer;
+        return planeNode;
     }
     
 }

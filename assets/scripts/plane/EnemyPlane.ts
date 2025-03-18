@@ -4,6 +4,7 @@ import UpdateRotation from '../../scripts/components/UpdateRotation';
 import ResourceManager from '../../framework/resourceManager/ResourceManager';
 import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
 import { PropCfg } from '../common/JsonConfig';
+import DropItem from '../item/DropItem';
 
 const { ccclass, property } = cc._decorator;
 
@@ -114,12 +115,13 @@ export default class EnemyPlane extends Plane {
             console.error(dropId, "dropCfg is null");
             return null;
         }
-        let prefab = await ResourceManager.ins().getPrefab(getPrefabPath(dropCfg.asset, TPrefab.Prop));
-        if (prefab) {
-            let node = cc.instantiate(prefab);
+
+        let prefabPath = getPrefabPath(dropCfg.asset, TPrefab.Prop);
+        let node = await App.nodePoolMgr.getNodeFromPool(dropCfg.asset, prefabPath);
+        if (node) {
             node.parent = App.gameGlobal.dropLayer;
             node.position = this.node.position;
-            let dropItem = node.getComponent("DropItem");
+            let dropItem:DropItem = node.getComponent("DropItem");
             dropItem.initByCfg(dropCfg);
             return node;
         }

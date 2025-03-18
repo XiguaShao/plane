@@ -1,5 +1,5 @@
 import DropItemProp from "./DropItemProp";
-import { ItemType } from "./ItemConst";
+import { EDropItemType } from "./DropItemConst";
 
 const { ccclass, property } = cc._decorator;
 /**
@@ -9,6 +9,6 @@ const { ccclass, property } = cc._decorator;
 export default class DropItemShieldProp extends DropItemProp {
     protected onLoad(): void {
         super.onLoad();
-        this.setItemType(ItemType.Shield);
+        this.setDropItemType(EDropItemType.Shield);
     }
 }

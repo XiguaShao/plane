@@ -1,8 +1,8 @@
 import ResourceManager from "../../framework/resourceManager/ResourceManager";
-import { BulletCfg, PropCfg, WaveCfg, WeaponCfg } from "../common/JsonConfig";
+import { PropCfg,  WeaponCfg } from "../common/JsonConfig";
 import { TempConfig } from "../common/ResConst";
 import Weapon from "../weapon/Weapon";
-import { EDropType } from "./ItemConst";
+import { EDropType } from "./DropItemConst";
 
 const { ccclass, property } = cc._decorator;
 

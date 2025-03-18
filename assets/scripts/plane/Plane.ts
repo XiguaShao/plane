@@ -115,6 +115,14 @@ export default class Plane extends cc.Component {
     }
 
     /**
+     * @description:获取挂载的武器
+     * @returns 
+     */
+    getWeapons(): number[] {
+        return this._weapons;
+    }
+
+    /**
      * 飞机死掉
      */
     protected _playDestroy(): void {
@@ -187,10 +195,6 @@ export default class Plane extends cc.Component {
      */
     async createBomb() {
         let bombNode = await App.nodePoolMgr.getNodeFromPool("bombEffect1", "prefabs/effect/BombEffect1");
-        let spriteAnimate:SpriteAnimate = bombNode.getComponent(SpriteAnimate);
-        spriteAnimate.setEndCB = () => {
-            App.nodePoolMgr.putNodeToPool("bombEffect1",bombNode);
-        };
         bombNode.parent = App.gameGlobal.effectLayer;
         bombNode.setPosition(this.node.position);
     }
