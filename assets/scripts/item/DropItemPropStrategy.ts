@@ -213,7 +213,7 @@ export class WeaponSwapStrategy extends DurationStrategy {
                 default:
                     break;
             }
-            comp.initByCfg(weaponCfg);
+            comp && comp.initByCfg(weaponCfg);
         });
 
         this.emitEvent('weapon-swap-start', plane.node, this.duration);
