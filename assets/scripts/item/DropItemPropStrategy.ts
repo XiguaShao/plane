@@ -1,4 +1,6 @@
-import { PropCfg } from "../common/JsonConfig";
+import ResourceManager from "../../framework/resourceManager/ResourceManager";
+import { PropCfg, WeaponCfg } from "../common/JsonConfig";
+import { TempConfig } from "../common/ResConst";
 import PlayerPlane from "../plane/PlayerPlane";
 import { TimerManager } from "../timer/TimerManager";
 import Weapon from "../weapon/Weapon";
@@ -45,7 +47,7 @@ abstract class DurationStrategy extends PropStrategy {
     public duration: number = 5;
 
     initParam(): void {
-        this.duration = this.config && this.config.applyEffect && (this.config.applyEffect as any).duration;
+        this.duration = this.config && this.config.applyEffect && (this.config.applyEffect as any).duration || this.duration;
     }
 
     protected applyEffect(
@@ -133,70 +135,86 @@ export class HealStrategy extends PropStrategy {
  * 武器替换策略
  */
 export class WeaponSwapStrategy extends DurationStrategy {
-    // 武器类数组
-    private weaponCtors: typeof Weapon[] = [];
-    // 使用WeakMap自动管理内存
-    private originalWeaponsMap = new WeakMap<PlayerPlane, Weapon[]>();
-    
-    
+    private weaponIds: number[] = [];
+
     /**
-     * 设置武器配置
-     * @param weapons 武器类数组（必须继承Weapon）
-     * @param duration 持续时间（秒）
+     * 设置武器配置（带类型校验）
      */
-    setWeapons(weapons: typeof Weapon[]): void {
-        this.weaponCtors = weapons;
+    setWeaponIds(weapons: number[]): void {
+        this.weaponIds = weapons;
     }
 
     apply(plane: PlayerPlane) {
-        if (this.weaponCtors.length === 0) {
-            cc.warn("未配置替换武器，请先调用setWeapons方法");
-            return;
-        }
+        if (!this.validate(plane)) return;
+        
         this.applyEffect(
             plane,
             'weapon-swap',
-            this.duration,
-            () => {
-                // 存储到WeakMap
-                this.originalWeaponsMap.set(plane, plane.node.getComponents(Weapon));
-                // 禁用原始武器
-                plane.node.getComponents(Weapon).forEach(weapon => {
-                    weapon.enabled = false;
-                });
-
-                // 添加新武器组件
-                this.weaponCtors.forEach(WeaponClass => {
-                    const weapon = plane.node.addComponent(WeaponClass);
-                    weapon.enabled = true;
-                    weapon.node.active = true;
-                });
-                
-                this.emitEvent('weapon-swap-start', plane.node, this.duration);
-            },
-            () => {
-                // 从WeakMap获取备份
-                const originalWeapons = this.originalWeaponsMap.get(plane) || [];
-                
-                // 移除临时武器
-                plane.node.getComponents(Weapon).forEach(weapon => {
-                    if (!originalWeapons.includes(weapon)) {
-                        weapon.destroy();
-                    }
-                });
-
-                // 恢复原始武器
-                originalWeapons.forEach(weapon => {
-                    weapon.enabled = true;
-                });
-
-                // 清理缓存
-                this.originalWeaponsMap.delete(plane);
-                
-                this.emitEvent('weapon-swap-end', plane.node);
-            }
+            this.duration || 5,
+            () => this.activateWeapons(plane),
+            () => this.restoreWeapons(plane)
         );
     }
+
+    private validate(plane: PlayerPlane): boolean {
+        if (!plane || !plane.node || !plane.node.isValid) {
+            cc.warn("无效的飞机节点");
+            return false;
+        }
+        if (this.weaponIds.length === 0) {
+            cc.warn("请先调用setWeapons方法配置武器");
+            return false;
+        }
+        if (!plane.originalWeaponUUIDs) {
+            cc.error("PlayerPlane缺少originalWeaponIds属性");
+            return false;
+        }
+        return true;
+    }
+
+    private activateWeapons(plane: PlayerPlane) {
+        console.log("激活新武器")
+        // 禁用现有武器
+        plane.node.getComponents(Weapon).forEach(weapon => {
+            weapon.enabled = false /*!plane.originalWeaponUUIDs.has(weapon.uuid)*/;
+        });
+
+        this.weaponIds.forEach(weaponId => {
+            let comp = plane.node.addComponent(Weapon);
+            let weaponCfg = ResourceManager.ins().getJsonById<WeaponCfg>(TempConfig.WeaponConfig, weaponId);
+            if (!weaponCfg) {
+                console.error("武器表" + weaponId + "没有配置")
+                return;
+            }
+            comp.initByCfg(weaponCfg);
+        });
+
+        this.emitEvent('weapon-swap-start', plane.node, this.duration);
+    }
+
+    private restoreWeapons(plane: PlayerPlane) {
+        console.log("移除新武器，启用原武器")
+        // 移除新增武器（通过ID比对）
+        plane.node.getComponents(Weapon).forEach(weapon => {
+            if (!plane.originalWeaponUUIDs.has(weapon.uuid)) {
+                // 使用 cc.tween 来实现延迟销毁，避免使用不存在的 scheduleOnce 方法
+                cc.tween(weapon.node)
+                  .delay(0)
+                  .call(() => weapon.destroy())
+                  .start();
+            }
+        });
+
+        // 启用原始武器
+        plane.node.getComponents(Weapon).forEach(weapon => {
+            if (plane.originalWeaponUUIDs.has(weapon.uuid)) {
+                weapon.enabled = true;
+            }
+        });
+
+        this.emitEvent('weapon-swap-end', plane.node);
+    }
+
 }
 
 

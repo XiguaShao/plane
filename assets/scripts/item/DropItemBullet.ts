@@ -6,6 +6,7 @@ import ResourceManager from '../../framework/resourceManager/ResourceManager';
 import DropItemProp from './DropItemProp';
 import { EDropItemType } from './DropItemConst';
 import { PropStrategyManager } from './PropStrategyManager';
+import { WeaponSwapStrategy } from './DropItemPropStrategy';
 
 const { ccclass } = cc._decorator;
 
@@ -23,7 +24,19 @@ export default class DropItemBullet extends DropItemProp {
             this.destroy();
             return;
         }
-        
+         
+        console.log("dropItemType",this.getDropItemType())
+        const strategy = PropStrategyManager.instance.getStrategy(this.getDropItemType()) as WeaponSwapStrategy;
+        if (strategy) {
+            const player = other.node.getComponent("PlayerPlane");
+            strategy.setWeaponIds(this.dropWeaponIds);
+            strategy.apply(player);
+        }
+        other.itemTag = this.tag;
+        this.node.destroy();
+        return;
+
+
         //移除当前武器
         const weapons = other.node.getComponents('Weapon');
         weapons.forEach(weapon => other.node.removeComponent(weapon));
@@ -44,12 +57,6 @@ export default class DropItemBullet extends DropItemProp {
             other.itemTag = this.tag;
         }
 
-        // const newWeapons = this.node.getComponents('Weapon');
-        // newWeapons.forEach(weapon => {
-        //     const newWeapon = other.node.addComponent(weapon.__classname__);
-        //     weapon.assignParam(newWeapon);
-        //     other.itemTag = this.tag;
-        // });
         this.node.destroy();        
     }
 }

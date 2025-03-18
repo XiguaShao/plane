@@ -18,7 +18,7 @@ export default class DropItemProp extends DropItem {
         this.itemBg1 = this.node.getChildByName('item_bg1');
     }
 
-    initCfg(cfg: PropCfg): void {
+    initByCfg(cfg: PropCfg): void {
         super.initByCfg(cfg);
         let strategy = PropStrategyManager.instance.getStrategy(this.getDropItemType());
         strategy.setConfig(cfg);
@@ -35,7 +35,7 @@ export default class DropItemProp extends DropItem {
             const player = other.node.getComponent("PlayerPlane");
             strategy.apply(player);
         }
-        this.destroy();
+        this.node.destroy();
     }
 
     /**
