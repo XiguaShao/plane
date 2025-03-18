@@ -21,7 +21,7 @@ export default class DropItemBullet extends DropItemProp {
 
     onCollisionEnter(other: cc.Collider & { itemTag?: number }): void {
         if (other.itemTag === this.tag) {
-            this.destroy();
+            this.node.destroy();
             return;
         }
          
@@ -29,6 +29,7 @@ export default class DropItemBullet extends DropItemProp {
         const strategy = PropStrategyManager.instance.getStrategy(this.getDropItemType()) as WeaponSwapStrategy;
         if (strategy) {
             const player = other.node.getComponent("PlayerPlane");
+            console.log("掉落武器", this.dropWeaponIds);
             strategy.setWeaponIds(this.dropWeaponIds);
             strategy.apply(player);
         }

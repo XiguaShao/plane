@@ -3,7 +3,10 @@ import { PropCfg, WeaponCfg } from "../common/JsonConfig";
 import { TempConfig } from "../common/ResConst";
 import PlayerPlane from "../plane/PlayerPlane";
 import { TimerManager } from "../timer/TimerManager";
+import FanWeapon from "../weapon/FanWeapon";
+import SpinWeapon from "../weapon/SpinWeapon";
 import Weapon from "../weapon/Weapon";
+import { EWeaponType } from "../weapon/WeaponConst";
 
 /**
  * 道具策略基类
@@ -190,11 +193,25 @@ export class WeaponSwapStrategy extends DurationStrategy {
         });
 
         this.weaponIds.forEach(weaponId => {
-            let comp = plane.node.addComponent(Weapon);
             let weaponCfg = ResourceManager.ins().getJsonById<WeaponCfg>(TempConfig.WeaponConfig, weaponId);
             if (!weaponCfg) {
                 console.error("武器表" + weaponId + "没有配置")
                 return;
+            }
+            let comp = null;
+            switch (weaponCfg.type) {
+                case EWeaponType.Single:
+                case EWeaponType.Base:
+                    comp = plane.node.addComponent(Weapon);
+                    break;
+                case EWeaponType.Fan:
+                    comp = plane.node.addComponent(FanWeapon);
+                    break;
+                case EWeaponType.Curve:
+                    comp = plane.node.addComponent(SpinWeapon);
+                    break; 
+                default:
+                    break;
             }
             comp.initByCfg(weaponCfg);
         });

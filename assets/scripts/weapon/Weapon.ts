@@ -3,6 +3,7 @@ import Bullet from '../bullet/Bullet';
 import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
 import ResourceManager from '../../framework/resourceManager/ResourceManager';
 import { BulletCfg, WeaponCfg } from '../common/JsonConfig';
+import { EWeaponType } from './WeaponConst';
 
 const { ccclass, property } = cc._decorator;
 
@@ -29,8 +30,11 @@ export default class Weapon extends cc.Component {
     protected plane!: Plane;
     public _duration: number = 0;
     public _count: number = 0;
-
+    //武器类型
+    public type:EWeaponType = EWeaponType.Base;
+    //武器子弹配置
     private _bulletCfg: BulletCfg = null;
+    //子弹资源路径
     private _bulletAssetPath: string = getPrefabPath("Bullet_1", TPrefab.Bullet);
 
     start(): void {
@@ -99,6 +103,7 @@ export default class Weapon extends cc.Component {
         weapon.count = this.count;
         weapon.rotation = this.rotation;
         weapon.offset = cc.v2(this.offset);
+        weapon.type = this.type;
     } 
 
     initByCfg(cfg: WeaponCfg) {
@@ -110,5 +115,6 @@ export default class Weapon extends cc.Component {
         this.count = cfg.count;
         this.rotation = cfg.rotation || 0;
         this.offset = cc.v2(cfg.offset[0], cfg.offset[1]);
+        this.type = cfg.type;
     }
 }
