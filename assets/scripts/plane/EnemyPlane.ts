@@ -59,7 +59,7 @@ export default class EnemyPlane extends Plane {
         // 掉落物品
         let dropItems = this.getDropItems();
         let dropItemRates = this.getDropItemRates();
-        if (dropItems.length) {
+        if (dropItems && dropItems.length) {
             const random = Math.random() * 100; // 随机值 0-100
             let currentSum = 0;
             let bDrop = false;
