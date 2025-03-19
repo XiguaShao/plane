@@ -242,6 +242,9 @@ export class WeaponSwapStrategy extends DurationStrategy {
             }
         });
 
+        //移除tag
+        (plane.node.getComponent(cc.Collider) as any).itemTag = null;
+
         this.emitEvent('weapon-swap-end', plane.node);
     }
 
