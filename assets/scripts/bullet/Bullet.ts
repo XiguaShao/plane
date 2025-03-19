@@ -75,12 +75,14 @@ export default class Bullet extends cc.Component {
 
         const rect = this.node.parent.getBoundingBox();
         if (!rect.contains(cc.v2(this.node.position.x, this.node.position.y))) {
-            this.node.destroy();
+            App.nodePoolMgr.putNode(this.node, true);
+            // this.node.destroy();
         }
     }
 
     initByCfg(cfg: BulletCfg) {
         if(!cfg) return;
+        this.node.stopAllActions();
         this.attack = cfg.attack;
     }
 }
