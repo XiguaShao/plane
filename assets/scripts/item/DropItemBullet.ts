@@ -42,22 +42,6 @@ export default class DropItemBullet extends DropItemProp {
         const weapons = other.node.getComponents('Weapon');
         weapons.forEach(weapon => other.node.removeComponent(weapon));
 
-        //增加掉落新武器
-        if (this.dropWeaponIds.length > 0) {
-            console.log("掉落武器", this.dropWeaponIds);
-            this.dropWeaponIds.forEach(weaponId => {
-                let comp = other.node.addComponent(Weapon);
-                let weaponCfg = ResourceManager.ins().getJsonById<WeaponCfg>(TempConfig.WeaponConfig, weaponId);
-                if (!weaponCfg) {
-                    console.error("武器表" + weaponId + "没有配置")
-                    return;
-                }
-                comp.initByCfg(weaponCfg);
-
-            });
-            other.itemTag = this.tag;
-        }
-
         this.node.destroy();        
     }
 }
