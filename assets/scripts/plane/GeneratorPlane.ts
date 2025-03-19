@@ -288,7 +288,12 @@ export default class GeneratorPlane extends cc.Component {
             console.error(planeId, "planeCfg is null");
             return null;
         }
-        let planeAssetPath = getPrefabPath(planeCfg.asset, TPrefab.Plane);
+        let planeAssetPath = "";
+        if(planeCfg.boss) {
+            planeAssetPath = getPrefabPath(planeCfg.asset, TPrefab.PlaneBoss);
+        } else {
+            planeAssetPath = getPrefabPath(planeCfg.asset, TPrefab.Plane);
+        }
         let planeNode = await App.nodePoolMgr.getNodeFromPool(planeCfg.asset, planeAssetPath);
         let plane: Plane = planeNode.getComponent(Plane);
         plane.initByCfg(planeCfg);
