@@ -1,1 +1,857 @@
-{}
+{
+   "1010011": {
+      "id": 1010011,
+      "introduce": "武器-双行-左",
+      "type": 1,
+      "offset": [
+         -30,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.15,
+      "bulletId": 103,
+      "speed": 1800,
+      "count": 0
+   },
+   "1010012": {
+      "id": 1010012,
+      "introduce": "武器-双行-右",
+      "type": 1,
+      "offset": [
+         30,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.15,
+      "bulletId": 103,
+      "speed": 1800,
+      "count": 0
+   },
+   "1010021": {
+      "id": 1010021,
+      "introduce": "武器-扇形",
+      "type": 2,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 10,
+      "rate": 0.15,
+      "bulletId": 102,
+      "speed": 2000,
+      "count": 4
+   },
+   "1010031": {
+      "id": 1010031,
+      "introduce": "武器-激光",
+      "type": 1,
+      "offset": [
+         0,
+         30
+      ],
+      "rotation": 0,
+      "rate": 0.1,
+      "bulletId": 106,
+      "speed": 3000,
+      "count": 0
+   },
+   "1020011": {
+      "id": 1020011,
+      "introduce": "飞机-慢速-多发",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 2.0,
+      "bulletId": 104,
+      "speed": 300,
+      "count": 1
+   },
+   "1020021": {
+      "id": 1020021,
+      "introduce": "飞机-中速-单发",
+      "type": 1,
+      "offset": [
+         0,
+         -60
+      ],
+      "rotation": 0,
+      "rate": 1.5,
+      "bulletId": 101,
+      "speed": 450,
+      "count": 1
+   },
+   "1020031": {
+      "id": 1020031,
+      "introduce": "飞机-中速-单发",
+      "type": 1,
+      "offset": [
+         0,
+         -60
+      ],
+      "rotation": 0,
+      "rate": 1.5,
+      "bulletId": 102,
+      "speed": 450,
+      "count": 1
+   },
+   "1020032": {
+      "id": 1020032,
+      "introduce": "飞机-激光",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 2.0,
+      "bulletId": 106,
+      "speed": 3000,
+      "count": 4
+   },
+   "1020041": {
+      "id": 1020041,
+      "introduce": "BOSS-双行-左",
+      "type": 1,
+      "offset": [
+         -20,
+         0
+      ],
+      "rotation": 0,
+      "rate": 1.0,
+      "bulletId": 103,
+      "speed": 700,
+      "count": 0
+   },
+   "1020042": {
+      "id": 1020042,
+      "introduce": "BOSS-双行-右",
+      "type": 1,
+      "offset": [
+         20,
+         0
+      ],
+      "rotation": 0,
+      "rate": 1.0,
+      "bulletId": 103,
+      "speed": 700,
+      "count": 0
+   },
+   "1020043": {
+      "id": 1020043,
+      "introduce": "BOSS-扇形-五连发",
+      "type": 2,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 20,
+      "rate": 1.5,
+      "bulletId": 105,
+      "speed": 400,
+      "count": 5
+   },
+   "1020044": {
+      "id": 1020044,
+      "introduce": "BOSS-旋转-单发",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.5,
+      "bulletId": 101,
+      "spinMin": -25,
+      "spinMax": 25,
+      "spinSpeed": 10,
+      "speed": 400,
+      "count": 0
+   },
+   "2010011": {
+      "id": 2010011,
+      "introduce": "武器-双行-左",
+      "type": 1,
+      "offset": [
+         -30,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.15,
+      "bulletId": 203,
+      "speed": 1800,
+      "count": 0
+   },
+   "2010012": {
+      "id": 2010012,
+      "introduce": "武器-双行-右",
+      "type": 1,
+      "offset": [
+         30,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.15,
+      "bulletId": 203,
+      "speed": 1800,
+      "count": 0
+   },
+   "2010021": {
+      "id": 2010021,
+      "introduce": "武器-扇形",
+      "type": 2,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 10,
+      "rate": 0.15,
+      "bulletId": 202,
+      "speed": 2000,
+      "count": 4
+   },
+   "2010031": {
+      "id": 2010031,
+      "introduce": "武器-激光",
+      "type": 1,
+      "offset": [
+         0,
+         30
+      ],
+      "rotation": 0,
+      "rate": 0.1,
+      "bulletId": 206,
+      "speed": 3000,
+      "count": 0
+   },
+   "2020011": {
+      "id": 2020011,
+      "introduce": "飞机-慢速-多发",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 2.0,
+      "bulletId": 204,
+      "speed": 300,
+      "count": 2
+   },
+   "2020021": {
+      "id": 2020021,
+      "introduce": "飞机-中速-单发",
+      "type": 1,
+      "offset": [
+         0,
+         -60
+      ],
+      "rotation": 0,
+      "rate": 1.5,
+      "bulletId": 201,
+      "speed": 450,
+      "count": 2
+   },
+   "2020031": {
+      "id": 2020031,
+      "introduce": "飞机-中速-单发",
+      "type": 1,
+      "offset": [
+         0,
+         -60
+      ],
+      "rotation": 0,
+      "rate": 1.5,
+      "bulletId": 202,
+      "speed": 450,
+      "count": 2
+   },
+   "2020032": {
+      "id": 2020032,
+      "introduce": "飞机-激光",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 2.0,
+      "bulletId": 206,
+      "speed": 3000,
+      "count": 4
+   },
+   "2020041": {
+      "id": 2020041,
+      "introduce": "BOSS-双行-左",
+      "type": 1,
+      "offset": [
+         -20,
+         0
+      ],
+      "rotation": 0,
+      "rate": 1.0,
+      "bulletId": 203,
+      "speed": 700,
+      "count": 0
+   },
+   "2020042": {
+      "id": 2020042,
+      "introduce": "BOSS-双行-右",
+      "type": 1,
+      "offset": [
+         20,
+         0
+      ],
+      "rotation": 0,
+      "rate": 1.0,
+      "bulletId": 203,
+      "speed": 700,
+      "count": 0
+   },
+   "2020043": {
+      "id": 2020043,
+      "introduce": "BOSS-扇形-五连发",
+      "type": 2,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 20,
+      "rate": 1.5,
+      "bulletId": 205,
+      "speed": 400,
+      "count": 5
+   },
+   "2020044": {
+      "id": 2020044,
+      "introduce": "BOSS-旋转-单发",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.5,
+      "bulletId": 201,
+      "spinMin": -25,
+      "spinMax": 25,
+      "spinSpeed": 10,
+      "speed": 400,
+      "count": 0
+   },
+   "3010011": {
+      "id": 3010011,
+      "introduce": "武器-双行-左",
+      "type": 1,
+      "offset": [
+         -30,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.15,
+      "bulletId": 303,
+      "speed": 1800,
+      "count": 0
+   },
+   "3010012": {
+      "id": 3010012,
+      "introduce": "武器-双行-右",
+      "type": 1,
+      "offset": [
+         30,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.15,
+      "bulletId": 303,
+      "speed": 1800,
+      "count": 0
+   },
+   "3010021": {
+      "id": 3010021,
+      "introduce": "武器-扇形",
+      "type": 2,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 10,
+      "rate": 0.15,
+      "bulletId": 302,
+      "speed": 2000,
+      "count": 4
+   },
+   "3010031": {
+      "id": 3010031,
+      "introduce": "武器-激光",
+      "type": 1,
+      "offset": [
+         0,
+         30
+      ],
+      "rotation": 0,
+      "rate": 0.1,
+      "bulletId": 306,
+      "speed": 3000,
+      "count": 0
+   },
+   "3020011": {
+      "id": 3020011,
+      "introduce": "飞机-慢速-多发",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 2.0,
+      "bulletId": 304,
+      "speed": 300,
+      "count": 2
+   },
+   "3020021": {
+      "id": 3020021,
+      "introduce": "飞机-中速-单发",
+      "type": 1,
+      "offset": [
+         0,
+         -60
+      ],
+      "rotation": 0,
+      "rate": 1.5,
+      "bulletId": 301,
+      "speed": 450,
+      "count": 2
+   },
+   "3020031": {
+      "id": 3020031,
+      "introduce": "飞机-中速-单发",
+      "type": 1,
+      "offset": [
+         0,
+         -60
+      ],
+      "rotation": 0,
+      "rate": 1.5,
+      "bulletId": 302,
+      "speed": 450,
+      "count": 2
+   },
+   "3020032": {
+      "id": 3020032,
+      "introduce": "飞机-激光",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 2.0,
+      "bulletId": 306,
+      "speed": 3000,
+      "count": 4
+   },
+   "3020041": {
+      "id": 3020041,
+      "introduce": "BOSS-双行-左",
+      "type": 1,
+      "offset": [
+         -20,
+         0
+      ],
+      "rotation": 0,
+      "rate": 1.0,
+      "bulletId": 303,
+      "speed": 700,
+      "count": 0
+   },
+   "3020042": {
+      "id": 3020042,
+      "introduce": "BOSS-双行-右",
+      "type": 1,
+      "offset": [
+         20,
+         0
+      ],
+      "rotation": 0,
+      "rate": 1.0,
+      "bulletId": 303,
+      "speed": 700,
+      "count": 0
+   },
+   "3020043": {
+      "id": 3020043,
+      "introduce": "BOSS-扇形-五连发",
+      "type": 2,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 20,
+      "rate": 1.5,
+      "bulletId": 305,
+      "speed": 400,
+      "count": 5
+   },
+   "3020044": {
+      "id": 3020044,
+      "introduce": "BOSS-旋转-单发",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.5,
+      "bulletId": 301,
+      "spinMin": -25,
+      "spinMax": 25,
+      "spinSpeed": 10,
+      "speed": 400,
+      "count": 0
+   },
+   "4010011": {
+      "id": 4010011,
+      "introduce": "武器-双行-左",
+      "type": 1,
+      "offset": [
+         -30,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.15,
+      "bulletId": 403,
+      "speed": 1800,
+      "count": 0
+   },
+   "4010012": {
+      "id": 4010012,
+      "introduce": "武器-双行-右",
+      "type": 1,
+      "offset": [
+         30,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.15,
+      "bulletId": 403,
+      "speed": 1800,
+      "count": 0
+   },
+   "4010021": {
+      "id": 4010021,
+      "introduce": "武器-扇形",
+      "type": 2,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 10,
+      "rate": 0.15,
+      "bulletId": 402,
+      "speed": 2000,
+      "count": 4
+   },
+   "4010031": {
+      "id": 4010031,
+      "introduce": "武器-激光",
+      "type": 1,
+      "offset": [
+         0,
+         30
+      ],
+      "rotation": 0,
+      "rate": 0.1,
+      "bulletId": 406,
+      "speed": 3000,
+      "count": 0
+   },
+   "4020011": {
+      "id": 4020011,
+      "introduce": "飞机-慢速-多发",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 2.0,
+      "bulletId": 404,
+      "speed": 300,
+      "count": 3
+   },
+   "4020021": {
+      "id": 4020021,
+      "introduce": "飞机-中速-单发",
+      "type": 1,
+      "offset": [
+         0,
+         -60
+      ],
+      "rotation": 0,
+      "rate": 1.5,
+      "bulletId": 401,
+      "speed": 450,
+      "count": 3
+   },
+   "4020031": {
+      "id": 4020031,
+      "introduce": "飞机-中速-单发",
+      "type": 1,
+      "offset": [
+         0,
+         -60
+      ],
+      "rotation": 0,
+      "rate": 1.5,
+      "bulletId": 402,
+      "speed": 450,
+      "count": 3
+   },
+   "4020032": {
+      "id": 4020032,
+      "introduce": "飞机-激光",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 2.0,
+      "bulletId": 406,
+      "speed": 3000,
+      "count": 4
+   },
+   "4020041": {
+      "id": 4020041,
+      "introduce": "BOSS-双行-左",
+      "type": 1,
+      "offset": [
+         -20,
+         0
+      ],
+      "rotation": 0,
+      "rate": 1.0,
+      "bulletId": 403,
+      "speed": 700,
+      "count": 0
+   },
+   "4020042": {
+      "id": 4020042,
+      "introduce": "BOSS-双行-右",
+      "type": 1,
+      "offset": [
+         20,
+         0
+      ],
+      "rotation": 0,
+      "rate": 1.0,
+      "bulletId": 403,
+      "speed": 700,
+      "count": 0
+   },
+   "4020043": {
+      "id": 4020043,
+      "introduce": "BOSS-扇形-五连发",
+      "type": 2,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 20,
+      "rate": 1.5,
+      "bulletId": 405,
+      "speed": 400,
+      "count": 5
+   },
+   "4020044": {
+      "id": 4020044,
+      "introduce": "BOSS-旋转-单发",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.5,
+      "bulletId": 401,
+      "spinMin": -25,
+      "spinMax": 25,
+      "spinSpeed": 10,
+      "speed": 400,
+      "count": 0
+   },
+   "5010011": {
+      "id": 5010011,
+      "introduce": "武器-双行-左",
+      "type": 1,
+      "offset": [
+         -30,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.15,
+      "bulletId": 503,
+      "speed": 1800,
+      "count": 0
+   },
+   "5010012": {
+      "id": 5010012,
+      "introduce": "武器-双行-右",
+      "type": 1,
+      "offset": [
+         30,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.15,
+      "bulletId": 503,
+      "speed": 1800,
+      "count": 0
+   },
+   "5010021": {
+      "id": 5010021,
+      "introduce": "武器-扇形",
+      "type": 2,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 10,
+      "rate": 0.15,
+      "bulletId": 502,
+      "speed": 2000,
+      "count": 4
+   },
+   "5010031": {
+      "id": 5010031,
+      "introduce": "武器-激光",
+      "type": 1,
+      "offset": [
+         0,
+         30
+      ],
+      "rotation": 0,
+      "rate": 0.1,
+      "bulletId": 506,
+      "speed": 3000,
+      "count": 0
+   },
+   "5020011": {
+      "id": 5020011,
+      "introduce": "飞机-慢速-多发",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 2.0,
+      "bulletId": 504,
+      "speed": 300,
+      "count": 3
+   },
+   "5020021": {
+      "id": 5020021,
+      "introduce": "飞机-中速-单发",
+      "type": 1,
+      "offset": [
+         0,
+         -60
+      ],
+      "rotation": 0,
+      "rate": 1.5,
+      "bulletId": 501,
+      "speed": 450,
+      "count": 3
+   },
+   "5020031": {
+      "id": 5020031,
+      "introduce": "飞机-中速-单发",
+      "type": 1,
+      "offset": [
+         0,
+         -60
+      ],
+      "rotation": 0,
+      "rate": 1.5,
+      "bulletId": 502,
+      "speed": 450,
+      "count": 3
+   },
+   "5020032": {
+      "id": 5020032,
+      "introduce": "飞机-激光",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 2.0,
+      "bulletId": 506,
+      "speed": 3000,
+      "count": 4
+   },
+   "5020041": {
+      "id": 5020041,
+      "introduce": "BOSS-双行-左",
+      "type": 1,
+      "offset": [
+         -20,
+         0
+      ],
+      "rotation": 0,
+      "rate": 1.0,
+      "bulletId": 503,
+      "speed": 700,
+      "count": 0
+   },
+   "5020042": {
+      "id": 5020042,
+      "introduce": "BOSS-双行-右",
+      "type": 1,
+      "offset": [
+         20,
+         0
+      ],
+      "rotation": 0,
+      "rate": 1.0,
+      "bulletId": 503,
+      "speed": 700,
+      "count": 0
+   },
+   "5020043": {
+      "id": 5020043,
+      "introduce": "BOSS-扇形-五连发",
+      "type": 2,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 20,
+      "rate": 1.5,
+      "bulletId": 505,
+      "speed": 400,
+      "count": 5
+   },
+   "5020044": {
+      "id": 5020044,
+      "introduce": "BOSS-旋转-单发",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 0,
+      "rate": 0.5,
+      "bulletId": 501,
+      "spinMin": -25,
+      "spinMax": 25,
+      "spinSpeed": 10,
+      "speed": 400,
+      "count": 0
+   }
+}

@@ -1,47 +1,227 @@
 {
-   "1": {
-      "id": 1,
+   "101": {
+      "id": 101,
       "asset": "Bullet_1",
       "attack": 2
    },
-   "2": {
-      "id": 2,
+   "102": {
+      "id": 102,
       "asset": "Bullet_2",
       "attack": 2
    },
-   "3": {
-      "id": 3,
+   "103": {
+      "id": 103,
       "asset": "Bullet_3",
       "attack": 2
    },
-   "4": {
-      "id": 4,
+   "104": {
+      "id": 104,
       "asset": "Bullet_4",
       "attack": 1
    },
-   "5": {
-      "id": 5,
+   "105": {
+      "id": 105,
       "asset": "Bullet_5",
       "attack": 1
    },
-   "6": {
-      "id": 6,
+   "106": {
+      "id": 106,
       "asset": "Bullet_6",
       "attack": 1
    },
-   "7": {
-      "id": 7,
+   "107": {
+      "id": 107,
       "asset": "Bullet",
       "attack": 2
    },
-   "8": {
-      "id": 8,
+   "108": {
+      "id": 108,
       "asset": "Bullet1",
       "attack": 2
    },
-   "9": {
-      "id": 9,
+   "109": {
+      "id": 109,
       "asset": "Bullet2",
       "attack": 2
+   },
+   "201": {
+      "id": 201,
+      "asset": "Bullet_1",
+      "attack": 3
+   },
+   "202": {
+      "id": 202,
+      "asset": "Bullet_2",
+      "attack": 3
+   },
+   "203": {
+      "id": 203,
+      "asset": "Bullet_3",
+      "attack": 3
+   },
+   "204": {
+      "id": 204,
+      "asset": "Bullet_4",
+      "attack": 2
+   },
+   "205": {
+      "id": 205,
+      "asset": "Bullet_5",
+      "attack": 2
+   },
+   "206": {
+      "id": 206,
+      "asset": "Bullet_6",
+      "attack": 2
+   },
+   "207": {
+      "id": 207,
+      "asset": "Bullet",
+      "attack": 3
+   },
+   "208": {
+      "id": 208,
+      "asset": "Bullet1",
+      "attack": 3
+   },
+   "209": {
+      "id": 209,
+      "asset": "Bullet2",
+      "attack": 3
+   },
+   "301": {
+      "id": 301,
+      "asset": "Bullet_1",
+      "attack": 4
+   },
+   "302": {
+      "id": 302,
+      "asset": "Bullet_2",
+      "attack": 4
+   },
+   "303": {
+      "id": 303,
+      "asset": "Bullet_3",
+      "attack": 4
+   },
+   "304": {
+      "id": 304,
+      "asset": "Bullet_4",
+      "attack": 3
+   },
+   "305": {
+      "id": 305,
+      "asset": "Bullet_5",
+      "attack": 3
+   },
+   "306": {
+      "id": 306,
+      "asset": "Bullet_6",
+      "attack": 3
+   },
+   "307": {
+      "id": 307,
+      "asset": "Bullet",
+      "attack": 4
+   },
+   "308": {
+      "id": 308,
+      "asset": "Bullet1",
+      "attack": 4
+   },
+   "309": {
+      "id": 309,
+      "asset": "Bullet2",
+      "attack": 4
+   },
+   "401": {
+      "id": 401,
+      "asset": "Bullet_1",
+      "attack": 5
+   },
+   "402": {
+      "id": 402,
+      "asset": "Bullet_2",
+      "attack": 5
+   },
+   "403": {
+      "id": 403,
+      "asset": "Bullet_3",
+      "attack": 5
+   },
+   "404": {
+      "id": 404,
+      "asset": "Bullet_4",
+      "attack": 4
+   },
+   "405": {
+      "id": 405,
+      "asset": "Bullet_5",
+      "attack": 4
+   },
+   "406": {
+      "id": 406,
+      "asset": "Bullet_6",
+      "attack": 4
+   },
+   "407": {
+      "id": 407,
+      "asset": "Bullet",
+      "attack": 5
+   },
+   "408": {
+      "id": 408,
+      "asset": "Bullet1",
+      "attack": 5
+   },
+   "409": {
+      "id": 409,
+      "asset": "Bullet2",
+      "attack": 5
+   },
+   "501": {
+      "id": 501,
+      "asset": "Bullet_1",
+      "attack": 6
+   },
+   "502": {
+      "id": 502,
+      "asset": "Bullet_2",
+      "attack": 6
+   },
+   "503": {
+      "id": 503,
+      "asset": "Bullet_3",
+      "attack": 6
+   },
+   "504": {
+      "id": 504,
+      "asset": "Bullet_4",
+      "attack": 5
+   },
+   "505": {
+      "id": 505,
+      "asset": "Bullet_5",
+      "attack": 5
+   },
+   "506": {
+      "id": 506,
+      "asset": "Bullet_6",
+      "attack": 5
+   },
+   "507": {
+      "id": 507,
+      "asset": "Bullet",
+      "attack": 6
+   },
+   "508": {
+      "id": 508,
+      "asset": "Bullet1",
+      "attack": 6
+   },
+   "509": {
+      "id": 509,
+      "asset": "Bullet2",
+      "attack": 6
    }
 }
