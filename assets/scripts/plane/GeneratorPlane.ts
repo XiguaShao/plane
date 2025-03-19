@@ -5,6 +5,8 @@ import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
 import { PathCfg, PlaneCfg, StageCfg, WaveCfg, WeaponCfg } from '../common/JsonConfig';
 import Plane from './Plane';
 import Weapon from '../weapon/Weapon';
+import FanWeapon from '../weapon/FanWeapon';
+import SpinWeapon from '../weapon/SpinWeapon';
 
 interface PathPoint {
     points: [cc.Vec2, ...cc.Vec2[]];
@@ -291,8 +293,16 @@ export default class GeneratorPlane extends cc.Component {
         let plane: Plane = planeNode.getComponent(Plane);
         plane.initByCfg(planeCfg);
         planeCfg.weapons.forEach(weaponId => {
-            let comp = planeNode.addComponent(Weapon);
+            let comp: Weapon | FanWeapon | SpinWeapon = null;
+
             let weaponCfg = ResourceManager.ins().getJsonById<WeaponCfg>(TempConfig.WeaponConfig, weaponId);
+            switch(weaponCfg.type){
+                case 1: comp = planeNode.addComponent(Weapon); break;
+                case 2: comp = planeNode.addComponent(FanWeapon); break;
+                case 3: comp = planeNode.addComponent(SpinWeapon); break;
+            }
+            
+            
             if (!weaponCfg) {
                 console.error("武器表" + weaponId + "没有配置")
                 return;
