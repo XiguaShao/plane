@@ -314,7 +314,7 @@ export default class GeneratorPlane extends cc.Component {
         let prefab = await ResourceManager.ins().getPrefab(wornAssetPath);
         let wornNode = cc.instantiate(prefab);
         wornNode.parent = App.gameGlobal.planeLayer;
-        wornNode.position.x = pos.x;
+        wornNode.x = pos.x;
         wornNode.runAction(cc.sequence(cc.delayTime(1.5), cc.callFunc(() => {
             wornNode.destroy();
         })))
