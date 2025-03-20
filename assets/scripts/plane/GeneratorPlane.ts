@@ -5,6 +5,9 @@ import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
 import { PathCfg, PlaneCfg, StageCfg, WaveCfg, WeaponCfg } from '../common/JsonConfig';
 import Plane from './Plane';
 import Weapon from '../weapon/Weapon';
+import FanWeapon from '../weapon/FanWeapon';
+import SpinWeapon from '../weapon/SpinWeapon';
+import LaserWeapon from '../weapon/LaserWeapon';
 
 interface PathPoint {
     points: [cc.Vec2, ...cc.Vec2[]];
@@ -134,6 +137,7 @@ export default class GeneratorPlane extends cc.Component {
             // plane.parent = this.target;
             const plane = await this.createPlane(groupConfig.planeID);
             plane.position = cc.v3(pathConfig.points[0][0]);
+            this.createWorn(groupConfig.planeID, plane.position);  // 创建警告
             const duration = (groupConfig.duration || 6) / pathConfig.points.length;
             let repeat = groupConfig.repeat;
             let actions: any[] = null;
@@ -287,16 +291,34 @@ export default class GeneratorPlane extends cc.Component {
             console.error(planeId, "planeCfg is null");
             return null;
         }
-        let planeAssetPath = getPrefabPath(planeCfg.asset, TPrefab.Plane);
+        let planeAssetPath = null;
+        if (planeCfg.boss) {
+            planeAssetPath = getPrefabPath(planeCfg.asset, TPrefab.PlaneBoss);
+        } else {
+            planeAssetPath = getPrefabPath(planeCfg.asset, TPrefab.Plane);
+        }
         let planeNode = await App.nodePoolMgr.getNodeFromPool(planeCfg.asset, planeAssetPath);
         let plane: Plane = planeNode.getComponent(Plane);
         plane.initByCfg(planeCfg);
         planeCfg.weapons.forEach(weaponId => {
-            let comp = planeNode.addComponent(Weapon);
             let weaponCfg = ResourceManager.ins().getJsonById<WeaponCfg>(TempConfig.WeaponConfig, weaponId);
             if (!weaponCfg) {
                 console.error("武器表" + weaponId + "没有配置")
                 return;
+            }
+            let comp = null;
+            switch (weaponCfg.type) {
+                case 1:
+                    comp = planeNode.addComponent(Weapon);
+                    break;
+                case 2:
+                    comp = planeNode.addComponent(FanWeapon);
+                    break;
+                case 3:
+                    comp = planeNode.addComponent(SpinWeapon);
+                    break;
+                default:
+                    break;
             }
             comp.initByCfg(weaponCfg);
         });
