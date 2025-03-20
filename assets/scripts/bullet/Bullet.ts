@@ -67,6 +67,7 @@ export default class Bullet extends cc.Component {
      * 碰撞后销毁
      */
     onCollisionEnter(): void {
+        this.node.stopAllActions();
         App.nodePoolMgr.putNode(this.node, true);
         // this.node.destroy();
     }
@@ -80,7 +81,9 @@ export default class Bullet extends cc.Component {
 
         const rect = this.node.parent.getBoundingBox();
         if (!rect.contains(cc.v2(this.node.position.x, this.node.position.y))) {
-            this.node.destroy();
+            this.node.stopAllActions();
+            App.nodePoolMgr.putNode(this.node, true);
+            // this.node.destroy();
         }
     }
 
