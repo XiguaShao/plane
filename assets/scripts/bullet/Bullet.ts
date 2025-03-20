@@ -74,9 +74,9 @@ export default class Bullet extends cc.Component {
     update(): void {
         if (!this.node.parent) return;
         // 跟随
-        if(this.target && this.followTargetX) {
-            this.node.x = this.target.x;
-        }
+        // if(this.target && this.followTargetX) {
+        //     this.node.x = this.target.x;
+        // }
 
         const rect = this.node.parent.getBoundingBox();
         if (!rect.contains(cc.v2(this.node.position.x, this.node.position.y))) {

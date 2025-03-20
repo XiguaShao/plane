@@ -20,23 +20,26 @@ export default class LaserWeapon extends Weapon {
         if (!this.plane) {
             return;
         }
-        this.bullet = await this._createBullet();
-        this.bullet.node.active = true;
+
+        this.schedule(this._fire,0.1);
     }
 
     protected async _fire(dt?: number) {
-        if(!App.gameDataInited) return;
+        if (!App.gameDataInited) return;
         if (dt) {
             this._duration += dt;
         }
         if (this.fireCount !== 0 && this._count++ >= this.fireCount) {
-             this.unschedule(this._fire);
-             if (this.plane.onWeaponRemove) {
-                 this.plane.onWeaponRemove();
-                 this.node.removeComponent(this);
-             }
-             return;
-         }
+            this.unschedule(this._fire);
+            if (this.plane.onWeaponRemove) {
+                this.plane.onWeaponRemove();
+                this.node.removeComponent(this);
+            }
+            return;
+        }
+
+        if (this.bullet && this.bullet.node) return;
+        this.bullet = await this._createBullet();
     }
 
     protected update(dt: number): void {

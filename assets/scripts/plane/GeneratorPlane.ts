@@ -326,6 +326,9 @@ export default class GeneratorPlane extends cc.Component {
                 case 3:
                     comp = planeNode.addComponent(SpinWeapon);
                     break;
+                case 4 :
+                    comp = planeNode.addComponent(LaserWeapon);
+                    break;
                 default:
                     break;
             }

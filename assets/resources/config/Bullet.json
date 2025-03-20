@@ -44,11 +44,6 @@
       "asset": "Bullet2",
       "attack": 2
    },
-   "110": {
-      "id": 110,
-      "asset": "Bullet_7",
-      "attack": 0
-   },
    "201": {
       "id": 201,
       "asset": "Bullet_1",
@@ -183,6 +178,11 @@
       "id": 409,
       "asset": "Bullet2",
       "attack": 5
+   },
+   "410": {
+      "id": 410,
+      "asset": "Bullet_7",
+      "attack": 0
    },
    "501": {
       "id": 501,

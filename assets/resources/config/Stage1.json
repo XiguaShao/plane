@@ -15,6 +15,34 @@
          3
       ]
    },
+   "Wave2.1": {
+      "id": "Wave2.1",
+      "subwaves": [
+         1013,
+         1
+      ]
+   },
+   "Wave2.2": {
+      "id": "Wave2.2",
+      "subwaves": [
+         1014,
+         1
+      ]
+   },
+   "Wave2.3": {
+      "id": "Wave2.3",
+      "subwaves": [
+         1015,
+         1
+      ]
+   },
+   "Wave2.4": {
+      "id": "Wave2.4",
+      "subwaves": [
+         1016,
+         1
+      ]
+   },
    "Wave3": {
       "id": "Wave3",
       "subwaves": [
