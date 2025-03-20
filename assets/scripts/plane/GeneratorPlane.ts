@@ -137,7 +137,7 @@ export default class GeneratorPlane extends cc.Component {
             const duration = (groupConfig.duration || 6) / pathConfig.points.length;
             let repeat = groupConfig.repeat;
             let actions: any[] = null;
-            if(pathConfig.style === 1) {
+            if (pathConfig.style === 1) {
                 // Line mode: create moveTo actions between points
                 const array = pathConfig.points[0].slice(1).map(p => cc.v2(p));
                 let beginPos = cc.v2(pathConfig.points[0][0])
@@ -145,17 +145,17 @@ export default class GeneratorPlane extends cc.Component {
                     let distance = endPos.sub(beginPos).mag();
                     beginPos.x = endPos.x;
                     beginPos.y = endPos.y;
-                    return cc.moveTo(distance/groupConfig.speed, endPos)
+                    return cc.moveTo(distance / groupConfig.speed, endPos)
                 })
             } else {
                 let index = 0;
                 actions = pathConfig.points.map(param => {
                     let distance = 400;
-                    if(pathConfig.distances && index < pathConfig.distances.length) {
+                    if (pathConfig.distances && index < pathConfig.distances.length) {
                         distance = pathConfig.distances[index];
                     }
                     const array = param.slice(1).map(p => cc.v2(p));
-                    const _time = distance/groupConfig.speed;
+                    const _time = distance / groupConfig.speed;
                     return cc.bezierTo(_time, [].concat(array));
 
                     index++;
@@ -192,14 +192,14 @@ export default class GeneratorPlane extends cc.Component {
                 // finalAction = cc.repeatForever(cc.sequence(actions));
             } else {
                 // 循环指定次数
-                if(groupConfig.repeat > 1) {
+                if (groupConfig.repeat > 1) {
                     actions.push(cc.callFunc(() => {
                         plane.position = cc.v3(pathConfig.points[0][0]);
                         repeat--;
                         // plane.stopAction(finalAction);
                         finalAction = originAction.clone();
-                        if(repeat === 1) {
-                            plane.runAction(cc.sequence([finalAction,callFunc]))
+                        if (repeat === 1) {
+                            plane.runAction(cc.sequence([finalAction, callFunc]))
                         } else {
                             plane.runAction(finalAction)
                         }
@@ -239,11 +239,12 @@ export default class GeneratorPlane extends cc.Component {
         let destroyCount = 0;
 
         async.each(array, async (index: number, cb: (error?: Error) => void) => {
-            if (!groupConfig.planeID ) return;
+            if (!groupConfig.planeID) return;
             // const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
             // plane.parent = this.target;
-            const plane = await this.createPlane(groupConfig.planeID);
+            const plane = await this.createPlane(groupConfig.planeID);  // 创建飞机
             plane.position = this._getStartPos(index - 1);
+            this.createWorn(groupConfig.planeID, plane.position);  // 创建警告
             const dy = groupConfig.dy || -cc.winSize.height / 2 - plane.y;
             const duration = Math.abs(dy / (groupConfig.speed || 1));
             const moveBy = cc.moveBy(duration, cc.v2(0, dy));
@@ -302,5 +303,18 @@ export default class GeneratorPlane extends cc.Component {
         planeNode.parent = App.gameGlobal.planeLayer;
         return planeNode;
     }
-    
+    /**
+     * @Method: createWorn
+     * @Desc: 创建警告
+     */
+    async createWorn(planeId: number, pos: cc.Vec3) {
+        let planeCfg = ResourceManager.ins().getJsonById<PlaneCfg>(TempConfig.PlaneConfig, planeId);
+        if (planeCfg.showWarn == 0) return;
+        let wornAssetPath = getPrefabPath("worn_line", TPrefab.Worn);
+        let prefab = await ResourceManager.ins().getPrefab(wornAssetPath);
+        let wornNode = cc.instantiate(prefab);
+        wornNode.parent = App.gameGlobal.planeLayer;
+        wornNode.position.x = pos.x;
+    }
+
 }

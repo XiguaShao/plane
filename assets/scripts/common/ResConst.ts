@@ -21,12 +21,14 @@ export const PlaneBossPath = "prefabs/plane/bossPlanes/";
 export const BulletPath = "prefabs/bullet/";
 export const DropPath = "prefabs/item/";
 export const EffectPath = "prefabs/effect/";
+export const WornPath = "prefabs/worn/";
 export enum TPrefab {
     Plane,
     PlaneBoss,
     Bullet,
     Prop,
-    Effect
+    Effect,
+    Worn
 }
 
 /**
@@ -42,6 +44,7 @@ export function getPrefabPath(asset:string, type: TPrefab = TPrefab.Plane): stri
         case TPrefab.Bullet: return BulletPath + asset; break;
         case TPrefab.Prop: return DropPath + asset; break;
         case TPrefab.Effect: return EffectPath + asset; break;
+        case TPrefab.Worn: return WornPath + asset; break;
     }
     return "";
 }
