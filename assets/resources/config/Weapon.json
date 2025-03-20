@@ -99,16 +99,30 @@
    },
    "1020032": {
       "id": 1020032,
-      "introduce": "飞机-激光",
+      "introduce": "飞机-激光-朝右",
       "type": 1,
       "offset": [
          0,
          0
       ],
-      "rotation": 0,
-      "rate": 2.0,
-      "bulletId": 106,
-      "speed": 3000,
+      "rotation": -90,
+      "rate": 0.05,
+      "bulletId": 110,
+      "speed": 5000,
+      "count": 4
+   },
+   "1020033": {
+      "id": 1020033,
+      "introduce": "飞机-激光-朝左",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 90,
+      "rate": 0.05,
+      "bulletId": 110,
+      "speed": 5000,
       "count": 4
    },
    "1020041": {
@@ -270,13 +284,27 @@
    },
    "2020032": {
       "id": 2020032,
-      "introduce": "飞机-激光",
+      "introduce": "飞机-激光-朝右",
       "type": 1,
       "offset": [
          0,
          0
       ],
-      "rotation": 0,
+      "rotation": -90,
+      "rate": 2.0,
+      "bulletId": 206,
+      "speed": 3000,
+      "count": 4
+   },
+   "2020033": {
+      "id": 2020033,
+      "introduce": "飞机-激光-朝左",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 90,
       "rate": 2.0,
       "bulletId": 206,
       "speed": 3000,
@@ -441,13 +469,27 @@
    },
    "3020032": {
       "id": 3020032,
-      "introduce": "飞机-激光",
+      "introduce": "飞机-激光-朝右",
       "type": 1,
       "offset": [
          0,
          0
       ],
-      "rotation": 0,
+      "rotation": -90,
+      "rate": 2.0,
+      "bulletId": 306,
+      "speed": 3000,
+      "count": 4
+   },
+   "3020033": {
+      "id": 3020033,
+      "introduce": "飞机-激光-朝左",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 90,
       "rate": 2.0,
       "bulletId": 306,
       "speed": 3000,
@@ -612,13 +654,27 @@
    },
    "4020032": {
       "id": 4020032,
-      "introduce": "飞机-激光",
+      "introduce": "飞机-激光-朝右",
       "type": 1,
       "offset": [
          0,
          0
       ],
-      "rotation": 0,
+      "rotation": -90,
+      "rate": 2.0,
+      "bulletId": 406,
+      "speed": 3000,
+      "count": 4
+   },
+   "4020033": {
+      "id": 4020033,
+      "introduce": "飞机-激光-朝左",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 90,
       "rate": 2.0,
       "bulletId": 406,
       "speed": 3000,
@@ -783,13 +839,27 @@
    },
    "5020032": {
       "id": 5020032,
-      "introduce": "飞机-激光",
+      "introduce": "飞机-激光-朝右",
       "type": 1,
       "offset": [
          0,
          0
       ],
-      "rotation": 0,
+      "rotation": -90,
+      "rate": 2.0,
+      "bulletId": 506,
+      "speed": 3000,
+      "count": 4
+   },
+   "5020033": {
+      "id": 5020033,
+      "introduce": "飞机-激光-朝左",
+      "type": 1,
+      "offset": [
+         0,
+         0
+      ],
+      "rotation": 90,
       "rate": 2.0,
       "bulletId": 506,
       "speed": 3000,

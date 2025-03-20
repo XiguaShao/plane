@@ -33,9 +33,9 @@ export default class Weapon extends cc.Component {
     //武器类型
     public type:EWeaponType = EWeaponType.Base;
     //武器子弹配置
-    private _bulletCfg: BulletCfg = null;
+    public _bulletCfg: BulletCfg = null;
     //子弹资源路径
-    private _bulletAssetPath: string = getPrefabPath("Bullet_1", TPrefab.Bullet);
+    public _bulletAssetPath: string = getPrefabPath("Bullet_1", TPrefab.Bullet);
 
     start(): void {
         this.plane = this.node.getComponent(Plane);

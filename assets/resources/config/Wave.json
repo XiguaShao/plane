@@ -186,7 +186,7 @@
    "1012": {
       "id": 1012,
       "type": "spawn",
-      "planeID": 10110,
+      "planeID": 10111,
       "indexs": [
          9
       ],
@@ -506,7 +506,7 @@
    "2012": {
       "id": 2012,
       "type": "spawn",
-      "planeID": 20110,
+      "planeID": 20111,
       "indexs": [
          9
       ],
@@ -826,7 +826,7 @@
    "3012": {
       "id": 3012,
       "type": "spawn",
-      "planeID": 30110,
+      "planeID": 30111,
       "indexs": [
          9
       ],
@@ -1146,7 +1146,7 @@
    "4012": {
       "id": 4012,
       "type": "spawn",
-      "planeID": 40110,
+      "planeID": 40111,
       "indexs": [
          9
       ],
@@ -1466,7 +1466,7 @@
    "5012": {
       "id": 5012,
       "type": "spawn",
-      "planeID": 50110,
+      "planeID": 50111,
       "indexs": [
          9
       ],

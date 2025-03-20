@@ -14,6 +14,7 @@ export default class Game {
     public nodePoolMgr: NodePoolManager = null;
     public Rms: GamePlayerData = null;
     public ResManager: ResourceManager = null;
+    public isOver:boolean = false;
     public init() {
         if (!this.inited) {
             // 初始化管理类和utils类

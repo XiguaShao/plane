@@ -208,9 +208,9 @@
    },
    "10110": {
       "id": 10110,
-      "name": "激光堡垒",
-      "introduce": "激光堡垒",
-      "asset": "EnemyPlane_2013",
+      "name": "激光堡垒朝右",
+      "introduce": "激光堡垒朝右",
+      "asset": "EnemyPlane_2017",
       "hp": 15,
       "defense": 0,
       "dropItems": [
@@ -226,7 +226,30 @@
          2
       ],
       "weapons": [
-         1020041
+         1020032
+      ]
+   },
+   "10111": {
+      "id": 10111,
+      "name": "激光堡垒朝左",
+      "introduce": "激光堡垒朝左",
+      "asset": "EnemyPlane_2018",
+      "hp": 15,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         1020033
       ]
    },
    "10191": {
@@ -453,9 +476,9 @@
    },
    "20110": {
       "id": 20110,
-      "name": "激光堡垒",
-      "introduce": "激光堡垒",
-      "asset": "EnemyPlane_2013",
+      "name": "激光堡垒朝右",
+      "introduce": "激光堡垒朝右",
+      "asset": "EnemyPlane_2017",
       "hp": 18,
       "defense": 0,
       "dropItems": [
@@ -471,7 +494,30 @@
          2
       ],
       "weapons": [
-         2020041
+         2020032
+      ]
+   },
+   "20111": {
+      "id": 20111,
+      "name": "激光堡垒朝左",
+      "introduce": "激光堡垒朝左",
+      "asset": "EnemyPlane_2018",
+      "hp": 18,
+      "defense": 0,
+      "dropItems": [
+         20101,
+         20201,
+         20202,
+         20301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         2020033
       ]
    },
    "20191": {
@@ -698,9 +744,9 @@
    },
    "30110": {
       "id": 30110,
-      "name": "激光堡垒",
-      "introduce": "激光堡垒",
-      "asset": "EnemyPlane_2013",
+      "name": "激光堡垒朝右",
+      "introduce": "激光堡垒朝右",
+      "asset": "EnemyPlane_2017",
       "hp": 21,
       "defense": 0,
       "dropItems": [
@@ -716,7 +762,30 @@
          2
       ],
       "weapons": [
-         3020041
+         3020032
+      ]
+   },
+   "30111": {
+      "id": 30111,
+      "name": "激光堡垒朝左",
+      "introduce": "激光堡垒朝左",
+      "asset": "EnemyPlane_2018",
+      "hp": 21,
+      "defense": 0,
+      "dropItems": [
+         30101,
+         30201,
+         30202,
+         30301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         3020033
       ]
    },
    "30191": {
@@ -943,9 +1012,9 @@
    },
    "40110": {
       "id": 40110,
-      "name": "激光堡垒",
-      "introduce": "激光堡垒",
-      "asset": "EnemyPlane_2013",
+      "name": "激光堡垒朝右",
+      "introduce": "激光堡垒朝右",
+      "asset": "EnemyPlane_2017",
       "hp": 24,
       "defense": 0,
       "dropItems": [
@@ -961,7 +1030,30 @@
          2
       ],
       "weapons": [
-         4020041
+         4020032
+      ]
+   },
+   "40111": {
+      "id": 40111,
+      "name": "激光堡垒朝左",
+      "introduce": "激光堡垒朝左",
+      "asset": "EnemyPlane_2018",
+      "hp": 24,
+      "defense": 0,
+      "dropItems": [
+         40101,
+         40201,
+         40202,
+         40301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         4020033
       ]
    },
    "40191": {
@@ -1188,9 +1280,9 @@
    },
    "50110": {
       "id": 50110,
-      "name": "激光堡垒",
-      "introduce": "激光堡垒",
-      "asset": "EnemyPlane_2013",
+      "name": "激光堡垒朝右",
+      "introduce": "激光堡垒朝右",
+      "asset": "EnemyPlane_2017",
       "hp": 27,
       "defense": 0,
       "dropItems": [
@@ -1206,7 +1298,30 @@
          2
       ],
       "weapons": [
-         5020041
+         5020032
+      ]
+   },
+   "50111": {
+      "id": 50111,
+      "name": "激光堡垒朝左",
+      "introduce": "激光堡垒朝左",
+      "asset": "EnemyPlane_2018",
+      "hp": 27,
+      "defense": 0,
+      "dropItems": [
+         50101,
+         50201,
+         50202,
+         50301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         5020033
       ]
    },
    "50191": {

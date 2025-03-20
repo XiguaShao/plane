@@ -142,6 +142,7 @@ export default class PlayScene extends cc.Component {
      * 过关
      */
     private _passStage(generator: GeneratorPlane, wave: any[]): void {
+        if(App.isOver) return;
         this.nodeResult.active = true;
         this.nodeResult.getChildByName("passLabel").getComponent(cc.Label).string = `得分：${this._score.toString()}`;
         this.nodeResult.getChildByName("spWin").active = true;
@@ -168,6 +169,7 @@ export default class PlayScene extends cc.Component {
             this.nodeResult.scale = 0.1;
             const scale = cc.scaleTo(0.3, 1).easing(cc.easeBounceOut());
             this.nodeResult.runAction(scale);
+            App.isOver = true;
         }
         if (playerPlane) {
             this.lbHp && (this.lbHp.string = playerPlane.hp.toString());
@@ -190,6 +192,7 @@ export default class PlayScene extends cc.Component {
      */
     onClickStart() {
         this.nodeStart.active = false;
+        App.isOver = false;
         this.planeGenerator.getComponent(GeneratorPlane).startGame(this._currentChapter);
         this.nodeScore.active = true;
         this.nodeHp.active = true;
