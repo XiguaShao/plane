@@ -126,6 +126,7 @@ export interface WaveCfg {
    nextWave?:boolean,
    /** 循环次数 */
    repeat?:number,
+   offset?:number[]
 }
 
 export interface WeaponCfg { 

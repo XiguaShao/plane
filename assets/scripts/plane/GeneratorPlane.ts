@@ -250,7 +250,12 @@ export default class GeneratorPlane extends cc.Component {
             // const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
             // plane.parent = this.target;
             const plane = await this.createPlane(groupConfig.planeID);  // 创建飞机
-            plane.position = this._getStartPos(index - 1);
+            
+            if(groupConfig.offset) {
+                plane.position = this._getStartPos(index - 1).add(cc.v3(groupConfig.offset[0], groupConfig.offset[1]));
+            } else {
+                plane.position = this._getStartPos(index - 1);
+            }
             this.createWorn(groupConfig.planeID, plane.position);  // 创建警告
             const dy = groupConfig.dy || -cc.winSize.height / 2 - plane.y;
             const duration = Math.abs(dy / (groupConfig.speed || 1));
