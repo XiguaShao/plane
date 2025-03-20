@@ -25,19 +25,33 @@ export default class LaserWeapon extends Weapon {
     }
 
     protected async _fire(dt?: number) {
+        if(!App.gameDataInited) return;
+        if (dt) {
+            this._duration += dt;
+        }
+        if (this.fireCount !== 0 && this._count++ >= this.fireCount) {
+             this.unschedule(this._fire);
+             if (this.plane.onWeaponRemove) {
+                 this.plane.onWeaponRemove();
+                 this.node.removeComponent(this);
+             }
+             return;
+         }
     }
 
     protected update(dt: number): void {
         if (!this.plane || !this.bullet || !this.plane.node || !this.bullet.node) return;
-        if (this.followX) {
-            this.bullet.node.x = this.plane.node.x;
-            this.bullet.node.y = this.plane.node.y;
-        } else {
-            this.bullet.node.x = this.plane.node.x;
-            this.bullet.node.y = this.plane.node.y;
-        }
+        // if (this.followX) {
+        //     this.bullet.node.x = this.plane.node.x;
+        //     this.bullet.node.y = this.plane.node.y;
+        // } else {
+        //     this.bullet.node.x = this.plane.node.x;
+        //     this.bullet.node.y = this.plane.node.y;
+        // }
         // this.bullet.node.x = 10;
-        // this.bullet.node.y = 10
+        // this.bullet.node.y = 10；
+        this.bullet.node.x = this.plane.node.x;
+        this.bullet.node.y = this.plane.node.y;
         this.showCd = this.showCd - dt;
         if(this.showCd <= 0){
            this.bullet.node.active = false;

@@ -10,7 +10,7 @@ export default class FanWeapon extends Weapon {
         if (dt) {
             this._duration += dt;
         }
-         if (this.count !== 0 && this._count++ >= this.fireCount) {
+         if (this.fireCount !== 0 && this._count++ >= this.fireCount) {
              this.unschedule(this._fire);
              if (this.plane.onWeaponRemove) {
                  this.plane.onWeaponRemove();
