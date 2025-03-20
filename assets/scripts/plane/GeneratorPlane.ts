@@ -48,6 +48,9 @@ function generateStartPoints(): cc.Vec2[] {
     return array;
 }
 
+/** 预警飞机延迟出现时间 */
+const wornDelayTime = 2;
+
 const { ccclass, property } = cc._decorator;
 
 // interface PathConfig {
@@ -263,7 +266,13 @@ export default class GeneratorPlane extends cc.Component {
                     }
                 }
             });
-            plane.runAction(cc.sequence(moveBy, callFunc));
+
+            let delayTime = 0;
+            let planeCfg = ResourceManager.ins().getJsonById<PlaneCfg>(TempConfig.PlaneConfig, groupConfig.planeID);
+            if (planeCfg && planeCfg.showWarn === 1) {
+                delayTime = wornDelayTime;
+            }
+            plane.runAction(cc.sequence(cc.delayTime(delayTime), moveBy, callFunc));
             //监听击落
             plane.on('shoot-down', () => {
                 if (plane.isValid) {
@@ -337,7 +346,7 @@ export default class GeneratorPlane extends cc.Component {
         let wornNode = cc.instantiate(prefab);
         wornNode.parent = App.gameGlobal.planeLayer;
         wornNode.x = pos.x;
-        wornNode.runAction(cc.sequence(cc.delayTime(1.5), cc.callFunc(() => {
+        wornNode.runAction(cc.sequence(cc.delayTime(wornDelayTime), cc.callFunc(() => {
             wornNode.destroy();
         })))
     }
