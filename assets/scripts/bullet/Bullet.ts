@@ -34,7 +34,12 @@ export default class Bullet extends cc.Component {
         if (this._plane.node.group !== 'player') {
             this.node.angle = this.node.angle - 180;
         }
-        endPoint = getEndPoint(-this.node.angle, cc.winSize.height).add(cc.v2(this.node.position.x, this.node.position.y));
+
+        let rad = cc.winSize.height;
+        if (weapon.rotation == 90 ||  weapon.rotation == -90){
+            rad = cc.winSize.width;
+        }
+        endPoint = getEndPoint(-this.node.angle, rad).add(cc.v2(this.node.position.x, this.node.position.y));
         distance = endPoint.sub(cc.v2(this.node.position.x, this.node.position.y)).mag();
         const duration = distance / weapon.speed;
         moveAction = cc.moveTo(duration, endPoint);

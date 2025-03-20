@@ -56,14 +56,14 @@ export default class Weapon extends cc.Component {
         if (dt) {
             this._duration += dt;
         }
-        if (this.count !== 0 && this._count++ >= this.count) {
-            this.unschedule(this._fire);
-            if (this.plane.onWeaponRemove) {
-                this.plane.onWeaponRemove();
-                this.node.removeComponent(this);
-            }
-            return;
-        }
+        // if (this.count !== 0 && this._count++ >= this.count) {
+        //     this.unschedule(this._fire);
+        //     if (this.plane.onWeaponRemove) {
+        //         this.plane.onWeaponRemove();
+        //         this.node.removeComponent(this);
+        //     }
+        //     return;
+        // }
 
         const bullet = await this._createBullet();
         if (bullet) {
@@ -110,6 +110,10 @@ export default class Weapon extends cc.Component {
         this._bulletCfg = ResourceManager.ins().getJsonById<BulletCfg>(TempConfig.BulletConfig, cfg.bulletId);
         this._bulletAssetPath = getPrefabPath(this._bulletCfg.asset, TPrefab.Bullet);
         
+        console.log("子弹", this._bulletCfg.asset);
+        if(this._bulletCfg.asset === "Bullet_6"){
+            console.error("激光武器")
+        }
         this.rate = cfg.rate;
         this.speed = cfg.speed;
         this.count = cfg.count;
