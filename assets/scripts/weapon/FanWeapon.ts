@@ -10,14 +10,14 @@ export default class FanWeapon extends Weapon {
         if (dt) {
             this._duration += dt;
         }
-        // if (this.count !== 0 && this._count++ >= this.count) {
-        //     this.unschedule(this._fire);
-        //     if (this.plane.onWeaponRemove) {
-        //         this.plane.onWeaponRemove();
-        //         this.node.removeComponent(this);
-        //     }
-        //     return;
-        // }
+         if (this.fireCount !== 0 && this._count++ >= this.fireCount) {
+             this.unschedule(this._fire);
+             if (this.plane.onWeaponRemove) {
+                 this.plane.onWeaponRemove();
+                 this.node.removeComponent(this);
+             }
+             return;
+         }
 
         const rotations = this.getRotations();
         for (const rotation of rotations) {

@@ -30,6 +30,8 @@ export default class Weapon extends cc.Component {
     protected plane!: Plane;
     public _duration: number = 0;
     public _count: number = 0;
+    //开火次数
+    public fireCount = 0;
     //武器类型
     public type:EWeaponType = EWeaponType.Base;
     //武器子弹配置
@@ -56,14 +58,14 @@ export default class Weapon extends cc.Component {
         if (dt) {
             this._duration += dt;
         }
-        // if (this.count !== 0 && this._count++ >= this.count) {
-        //     this.unschedule(this._fire);
-        //     if (this.plane.onWeaponRemove) {
-        //         this.plane.onWeaponRemove();
-        //         this.node.removeComponent(this);
-        //     }
-        //     return;
-        // }
+        if (this.fireCount !== 0 && this._count++ >= this.fireCount) {
+             this.unschedule(this._fire);
+             if (this.plane.onWeaponRemove) {
+                 this.plane.onWeaponRemove();
+                 this.node.removeComponent(this);
+             }
+             return;
+         }
 
         const bullet = await this._createBullet();
         if (bullet) {
@@ -75,9 +77,7 @@ export default class Weapon extends cc.Component {
      * 创建子弹
      */
     protected async _createBullet(): Promise<Bullet | null> {
-        // if (!this.bulletPrefab) return null;
         let node = await App.nodePoolMgr.getNode(this._bulletAssetPath);
-        // const node = cc.instantiate(this.bulletPrefab);
         const p = this.node.convertToWorldSpaceAR(cc.v2(0, 0));
         node.position = cc.v3(this.node.parent.convertToNodeSpaceAR(p).add(this.offset));
         node.angle = this.node.angle - this.rotation;
@@ -90,9 +90,9 @@ export default class Weapon extends cc.Component {
         }
         let bullet = node.getComponent(Bullet);
         bullet.initByCfg(this._bulletCfg);
-        if(bullet.followTargetX) {
-            bullet.target = this.plane.node;
-        }
+        // if(bullet.followTargetX) {
+        //     bullet.target = this.plane.node;
+        // }
         return bullet;
     }
 
@@ -104,6 +104,7 @@ export default class Weapon extends cc.Component {
         weapon.rotation = this.rotation;
         weapon.offset = cc.v2(this.offset);
         weapon.type = this.type;
+        weapon.fireCount = this.fireCount;
     } 
 
     initByCfg(cfg: WeaponCfg) {
@@ -120,5 +121,6 @@ export default class Weapon extends cc.Component {
         this.rotation = cfg.rotation || 0;
         this.offset = cc.v2(cfg.offset[0], cfg.offset[1]);
         this.type = cfg.type;
+        this.fireCount = cfg.fireCount;
     }
 }
