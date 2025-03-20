@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "EnemyPlane_2018",
+    "_name": "EnemyPlane_2019",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -34,13 +34,10 @@
       },
       {
         "__id__": 16
-      },
-      {
-        "__id__": 17
       }
     ],
     "_prefab": {
-      "__id__": 18
+      "__id__": 17
     },
     "_opacity": 255,
     "_color": {
@@ -52,8 +49,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 57,
-      "height": 90
+      "width": 56,
+      "height": 189
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -91,7 +88,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2016",
+    "_name": "playerbomb",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -116,8 +113,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 90,
-      "height": 57
+      "width": 56,
+      "height": 189
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -133,8 +130,8 @@
         0,
         0,
         0,
-        -0.7071067811865475,
-        0.7071067811865476,
+        1,
+        6.123233995736766e-17,
         1,
         1,
         1
@@ -144,7 +141,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": -90
+      "z": 180
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -169,7 +166,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "1df59b39-08cb-4987-b3b0-907c3124f808"
+      "__uuid__": "e3af4d06-ea34-460a-88d5-dd04b8c3787c"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -191,9 +188,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "37a358b6-c370-4b2e-9cfc-47d942d5b4ee"
+      "__uuid__": "20555cd7-6a17-4fbf-9235-a8fccc0b18dc"
     },
-    "fileId": "33AHW0VJ1MM4m068hCxktB",
+    "fileId": "58luu1NvZKJLxgbjCFka6J",
     "sync": false
   },
   {
@@ -298,7 +295,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "37a358b6-c370-4b2e-9cfc-47d942d5b4ee"
+      "__uuid__": "20555cd7-6a17-4fbf-9235-a8fccc0b18dc"
     },
     "fileId": "e9cSLhVJRJu7Srdee+AyH0",
     "sync": false
@@ -315,7 +312,7 @@
         "__id__": 9
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 12
@@ -349,13 +346,13 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        39,
-        4.6,
+        -3,
+        71.6,
         0,
         0,
         0,
-        -0.7071067811865475,
-        0.7071067811865476,
+        0,
+        1,
         1,
         1,
         1
@@ -365,7 +362,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": -90
+      "z": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -476,7 +473,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "37a358b6-c370-4b2e-9cfc-47d942d5b4ee"
+      "__uuid__": "20555cd7-6a17-4fbf-9235-a8fccc0b18dc"
     },
     "fileId": "4bni+Nk8NKWrBC4zBHbmYp",
     "sync": false
@@ -536,42 +533,10 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "37a358b6-c370-4b2e-9cfc-47d942d5b4ee"
+      "__uuid__": "20555cd7-6a17-4fbf-9235-a8fccc0b18dc"
     },
     "fileId": "e95dDHMnpEm40FVObW72Rk",
     "sync": false
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": false,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "1df59b39-08cb-4987-b3b0-907c3124f808"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": ""
   },
   {
     "__type__": "155f6Lll3NNKaBdr8Fhcj5H",
@@ -604,8 +569,8 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 57,
-      "height": 90
+      "width": 56,
+      "height": 189
     },
     "_id": ""
   },
@@ -615,7 +580,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "37a358b6-c370-4b2e-9cfc-47d942d5b4ee"
+      "__uuid__": "20555cd7-6a17-4fbf-9235-a8fccc0b18dc"
     },
     "fileId": "388h4uzflJv7NXnKJhuq1F",
     "sync": false
