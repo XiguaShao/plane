@@ -54,9 +54,7 @@ export default class PlayerPlane extends Plane {
         let level = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv) || 1;
         let curConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.AccountlvCfg, level);
         let prevHP = this.hp;
-        this.hp = curConfig && curConfig.hp || 6;
-        this._maxHP = this.hp;
-        cc.game.emit('hp-update', this.node,prevHP,this.hp);
+        this._maxHP =  curConfig && curConfig.hp || 6;
     }
 
     onCollisionEnter(other: cc.Collider): void {

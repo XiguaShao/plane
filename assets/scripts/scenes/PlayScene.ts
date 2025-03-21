@@ -71,6 +71,7 @@ export default class PlayScene extends cc.Component {
         this.registLayer();
         this.nodeStart.active = true;
         this._score = 0;
+        cc.game.on('game-data-init', this.gameDataInit, this)
         cc.game.on('pass-stage', this._passStage, this);
         cc.game.on('player-init', this.onPlayerInit, this);
         cc.game.on('player-under-attack', this._onPlayerUnderAttack, this);
@@ -78,11 +79,23 @@ export default class PlayScene extends cc.Component {
         cc.game.on('shield-activate', this.onShowShield, this);
         cc.game.on('shield-deactivate', this.onHideShield, this);
         cc.game.on('hp-update', this.onUpdateHP, this);
+        cc.game.on('roleExpExchange', this.roleExpExchange, this);
         this._unlockChapter = App.Rms.getDataByType(PLAYER_DATE_TYPE.chapter);
         this._currentChapter = this._unlockChapter;
         this.initUI();
         this.loadChapter();  // 加载章节配置
         this.createLevelNode();
+    }
+
+    /**
+     * @des:配置初始化
+     */
+    gameDataInit() {
+        let level = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv) || 1;
+        let curConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.AccountlvCfg, level);
+        if (curConfig) {
+            this.lbHp && (this.lbHp.string = curConfig.hp.toString());
+        }
     }
 
     loadChapter() {
@@ -246,6 +259,7 @@ export default class PlayScene extends cc.Component {
         this.planeGenerator.getComponent(GeneratorPlane).startGame(this._currentChapter);
         this.nodeScore.active = true;
         this.nodeHp.active = true;
+        this.gameDataInit();
     }
 
     /**
@@ -319,5 +333,8 @@ export default class PlayScene extends cc.Component {
             return;
         }
         anima.play();
+    }
+
+    roleExpExchange(){
     }
 }
