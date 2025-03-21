@@ -1,11 +1,11 @@
-import { ItemConfigs, ItemType, PropConfig } from "./ItemConst";
-import { PropStrategy, HealStrategy, ShieldStrategy } from "./DropItemPropStrategy";
+import { PropStrategy, HealStrategy, ShieldStrategy, WeaponSwapStrategy } from "./DropItemPropStrategy";
+import { EDropItemType } from "./DropItemConst";
 /**
  * @description:策略管理类
  */
 export class PropStrategyManager {
     private static _instance: PropStrategyManager;
-    private _strategyMap = new Map<ItemType, PropStrategy>();
+    private _strategyMap = new Map<EDropItemType, PropStrategy>();
 
     private constructor() {
         this.initializeStrategies();
@@ -19,8 +19,9 @@ export class PropStrategyManager {
     }
 
     private initializeStrategies() {
-        this.registerStrategy(ItemType.Shield, new ShieldStrategy());
-        this.registerStrategy(ItemType.HP, new HealStrategy());
+        this.registerStrategy(EDropItemType.Shield, new ShieldStrategy());
+        this.registerStrategy(EDropItemType.HP, new HealStrategy());
+        this.registerStrategy(EDropItemType.Weapon, new WeaponSwapStrategy())
     }
 
     /**
@@ -28,13 +29,11 @@ export class PropStrategyManager {
      * @param type 
      * @param strategy 
      */
-    public registerStrategy(type: ItemType, strategy: PropStrategy) {
-        const config:PropConfig = ItemConfigs.get(type);
-        if (config) Object.assign(strategy.getConfig(), config);
+    public registerStrategy(type: EDropItemType, strategy: PropStrategy) {
         this._strategyMap.set(type, strategy);
     }
 
-    public getStrategy(type: ItemType): PropStrategy | undefined {
+    public getStrategy(type: EDropItemType): PropStrategy | undefined {
         return this._strategyMap.get(type);
     }
 }

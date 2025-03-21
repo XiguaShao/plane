@@ -1,5 +1,9 @@
 import Plane from '../plane/Plane';
 import Bullet from '../bullet/Bullet';
+import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
+import ResourceManager from '../../framework/resourceManager/ResourceManager';
+import { BulletCfg, WeaponCfg } from '../common/JsonConfig';
+import { EWeaponType } from './WeaponConst';
 
 const { ccclass, property } = cc._decorator;
 
@@ -24,8 +28,16 @@ export default class Weapon extends cc.Component {
     count: number = 10;              //子弹个数, 0表示无限
 
     protected plane!: Plane;
-    private _duration: number = 0;
-    private _count: number = 0;
+    public _duration: number = 0;
+    public _count: number = 0;
+    //开火次数
+    public fireCount = 0;
+    //武器类型
+    public type:EWeaponType = EWeaponType.Base;
+    //武器子弹配置
+    public _bulletCfg: BulletCfg = null;
+    //子弹资源路径
+    public _bulletAssetPath: string = getPrefabPath("Bullet_1", TPrefab.Bullet);
 
     start(): void {
         this.plane = this.node.getComponent(Plane);
@@ -41,20 +53,21 @@ export default class Weapon extends cc.Component {
         }
     }
 
-    protected _fire(dt?: number): void {
+    protected async _fire(dt?: number) {
+        if(!App.gameDataInited) return;
         if (dt) {
             this._duration += dt;
         }
-        if (this.count !== 0 && this._count++ >= this.count) {
-            this.unschedule(this._fire);
-            if (this.plane.onWeaponRemove) {
-                this.plane.onWeaponRemove();
-                this.node.removeComponent(this);
-            }
-            return;
-        }
+        if (this.fireCount !== 0 && this._count++ >= this.fireCount) {
+             this.unschedule(this._fire);
+             if (this.plane.onWeaponRemove) {
+                 this.plane.onWeaponRemove();
+                 this.node.removeComponent(this);
+             }
+             return;
+         }
 
-        const bullet = this._createBullet();
+        const bullet = await this._createBullet();
         if (bullet) {
             bullet.run(this.plane, this);
         }
@@ -63,14 +76,12 @@ export default class Weapon extends cc.Component {
     /**
      * 创建子弹
      */
-    protected _createBullet(): Bullet | null {
-        if (!this.bulletPrefab) return null;
-        
-        const node = cc.instantiate(this.bulletPrefab);
+    protected async _createBullet(): Promise<Bullet | null> {
+        let node = await App.nodePoolMgr.getNode(this._bulletAssetPath);
         const p = this.node.convertToWorldSpaceAR(cc.v2(0, 0));
         node.position = cc.v3(this.node.parent.convertToNodeSpaceAR(p).add(this.offset));
         node.angle = this.node.angle - this.rotation;
-        node.parent = this.node.parent;
+        node.parent = App.gameGlobal.bulletLayer;
 
         if (this.node.group === 'player') {
             node.group = 'player-bullet';
@@ -78,9 +89,10 @@ export default class Weapon extends cc.Component {
             node.group = 'enemy-bullet';
         }
         let bullet = node.getComponent(Bullet);
-        if(bullet.followTargetX) {
-            bullet.target = this.plane.node;
-        }
+        bullet.initByCfg(this._bulletCfg);
+        // if(bullet.followTargetX) {
+        //     bullet.target = this.plane.node;
+        // }
         return bullet;
     }
 
@@ -91,5 +103,24 @@ export default class Weapon extends cc.Component {
         weapon.count = this.count;
         weapon.rotation = this.rotation;
         weapon.offset = cc.v2(this.offset);
+        weapon.type = this.type;
+        weapon.fireCount = this.fireCount;
     } 
+
+    initByCfg(cfg: WeaponCfg) {
+        this._bulletCfg = ResourceManager.ins().getJsonById<BulletCfg>(TempConfig.BulletConfig, cfg.bulletId);
+        this._bulletAssetPath = getPrefabPath(this._bulletCfg.asset, TPrefab.Bullet);
+        
+        // console.log("子弹", this._bulletCfg.asset);
+        // if(this._bulletCfg.asset === "Bullet_6"){
+        //     console.error("激光武器")
+        // }
+        this.rate = cfg.rate;
+        this.speed = cfg.speed;
+        this.count = cfg.count;
+        this.rotation = cfg.rotation || 0;
+        this.offset = cc.v2(cfg.offset[0], cfg.offset[1]);
+        this.type = cfg.type;
+        this.fireCount = cfg.fireCount;
+    }
 }

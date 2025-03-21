@@ -1,8 +1,13 @@
 import * as _ from 'lodash';
 import * as async from 'async';
 import ResourceManager from '../../framework/resourceManager/ResourceManager';
-import { TempConfig } from '../common/ResConst';
-import { PathCfg, StageCfg, WaveCfg } from '../common/JsonConfig';
+import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
+import { PathCfg, PlaneCfg, StageCfg, WaveCfg, WeaponCfg } from '../common/JsonConfig';
+import Plane from './Plane';
+import Weapon from '../weapon/Weapon';
+import FanWeapon from '../weapon/FanWeapon';
+import SpinWeapon from '../weapon/SpinWeapon';
+import LaserWeapon from '../weapon/LaserWeapon';
 
 interface PathPoint {
     points: [cc.Vec2, ...cc.Vec2[]];
@@ -43,6 +48,9 @@ function generateStartPoints(): cc.Vec2[] {
     return array;
 }
 
+/** 预警飞机延迟出现时间 */
+const wornDelayTime = 2;
+
 const { ccclass, property } = cc._decorator;
 
 // interface PathConfig {
@@ -67,21 +75,6 @@ export default class GeneratorPlane extends cc.Component {
     private _startPoints: cc.Vec2[] = [];
     private _waves: StageCfg[] = [];
 
-    start(): void {
-        ResourceManager.ins().loadRes(TempConfig.WaveConfig, cc.JsonAsset, (err, asset) => {
-            if (err) {
-                cc.error("加载 Wave.json 失败:", err);
-                return;
-            }
-        });
-
-        ResourceManager.ins().loadRes(TempConfig.PathConfig, cc.JsonAsset, (err, asset) => {
-            if (err) {
-                cc.error("加载 Wave.json 失败:", err);
-                return;
-            }
-        });
-    }
 
     loadStage(chapter: number) {
         ResourceManager.ins().loadRes(`config/Stage${chapter}`, cc.JsonAsset, (err, asset) => {
@@ -138,18 +131,20 @@ export default class GeneratorPlane extends cc.Component {
         // const pathConfig: PathConfig = this.pathAsset.json[groupConfig.path || ''];
         let destroyCount = 0;
 
-        async.mapSeries(_.range(0, groupConfig.count || 0), (i, cb: (error: Error | null, result?: cc.Node) => void) => {
-            if (!groupConfig.planeID || !this.planePrefabs[groupConfig.planeID - 1]) {
+        async.mapSeries(_.range(0, groupConfig.count || 0), async (i, cb: (error: Error | null, result?: cc.Node) => void) => {
+            if (!groupConfig.planeID) {
                 cb(null);
                 return;
             }
-            const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
-            plane.parent = this.target;
+            // const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
+            // plane.parent = this.target;
+            const plane = await this.createPlane(groupConfig.planeID);
             plane.position = cc.v3(pathConfig.points[0][0]);
+            this.createWorn(groupConfig.planeID, plane.position);  // 创建警告
             const duration = (groupConfig.duration || 6) / pathConfig.points.length;
             let repeat = groupConfig.repeat;
             let actions: any[] = null;
-            if(pathConfig.style === 1) {
+            if (pathConfig.style === 1) {
                 // Line mode: create moveTo actions between points
                 const array = pathConfig.points[0].slice(1).map(p => cc.v2(p));
                 let beginPos = cc.v2(pathConfig.points[0][0])
@@ -157,17 +152,17 @@ export default class GeneratorPlane extends cc.Component {
                     let distance = endPos.sub(beginPos).mag();
                     beginPos.x = endPos.x;
                     beginPos.y = endPos.y;
-                    return cc.moveTo(distance/groupConfig.speed, endPos)
+                    return cc.moveTo(distance / groupConfig.speed, endPos)
                 })
             } else {
                 let index = 0;
                 actions = pathConfig.points.map(param => {
                     let distance = 400;
-                    if(pathConfig.distances && index < pathConfig.distances.length) {
+                    if (pathConfig.distances && index < pathConfig.distances.length) {
                         distance = pathConfig.distances[index];
                     }
                     const array = param.slice(1).map(p => cc.v2(p));
-                    const _time = distance/groupConfig.speed;
+                    const _time = distance / groupConfig.speed;
                     return cc.bezierTo(_time, [].concat(array));
 
                     index++;
@@ -204,14 +199,14 @@ export default class GeneratorPlane extends cc.Component {
                 // finalAction = cc.repeatForever(cc.sequence(actions));
             } else {
                 // 循环指定次数
-                if(groupConfig.repeat > 1) {
+                if (groupConfig.repeat > 1) {
                     actions.push(cc.callFunc(() => {
                         plane.position = cc.v3(pathConfig.points[0][0]);
                         repeat--;
                         // plane.stopAction(finalAction);
                         finalAction = originAction.clone();
-                        if(repeat === 1) {
-                            plane.runAction(cc.sequence([finalAction,callFunc]))
+                        if (repeat === 1) {
+                            plane.runAction(cc.sequence([finalAction, callFunc]))
                         } else {
                             plane.runAction(finalAction)
                         }
@@ -250,11 +245,18 @@ export default class GeneratorPlane extends cc.Component {
         const array = groupConfig.indexs || [];
         let destroyCount = 0;
 
-        async.each(array, (index: number, cb: (error?: Error) => void) => {
-            if (!groupConfig.planeID || !this.planePrefabs[groupConfig.planeID - 1]) return;
-            const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
-            plane.parent = this.target;
-            plane.position = this._getStartPos(index - 1);
+        async.each(array, async (index: number, cb: (error?: Error) => void) => {
+            if (!groupConfig.planeID) return;
+            // const plane = cc.instantiate(this.planePrefabs[groupConfig.planeID - 1]);
+            // plane.parent = this.target;
+            const plane = await this.createPlane(groupConfig.planeID);  // 创建飞机
+            
+            if(groupConfig.offset) {
+                plane.position = this._getStartPos(index - 1).add(cc.v3(groupConfig.offset[0], groupConfig.offset[1]));
+            } else {
+                plane.position = this._getStartPos(index - 1);
+            }
+            this.createWorn(groupConfig.planeID, plane.position);  // 创建警告
             const dy = groupConfig.dy || -cc.winSize.height / 2 - plane.y;
             const duration = Math.abs(dy / (groupConfig.speed || 1));
             const moveBy = cc.moveBy(duration, cc.v2(0, dy));
@@ -269,7 +271,13 @@ export default class GeneratorPlane extends cc.Component {
                     }
                 }
             });
-            plane.runAction(cc.sequence(moveBy, callFunc));
+
+            let delayTime = 0;
+            let planeCfg = ResourceManager.ins().getJsonById<PlaneCfg>(TempConfig.PlaneConfig, groupConfig.planeID);
+            if (planeCfg && planeCfg.showWarn === 1) {
+                delayTime = wornDelayTime;
+            }
+            plane.runAction(cc.sequence(cc.delayTime(delayTime), moveBy, callFunc));
             //监听击落
             plane.on('shoot-down', () => {
                 if (plane.isValid) {
@@ -287,4 +295,68 @@ export default class GeneratorPlane extends cc.Component {
             }
         });
     }
+
+    /**
+     * @description:创建飞机
+     */
+    async createPlane(planeId): Promise<cc.Node> {
+        let planeCfg = ResourceManager.ins().getJsonById<PlaneCfg>(TempConfig.PlaneConfig, planeId);
+        if (!planeCfg) {
+            console.error(planeId, "planeCfg is null");
+            return null;
+        }
+        let planeAssetPath = null;
+        if (planeCfg.boss) {
+            planeAssetPath = getPrefabPath(planeCfg.asset, TPrefab.PlaneBoss);
+        } else {
+            planeAssetPath = getPrefabPath(planeCfg.asset, TPrefab.Plane);
+        }
+        let planeNode = await App.nodePoolMgr.getNodeFromPool(planeCfg.asset, planeAssetPath);
+        let plane: Plane = planeNode.getComponent(Plane);
+        plane.initByCfg(planeCfg);
+        planeCfg.weapons.forEach(weaponId => {
+            let weaponCfg = ResourceManager.ins().getJsonById<WeaponCfg>(TempConfig.WeaponConfig, weaponId);
+            if (!weaponCfg) {
+                console.error("武器表" + weaponId + "没有配置")
+                return;
+            }
+            let comp = null;
+            switch (weaponCfg.type) {
+                case 1:
+                    comp = planeNode.addComponent(Weapon);
+                    break;
+                case 2:
+                    comp = planeNode.addComponent(FanWeapon);
+                    break;
+                case 3:
+                    comp = planeNode.addComponent(SpinWeapon);
+                    break;
+                case 4 :
+                    comp = planeNode.addComponent(LaserWeapon);
+                    break;
+                default:
+                    break;
+            }
+            comp.initByCfg(weaponCfg);
+        });
+        planeNode.parent = App.gameGlobal.planeLayer;
+        return planeNode;
+    }
+    /**
+     * @Method: createWorn
+     * @Desc: 创建警告
+     */
+    async createWorn(planeId: number, pos: cc.Vec3) {
+        let planeCfg = ResourceManager.ins().getJsonById<PlaneCfg>(TempConfig.PlaneConfig, planeId);
+        if (planeCfg.showWarn == 0) return;
+        let wornAssetPath = getPrefabPath("worn_line", TPrefab.Worn);
+        let prefab = await ResourceManager.ins().getPrefab(wornAssetPath);
+        let wornNode = cc.instantiate(prefab);
+        wornNode.parent = App.gameGlobal.planeLayer;
+        wornNode.x = pos.x;
+        wornNode.runAction(cc.sequence(cc.delayTime(wornDelayTime), cc.callFunc(() => {
+            wornNode.destroy();
+        })))
+    }
+
 }

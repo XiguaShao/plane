@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import Weapon from './Weapon';
+import { WeaponCfg } from '../common/JsonConfig';
 
 const { ccclass, property } = cc._decorator;
 
@@ -40,5 +41,14 @@ export default class SpinWeapon extends Weapon {
         weapon.spinMax = this.spinMax;
         weapon.spinMin = this.spinMin;
         weapon.spinSpeed = this.spinSpeed;
+    }
+
+    initByCfg(cfg: WeaponCfg): void {
+        super.initByCfg(cfg);
+        
+        this.spinMin = cfg.spinMin || -45;
+        this.spinMax = cfg.spinMax || 45;
+        this.spinSpeed = cfg.spinSpeed || 1000;
+        this._flag = 1;
     }
 }

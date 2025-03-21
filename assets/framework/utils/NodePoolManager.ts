@@ -53,15 +53,31 @@ export default class NodePoolManager {
         return pool;
     }
 
-    public async getNode (key: string) {
-        let pool = this.getPool(key);
-        let node = pool.get();
-        if (!node) {
-            let prefab = await ResourceManager.ins().getPrefab(key);
-            node = cc.instantiate(prefab);
-            node["poolKey"] = key;
+    public async getNode(key: string): Promise<cc.Node> {
+        try {
+            let pool = this.getPool(key);
+            let node = pool.get();
+            if (!node) {
+                const prefab = await ResourceManager.ins().getPrefab(key);
+                if (!prefab) {
+                    throw new Error(`Failed to load prefab: ${key}`);
+                }
+                node = cc.instantiate(prefab);
+                if (!node) {
+                    throw new Error(`Failed to instantiate prefab: ${key}`);
+                }
+                Object.defineProperty(node, 'poolKey', {
+                    value: key,
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                });
+            }
+            return node;
+        } catch (error) {
+            cc.error(`NodePoolManager getNode error: ${error.message}`);
+            throw error;
         }
-        return node;
     }
 
     /**

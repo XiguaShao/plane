@@ -65,6 +65,8 @@ export interface PlaneCfg {
    dropItemRates:number[],
    /** 武器 关联Weapon表 */
    weapons:number[],
+   /** 是否带有飞机预警 0:无1：有 */
+   showWarn:number,
 }
 
 export interface PropCfg { 
@@ -151,5 +153,7 @@ export interface WeaponCfg {
    speed:number,
    /** 子弹个数 */
    count?:number,
+   /** 发射次数 */
+   fireCount?:number,
 }
 

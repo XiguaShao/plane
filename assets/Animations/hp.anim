@@ -3,7 +3,7 @@
   "_name": "hp",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.25,
+  "_duration": 0.3333333333333333,
   "sample": 60,
   "speed": 1,
   "wrapMode": 1,
@@ -15,7 +15,7 @@
           "value": 0
         },
         {
-          "frame": 0.25,
+          "frame": 0.3333333333333333,
           "value": 32
         }
       ]
@@ -30,8 +30,18 @@
                 "value": 20
               },
               {
-                "frame": 0.25,
-                "value": 40
+                "frame": 0.3333333333333333,
+                "value": 50
+              }
+            ],
+            "lineHeight": [
+              {
+                "frame": 0,
+                "value": 20
+              },
+              {
+                "frame": 0.3333333333333333,
+                "value": 50
               }
             ]
           }
@@ -41,7 +51,7 @@
   },
   "events": [
     {
-      "frame": 0.25,
+      "frame": 0.3333333333333333,
       "func": "complete",
       "params": [
         "00"

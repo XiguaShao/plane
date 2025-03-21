@@ -15290,7 +15290,7 @@ declare namespace cc {
 		grayMaterial: Material;	
 	}	
 	/** misc utilities */
-	export class misc {		
+	export class misc {
 		/**
 		!#en Clamp a value between from and to.
 		!#zh

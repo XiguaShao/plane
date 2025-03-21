@@ -4,7 +4,7 @@
       "name": "普通掠夺者",
       "introduce": "普通掠夺者",
       "asset": "EnemyPlane_2001",
-      "hp": 5,
+      "hp": 4,
       "defense": 0,
       "dropItems": [
          10101,
@@ -20,14 +20,15 @@
       ],
       "weapons": [
          1020011
-      ]
+      ],
+      "showWarn": 0
    },
    "10102": {
       "id": 10102,
       "name": "普通守卫者",
       "introduce": "普通守卫者",
       "asset": "EnemyPlane_2006",
-      "hp": 6,
+      "hp": 4,
       "defense": 0,
       "dropItems": [
          10101,
@@ -43,14 +44,15 @@
       ],
       "weapons": [
          1020021
-      ]
+      ],
+      "showWarn": 0
    },
    "10103": {
       "id": 10103,
       "name": "普通护卫者",
       "introduce": "普通护卫者",
       "asset": "EnemyPlane_2007",
-      "hp": 7,
+      "hp": 4,
       "defense": 0,
       "dropItems": [
          10101,
@@ -66,14 +68,15 @@
       ],
       "weapons": [
          1020031
-      ]
+      ],
+      "showWarn": 0
    },
    "10104": {
       "id": 10104,
       "name": "精英掠夺者",
       "introduce": "精英掠夺者",
       "asset": "EnemyPlane_2008",
-      "hp": 8,
+      "hp": 4,
       "defense": 0,
       "dropItems": [
          10101,
@@ -89,14 +92,15 @@
       ],
       "weapons": [
          1020011
-      ]
+      ],
+      "showWarn": 0
    },
    "10105": {
       "id": 10105,
       "name": "精英守卫者",
       "introduce": "精英守卫者",
       "asset": "EnemyPlane_2009",
-      "hp": 9,
+      "hp": 4,
       "defense": 0,
       "dropItems": [
          10101,
@@ -112,14 +116,15 @@
       ],
       "weapons": [
          1020021
-      ]
+      ],
+      "showWarn": 0
    },
    "10106": {
       "id": 10106,
       "name": "精英护卫者",
       "introduce": "精英护卫者",
       "asset": "EnemyPlane_2010",
-      "hp": 10,
+      "hp": 4,
       "defense": 0,
       "dropItems": [
          10101,
@@ -135,14 +140,15 @@
       ],
       "weapons": [
          1020031
-      ]
+      ],
+      "showWarn": 0
    },
    "10107": {
       "id": 10107,
       "name": "超级掠夺者",
       "introduce": "超级掠夺者",
       "asset": "EnemyPlane_2011",
-      "hp": 11,
+      "hp": 4,
       "defense": 0,
       "dropItems": [
          10101,
@@ -158,14 +164,15 @@
       ],
       "weapons": [
          1020011
-      ]
+      ],
+      "showWarn": 0
    },
    "10108": {
       "id": 10108,
       "name": "超级守卫者",
       "introduce": "超级守卫者",
       "asset": "EnemyPlane_2012",
-      "hp": 12,
+      "hp": 4,
       "defense": 0,
       "dropItems": [
          10101,
@@ -181,14 +188,15 @@
       ],
       "weapons": [
          1020021
-      ]
+      ],
+      "showWarn": 0
    },
    "10109": {
       "id": 10109,
       "name": "超级护卫者",
       "introduce": "超级护卫者",
       "asset": "EnemyPlane_2013",
-      "hp": 13,
+      "hp": 4,
       "defense": 0,
       "dropItems": [
          10101,
@@ -204,7 +212,78 @@
       ],
       "weapons": [
          1020031
-      ]
+      ],
+      "showWarn": 0
+   },
+   "10110": {
+      "id": 10110,
+      "name": "激光堡垒朝右",
+      "introduce": "激光堡垒朝右",
+      "asset": "EnemyPlane_2017",
+      "hp": 15,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         1020032
+      ],
+      "showWarn": 0
+   },
+   "10111": {
+      "id": 10111,
+      "name": "激光堡垒朝左",
+      "introduce": "激光堡垒朝左",
+      "asset": "EnemyPlane_2018",
+      "hp": 15,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         1020033
+      ],
+      "showWarn": 0
+   },
+   "10112": {
+      "id": 10112,
+      "name": "瞄准导弹-纵向",
+      "introduce": "瞄准导弹-纵向",
+      "asset": "EnemyPlane_2019",
+      "hp": 9999,
+      "defense": 0,
+      "dropItems": [
+         10101,
+         10201,
+         10202,
+         10301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [],
+      "showWarn": 1
    },
    "10191": {
       "id": 10191,
@@ -219,7 +298,8 @@
          1020042,
          1020043,
          1020044
-      ]
+      ],
+      "showWarn": 0
    },
    "20101": {
       "id": 20101,
@@ -242,14 +322,15 @@
       ],
       "weapons": [
          2020011
-      ]
+      ],
+      "showWarn": 0
    },
    "20102": {
       "id": 20102,
       "name": "普通守卫者",
       "introduce": "普通守卫者",
       "asset": "EnemyPlane_2006",
-      "hp": 9,
+      "hp": 8,
       "defense": 0,
       "dropItems": [
          20101,
@@ -265,14 +346,15 @@
       ],
       "weapons": [
          2020021
-      ]
+      ],
+      "showWarn": 0
    },
    "20103": {
       "id": 20103,
       "name": "普通护卫者",
       "introduce": "普通护卫者",
       "asset": "EnemyPlane_2007",
-      "hp": 10,
+      "hp": 8,
       "defense": 0,
       "dropItems": [
          20101,
@@ -288,14 +370,15 @@
       ],
       "weapons": [
          2020031
-      ]
+      ],
+      "showWarn": 0
    },
    "20104": {
       "id": 20104,
       "name": "精英掠夺者",
       "introduce": "精英掠夺者",
       "asset": "EnemyPlane_2008",
-      "hp": 11,
+      "hp": 8,
       "defense": 0,
       "dropItems": [
          20101,
@@ -311,14 +394,15 @@
       ],
       "weapons": [
          2020011
-      ]
+      ],
+      "showWarn": 0
    },
    "20105": {
       "id": 20105,
       "name": "精英守卫者",
       "introduce": "精英守卫者",
       "asset": "EnemyPlane_2009",
-      "hp": 12,
+      "hp": 8,
       "defense": 0,
       "dropItems": [
          20101,
@@ -334,14 +418,15 @@
       ],
       "weapons": [
          2020021
-      ]
+      ],
+      "showWarn": 0
    },
    "20106": {
       "id": 20106,
       "name": "精英护卫者",
       "introduce": "精英护卫者",
       "asset": "EnemyPlane_2010",
-      "hp": 13,
+      "hp": 8,
       "defense": 0,
       "dropItems": [
          20101,
@@ -357,14 +442,15 @@
       ],
       "weapons": [
          2020031
-      ]
+      ],
+      "showWarn": 0
    },
    "20107": {
       "id": 20107,
       "name": "超级掠夺者",
       "introduce": "超级掠夺者",
       "asset": "EnemyPlane_2011",
-      "hp": 14,
+      "hp": 8,
       "defense": 0,
       "dropItems": [
          20101,
@@ -380,14 +466,15 @@
       ],
       "weapons": [
          2020011
-      ]
+      ],
+      "showWarn": 0
    },
    "20108": {
       "id": 20108,
       "name": "超级守卫者",
       "introduce": "超级守卫者",
       "asset": "EnemyPlane_2012",
-      "hp": 15,
+      "hp": 8,
       "defense": 0,
       "dropItems": [
          20101,
@@ -403,14 +490,15 @@
       ],
       "weapons": [
          2020021
-      ]
+      ],
+      "showWarn": 0
    },
    "20109": {
       "id": 20109,
       "name": "超级护卫者",
       "introduce": "超级护卫者",
       "asset": "EnemyPlane_2013",
-      "hp": 16,
+      "hp": 8,
       "defense": 0,
       "dropItems": [
          20101,
@@ -426,7 +514,78 @@
       ],
       "weapons": [
          2020031
-      ]
+      ],
+      "showWarn": 0
+   },
+   "20110": {
+      "id": 20110,
+      "name": "激光堡垒朝右",
+      "introduce": "激光堡垒朝右",
+      "asset": "EnemyPlane_2017",
+      "hp": 18,
+      "defense": 0,
+      "dropItems": [
+         20101,
+         20201,
+         20202,
+         20301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         2020032
+      ],
+      "showWarn": 0
+   },
+   "20111": {
+      "id": 20111,
+      "name": "激光堡垒朝左",
+      "introduce": "激光堡垒朝左",
+      "asset": "EnemyPlane_2018",
+      "hp": 18,
+      "defense": 0,
+      "dropItems": [
+         20101,
+         20201,
+         20202,
+         20301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         2020033
+      ],
+      "showWarn": 0
+   },
+   "20112": {
+      "id": 20112,
+      "name": "瞄准导弹-纵向",
+      "introduce": "瞄准导弹-纵向",
+      "asset": "EnemyPlane_2019",
+      "hp": 9999,
+      "defense": 0,
+      "dropItems": [
+         20101,
+         20201,
+         20202,
+         20301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [],
+      "showWarn": 1
    },
    "20191": {
       "id": 20191,
@@ -441,7 +600,8 @@
          2020042,
          2020043,
          2020044
-      ]
+      ],
+      "showWarn": 0
    },
    "30101": {
       "id": 30101,
@@ -464,7 +624,8 @@
       ],
       "weapons": [
          3020011
-      ]
+      ],
+      "showWarn": 0
    },
    "30102": {
       "id": 30102,
@@ -487,7 +648,8 @@
       ],
       "weapons": [
          3020021
-      ]
+      ],
+      "showWarn": 0
    },
    "30103": {
       "id": 30103,
@@ -510,7 +672,8 @@
       ],
       "weapons": [
          3020031
-      ]
+      ],
+      "showWarn": 0
    },
    "30104": {
       "id": 30104,
@@ -533,7 +696,8 @@
       ],
       "weapons": [
          3020011
-      ]
+      ],
+      "showWarn": 0
    },
    "30105": {
       "id": 30105,
@@ -556,7 +720,8 @@
       ],
       "weapons": [
          3020021
-      ]
+      ],
+      "showWarn": 0
    },
    "30106": {
       "id": 30106,
@@ -579,7 +744,8 @@
       ],
       "weapons": [
          3020031
-      ]
+      ],
+      "showWarn": 0
    },
    "30107": {
       "id": 30107,
@@ -602,7 +768,8 @@
       ],
       "weapons": [
          3020011
-      ]
+      ],
+      "showWarn": 0
    },
    "30108": {
       "id": 30108,
@@ -625,7 +792,8 @@
       ],
       "weapons": [
          3020021
-      ]
+      ],
+      "showWarn": 0
    },
    "30109": {
       "id": 30109,
@@ -648,7 +816,78 @@
       ],
       "weapons": [
          3020031
-      ]
+      ],
+      "showWarn": 0
+   },
+   "30110": {
+      "id": 30110,
+      "name": "激光堡垒朝右",
+      "introduce": "激光堡垒朝右",
+      "asset": "EnemyPlane_2017",
+      "hp": 21,
+      "defense": 0,
+      "dropItems": [
+         30101,
+         30201,
+         30202,
+         30301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         3020032
+      ],
+      "showWarn": 0
+   },
+   "30111": {
+      "id": 30111,
+      "name": "激光堡垒朝左",
+      "introduce": "激光堡垒朝左",
+      "asset": "EnemyPlane_2018",
+      "hp": 21,
+      "defense": 0,
+      "dropItems": [
+         30101,
+         30201,
+         30202,
+         30301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         3020033
+      ],
+      "showWarn": 0
+   },
+   "30112": {
+      "id": 30112,
+      "name": "瞄准导弹-纵向",
+      "introduce": "瞄准导弹-纵向",
+      "asset": "EnemyPlane_2019",
+      "hp": 9999,
+      "defense": 0,
+      "dropItems": [
+         30101,
+         30201,
+         30202,
+         30301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [],
+      "showWarn": 1
    },
    "30191": {
       "id": 30191,
@@ -663,7 +902,8 @@
          3020042,
          3020043,
          3020044
-      ]
+      ],
+      "showWarn": 0
    },
    "40101": {
       "id": 40101,
@@ -686,7 +926,8 @@
       ],
       "weapons": [
          4020011
-      ]
+      ],
+      "showWarn": 0
    },
    "40102": {
       "id": 40102,
@@ -709,7 +950,8 @@
       ],
       "weapons": [
          4020021
-      ]
+      ],
+      "showWarn": 0
    },
    "40103": {
       "id": 40103,
@@ -732,7 +974,8 @@
       ],
       "weapons": [
          4020031
-      ]
+      ],
+      "showWarn": 0
    },
    "40104": {
       "id": 40104,
@@ -755,7 +998,8 @@
       ],
       "weapons": [
          4020011
-      ]
+      ],
+      "showWarn": 0
    },
    "40105": {
       "id": 40105,
@@ -778,7 +1022,8 @@
       ],
       "weapons": [
          4020021
-      ]
+      ],
+      "showWarn": 0
    },
    "40106": {
       "id": 40106,
@@ -801,7 +1046,8 @@
       ],
       "weapons": [
          4020031
-      ]
+      ],
+      "showWarn": 0
    },
    "40107": {
       "id": 40107,
@@ -824,7 +1070,8 @@
       ],
       "weapons": [
          4020011
-      ]
+      ],
+      "showWarn": 0
    },
    "40108": {
       "id": 40108,
@@ -847,7 +1094,8 @@
       ],
       "weapons": [
          4020021
-      ]
+      ],
+      "showWarn": 0
    },
    "40109": {
       "id": 40109,
@@ -870,7 +1118,78 @@
       ],
       "weapons": [
          4020031
-      ]
+      ],
+      "showWarn": 0
+   },
+   "40110": {
+      "id": 40110,
+      "name": "激光堡垒朝右",
+      "introduce": "激光堡垒朝右",
+      "asset": "EnemyPlane_2017",
+      "hp": 24,
+      "defense": 0,
+      "dropItems": [
+         40101,
+         40201,
+         40202,
+         40301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         4020032
+      ],
+      "showWarn": 0
+   },
+   "40111": {
+      "id": 40111,
+      "name": "激光堡垒朝左",
+      "introduce": "激光堡垒朝左",
+      "asset": "EnemyPlane_2018",
+      "hp": 24,
+      "defense": 0,
+      "dropItems": [
+         40101,
+         40201,
+         40202,
+         40301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         4020033
+      ],
+      "showWarn": 0
+   },
+   "40112": {
+      "id": 40112,
+      "name": "瞄准导弹-纵向",
+      "introduce": "瞄准导弹-纵向",
+      "asset": "EnemyPlane_2019",
+      "hp": 9999,
+      "defense": 0,
+      "dropItems": [
+         40101,
+         40201,
+         40202,
+         40301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [],
+      "showWarn": 1
    },
    "40191": {
       "id": 40191,
@@ -885,7 +1204,8 @@
          4020042,
          4020043,
          4020044
-      ]
+      ],
+      "showWarn": 0
    },
    "50101": {
       "id": 50101,
@@ -908,7 +1228,8 @@
       ],
       "weapons": [
          5020011
-      ]
+      ],
+      "showWarn": 0
    },
    "50102": {
       "id": 50102,
@@ -931,7 +1252,8 @@
       ],
       "weapons": [
          5020021
-      ]
+      ],
+      "showWarn": 0
    },
    "50103": {
       "id": 50103,
@@ -954,7 +1276,8 @@
       ],
       "weapons": [
          5020031
-      ]
+      ],
+      "showWarn": 0
    },
    "50104": {
       "id": 50104,
@@ -977,7 +1300,8 @@
       ],
       "weapons": [
          5020011
-      ]
+      ],
+      "showWarn": 0
    },
    "50105": {
       "id": 50105,
@@ -1000,7 +1324,8 @@
       ],
       "weapons": [
          5020021
-      ]
+      ],
+      "showWarn": 0
    },
    "50106": {
       "id": 50106,
@@ -1023,7 +1348,8 @@
       ],
       "weapons": [
          5020031
-      ]
+      ],
+      "showWarn": 0
    },
    "50107": {
       "id": 50107,
@@ -1046,7 +1372,8 @@
       ],
       "weapons": [
          5020011
-      ]
+      ],
+      "showWarn": 0
    },
    "50108": {
       "id": 50108,
@@ -1069,7 +1396,8 @@
       ],
       "weapons": [
          5020021
-      ]
+      ],
+      "showWarn": 0
    },
    "50109": {
       "id": 50109,
@@ -1092,7 +1420,78 @@
       ],
       "weapons": [
          5020031
-      ]
+      ],
+      "showWarn": 0
+   },
+   "50110": {
+      "id": 50110,
+      "name": "激光堡垒朝右",
+      "introduce": "激光堡垒朝右",
+      "asset": "EnemyPlane_2017",
+      "hp": 27,
+      "defense": 0,
+      "dropItems": [
+         50101,
+         50201,
+         50202,
+         50301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         5020032
+      ],
+      "showWarn": 0
+   },
+   "50111": {
+      "id": 50111,
+      "name": "激光堡垒朝左",
+      "introduce": "激光堡垒朝左",
+      "asset": "EnemyPlane_2018",
+      "hp": 27,
+      "defense": 0,
+      "dropItems": [
+         50101,
+         50201,
+         50202,
+         50301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [
+         5020033
+      ],
+      "showWarn": 0
+   },
+   "50112": {
+      "id": 50112,
+      "name": "瞄准导弹-纵向",
+      "introduce": "瞄准导弹-纵向",
+      "asset": "EnemyPlane_2019",
+      "hp": 9999,
+      "defense": 0,
+      "dropItems": [
+         50101,
+         50201,
+         50202,
+         50301
+      ],
+      "dropItemRates": [
+         15,
+         7,
+         5,
+         2
+      ],
+      "weapons": [],
+      "showWarn": 1
    },
    "50191": {
       "id": 50191,
@@ -1107,6 +1506,7 @@
          5020042,
          5020043,
          5020044
-      ]
+      ],
+      "showWarn": 0
    }
 }

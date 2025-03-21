@@ -35,6 +35,22 @@ export default class PlayScene extends cc.Component {
     @property({ type: cc.Node, tooltip: CC_DEV && "分数节点" })
     nodeHp: cc.Node = null;
 
+    /** 子弹层 */
+    @property({ type: cc.Node, tooltip: CC_DEV && "子弹层" })
+    nodeBulletLayer: cc.Node = null;
+
+    /** 飞机层 */
+    @property({ type: cc.Node, tooltip: CC_DEV && "飞机层" })
+    nodePlaneLayer: cc.Node = null;
+
+    /** 道具层 */
+    @property({ type: cc.Node, tooltip: CC_DEV && "道具层" })
+    nodeDropLayer: cc.Node = null;
+    
+    /** 效果层 */
+    @property({ type: cc.Node, tooltip: CC_DEV && "效果层" })
+    nodeEffectLayer: cc.Node = null;
+
     private _score: number = 0;
 
     @property(cc.Node)
@@ -48,6 +64,8 @@ export default class PlayScene extends cc.Component {
     private _maxChapter: number = 1;
     start(): void {
         App.initGameData();
+        this.registLayer();
+        this.nodeStart.active = true;
         this._score = 0;
         cc.game.on('pass-stage', this._passStage, this);
         cc.game.on('player-init', this.onPlayerInit, this);
@@ -103,6 +121,16 @@ export default class PlayScene extends cc.Component {
     }
 
     /**
+     * @description:注册层级
+     */
+    registLayer() {
+        App.gameGlobal.planeLayer = this.nodePlaneLayer;
+        App.gameGlobal.bulletLayer = this.nodeBulletLayer;
+        App.gameGlobal.dropLayer = this.nodeDropLayer;
+        App.gameGlobal.effectLayer = this.nodeEffectLayer;
+    }
+
+    /**
      * @description:初始化UI
      */
     initUI(){
@@ -114,6 +142,7 @@ export default class PlayScene extends cc.Component {
      * 过关
      */
     private _passStage(generator: GeneratorPlane, wave: any[]): void {
+        if(App.isOver) return;
         this.nodeResult.active = true;
         this.nodeResult.getChildByName("passLabel").getComponent(cc.Label).string = `得分：${this._score.toString()}`;
         this.nodeResult.getChildByName("spWin").active = true;
@@ -140,6 +169,7 @@ export default class PlayScene extends cc.Component {
             this.nodeResult.scale = 0.1;
             const scale = cc.scaleTo(0.3, 1).easing(cc.easeBounceOut());
             this.nodeResult.runAction(scale);
+            App.isOver = true;
         }
         if (playerPlane) {
             this.lbHp && (this.lbHp.string = playerPlane.hp.toString());
@@ -162,8 +192,8 @@ export default class PlayScene extends cc.Component {
      */
     onClickStart() {
         this.nodeStart.active = false;
+        App.isOver = false;
         this.planeGenerator.getComponent(GeneratorPlane).startGame(this._currentChapter);
-
         this.nodeScore.active = true;
         this.nodeHp.active = true;
     }

@@ -143,5 +143,6 @@
   "use-project-simulator-setting": false,
   "migrate-history": [
     "cloud-function"
-  ]
+  ],
+  "start-scene": "current"
 }

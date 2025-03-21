@@ -1,3 +1,7 @@
+import SpriteAnimate from "../bomb/SpriteAnimate";
+import { PlaneCfg } from "../common/JsonConfig";
+import Game from "../game/Game";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -8,11 +12,11 @@ export default class Plane extends cc.Component {
     _hp: number = 1;
 
     @property({
-        type: cc.Integer,visible: true
+        type: cc.Integer, visible: true
     })
     set hp(value: number) {
         this._hp = value;
-        this._updateHp();
+        this.updateHp();
     }
 
     get hp(): number {
@@ -25,37 +29,97 @@ export default class Plane extends cc.Component {
     @property
     damageCooldown: number = 0.5; // 伤害冷却时间（秒）
 
+    /**id */
+    private _id: number = null;
+    /**名字 */
+    private _name: string = null;
+    /**介绍 */
+    private _intro: string = null;
+    /**资产 */
+    private _asset: string = null;
+    /**掉落 */
+    private _dropItems: number[] = [];
+    /**掉落比例*/
+    private _dropItemRates: number[] = [];
+    /**武器 */
+    private _weapons: number[] = [];
+    /**最大血量 */
     private _maxHP!: number;
-    private _progressBar!: cc.ProgressBar;
+    public _progressBar!: cc.ProgressBar;
     private _lastDamageTime: number = 0; // 上次受伤时间
 
+    /**配置表 */
+    public planeCfg: PlaneCfg = null;
 
+    start(): void {
+        this._maxHP = this.hp;
+        const node = this.node.getChildByName('progressBar');
 
+        if (node) {
+            node.opacity = 0;
+            const progressBar = node.getComponent(cc.ProgressBar);
+            this._progressBar = progressBar;
 
+            this._progressBar.progress = this.hp / this._maxHP;
+        }
+    }
 
+    /**
+     * @description: 初始化配置
+     * @param cfg 
+     */
+    initByCfg(cfg: PlaneCfg) {
+        this.planeCfg = cfg;
+        this._id = cfg.id;
+        this.name = cfg.name;
+        this.hp = cfg.hp;
+        this.defense = cfg.defense;
+        this._intro = cfg.introduce;
+        this._asset = cfg.asset;
+        this._weapons = cfg.weapons;
+        this._dropItems = cfg.dropItems;
+        this._dropItemRates = cfg.dropItemRates;
+    }
 
-
-    protected _updateHp(): void {
+    /**
+     * @description: 更新血量
+     */
+    updateHp(): void {
         if (this._progressBar) {
             this._progressBar.progress = this.hp / this._maxHP;
         }
     }
 
-    start(): void {
-        this._maxHP = this.hp;
-        const node = this.node.getChildByName('progressBar');
-        
-        if (node) {
-            node.opacity = 0;
-            const progressBar = node.getComponent(cc.ProgressBar);
-            this._progressBar = progressBar;
-            
-            this._progressBar.progress = this.hp / this._maxHP;
-        }
-    }
-
+    /**
+     * @description: 获取最大血量
+     * @returns 
+     */
     getMaxHP(): number {
         return this._maxHP;
+    }
+
+    /**
+     * @description:获取掉落道具id
+     * @returns 
+     */
+    getDropItems(): number[] {
+        return this._dropItems;
+    }
+
+    /**
+     * @description:获取掉落的比例
+     * @returns 
+     */
+    getDropItemRates(): number[] {
+        return this._dropItemRates;
+    }
+
+    /**
+     * @description:获取挂载的武器
+     * @returns 
+     */
+    getWeapons(): number[] {
+        return this._weapons;
     }
 
     /**
@@ -72,18 +136,22 @@ export default class Plane extends cc.Component {
 
         const fadeOut = cc.fadeOut(0.5);
         const scaleTo = cc.scaleTo(0.3, 0.1);
-        const spawn = cc.spawn(fadeOut, scaleTo);
+        const spawn = cc.spawn(fadeOut, scaleTo, cc.callFunc(() => {
+            this.createBomb();
+        }));
         //击落
         const callFunc = cc.callFunc(() => {
             this.node.emit('shoot-down', this);
         });
         const remove = cc.removeSelf();
-        
-        this.node.runAction(cc.sequence(spawn, callFunc, remove));       
+        this.node.runAction(cc.sequence(spawn, callFunc, remove));
     }
 
+    /**
+     * @desc:移除武器
+     */
     onWeaponRemove() {
-        
+
     }
 
     /**
@@ -109,6 +177,7 @@ export default class Plane extends cc.Component {
         }
 
         if (this.hp <= 0) {
+            this.hp = 0
             this._playDestroy();
         }
 
@@ -120,4 +189,14 @@ export default class Plane extends cc.Component {
             this._progressBar.node.opacity = 0;
         }
     }
+
+    /**
+     * @description: 创建爆炸特效
+     */
+    async createBomb() {
+        let bombNode = await App.nodePoolMgr.getNodeFromPool("bombEffect1", "prefabs/effect/BombEffect1");
+        bombNode.parent = App.gameGlobal.effectLayer;
+        bombNode.setPosition(this.node.position);
+    }
+
 }

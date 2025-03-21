@@ -1,4 +1,5 @@
 import { TimerManager } from '../timer/TimerManager';
+import Weapon from '../weapon/Weapon';
 import Plane from './Plane';
 
 const { ccclass } = cc._decorator;
@@ -9,13 +10,24 @@ export default class PlayerPlane extends Plane {
     public activeEffects = new Map<string, number>();
     /**无敌*/
     public isInvincible: boolean = false;
+    // 修改为存储组件实例的uuid
+    public originalWeaponUUIDs = new Set<string>();
 
     start(): void {
        super.start(); 
        cc.game.emit('player-init', this);
+       this.backupOriginalWeapons();
     }
 
-    protected _updateHp(): void {
+    /**
+     * @desc:备份初始武器
+     */
+    private backupOriginalWeapons() {
+        const weapons = this.node.getComponents(Weapon);
+        this.originalWeaponUUIDs = new Set(
+            weapons.map(w => w.uuid)
+        );
+        console.log("originalWeaponUUIDs", this.originalWeaponUUIDs);
     }
 
     onCollisionEnter(other: cc.Collider): void {
@@ -26,7 +38,7 @@ export default class PlayerPlane extends Plane {
         } else {
             const enemyPlane = other.getComponent(Plane);
             if (enemyPlane) {
-                this.hp -= 2;
+                this.hp -= enemyPlane.hp;
             }
         }
 

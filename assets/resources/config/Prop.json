@@ -21,7 +21,10 @@
       "weapons": [
          1010011,
          1010012
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "10202": {
       "id": 10202,
@@ -34,7 +37,10 @@
       "tag": 2,
       "weapons": [
          1010021
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "10203": {
       "id": 10203,
@@ -47,7 +53,10 @@
       "tag": 3,
       "weapons": [
          1010031
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "10301": {
       "id": 10301,
@@ -110,7 +119,10 @@
       "weapons": [
          2010011,
          2010012
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "20202": {
       "id": 20202,
@@ -123,7 +135,10 @@
       "tag": 2,
       "weapons": [
          2010021
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "20203": {
       "id": 20203,
@@ -136,7 +151,10 @@
       "tag": 3,
       "weapons": [
          2010031
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "20301": {
       "id": 20301,
@@ -199,7 +217,10 @@
       "weapons": [
          3010011,
          3010012
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "30202": {
       "id": 30202,
@@ -212,7 +233,10 @@
       "tag": 2,
       "weapons": [
          3010021
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "30203": {
       "id": 30203,
@@ -225,7 +249,10 @@
       "tag": 3,
       "weapons": [
          3010031
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "30301": {
       "id": 30301,
@@ -288,7 +315,10 @@
       "weapons": [
          4010011,
          4010012
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "40202": {
       "id": 40202,
@@ -301,7 +331,10 @@
       "tag": 2,
       "weapons": [
          4010021
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "40203": {
       "id": 40203,
@@ -314,7 +347,10 @@
       "tag": 3,
       "weapons": [
          4010031
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "40301": {
       "id": 40301,
@@ -355,6 +391,16 @@
          "duration": 3
       }
    },
+   "50101": {
+      "id": 50101,
+      "name": "晶石",
+      "introduce": "晶石",
+      "asset": "DropItemGold",
+      "type": 1,
+      "count": 1,
+      "isOverlap": 1,
+      "tag": 0
+   },
    "50201": {
       "id": 50201,
       "name": "武器-双行",
@@ -367,7 +413,10 @@
       "weapons": [
          5010011,
          5010012
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "50202": {
       "id": 50202,
@@ -380,7 +429,10 @@
       "tag": 2,
       "weapons": [
          5010021
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "50203": {
       "id": 50203,
@@ -393,7 +445,10 @@
       "tag": 3,
       "weapons": [
          5010031
-      ]
+      ],
+      "applyEffect": {
+         "duration": 5
+      }
    },
    "50301": {
       "id": 50301,

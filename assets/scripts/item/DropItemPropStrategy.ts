@@ -1,20 +1,39 @@
+import ResourceManager from "../../framework/resourceManager/ResourceManager";
+import { PropCfg, WeaponCfg } from "../common/JsonConfig";
+import { TempConfig } from "../common/ResConst";
 import PlayerPlane from "../plane/PlayerPlane";
 import { TimerManager } from "../timer/TimerManager";
-
-// 新增配置接口
-interface PropConfig {
-    duration?: number;
-    value?: number;
-    multiplier?: number;
-}
+import FanWeapon from "../weapon/FanWeapon";
+import SpinWeapon from "../weapon/SpinWeapon";
+import Weapon from "../weapon/Weapon";
+import { EWeaponType } from "../weapon/WeaponConst";
 
 /**
  * 道具策略基类
  */
 export abstract class PropStrategy {
-    // 新增配置获取方法
-    abstract getConfig(): PropConfig;
+    /**掉落配置 */
+    protected config: PropCfg = null;
+
+    /**
+     * @description:应用策略
+     * @param plane
+     */
     abstract apply(plane: PlayerPlane): void;
+
+    /**
+     * @description:设置配置
+     * @param config 
+     */
+    public setConfig(config:PropCfg){
+       this.config = config;
+       this.initParam();
+    }
+
+    /**
+     * @description:初始化参数
+     */
+    initParam(){}
     
     // 使用Plane类的事件系统
     protected emitEvent<T extends any[]>(eventType: string, ...args: T) {
@@ -26,6 +45,14 @@ export abstract class PropStrategy {
  * 持续型策略基类
  */
 abstract class DurationStrategy extends PropStrategy {
+
+    /**持续时间（秒） */
+    public duration: number = 5;
+
+    initParam(): void {
+        this.duration = this.config && this.config.applyEffect && (this.config.applyEffect as any).duration || this.duration;
+    }
+
     protected applyEffect(
         plane: PlayerPlane,
         effectKey: string,
@@ -52,7 +79,7 @@ abstract class DurationStrategy extends PropStrategy {
                     this.clearEffect(plane, effectKey);
                 }
             },
-            duration * 1000
+            this.duration * 1000
         );
         plane.activeEffects.set(effectKey, timerId);
     }
@@ -67,25 +94,19 @@ abstract class DurationStrategy extends PropStrategy {
     }
 }
 
-
-// 护盾策略（持续5秒）
+/**
+ * 护盾策略
+ */
 export class ShieldStrategy extends DurationStrategy {
-     // 配置参数
-     private readonly _config = {
-        duration: 3,
-    };
 
-    getConfig() {
-        return { duration: this._config.duration };
-    }
     apply(plane: PlayerPlane) {
         this.applyEffect(
             plane,
             'shield',
-            this._config.duration,
+            this.duration,
             () => {
                 plane.isInvincible = true;
-                this.emitEvent('shield-activate', plane.node, this._config.duration);
+                this.emitEvent('shield-activate', plane.node, this.duration);
             },
             () => {
                 plane.isInvincible = false;
@@ -95,39 +116,134 @@ export class ShieldStrategy extends DurationStrategy {
     }
 }
 
-// 治疗策略（立即生效）
+/**
+ * 生命恢复策略
+ */
 export class HealStrategy extends PropStrategy {
-    private readonly _config = {
-        healAmount: 3
-    };
+    // 治疗量
+    public value: number = 1;
 
-    getConfig() {
-        return { value: this._config.healAmount };
+    initParam(): void {
+        this.value = this.config && this.config.applyEffect && (this.config.applyEffect as any).value;
     }
+
     apply(plane: PlayerPlane) {
         const prevHP = plane.hp;
-        plane.hp = Math.min(plane.hp + this._config.healAmount, plane.getMaxHP());
+        plane.hp = Math.min(plane.hp + this.value, plane.getMaxHP());
         this.emitEvent('hp-update', plane.node, prevHP, plane.hp);
     }
 }
 
-// // 攻击力提升策略（持续5秒）
-// export class AttackStrategy extends DurationStrategy {
-//     apply(plane: PlayerPlane) {
-//         const originalAtk = plane.attack;
+/**
+ * 武器替换策略
+ */
+export class WeaponSwapStrategy extends DurationStrategy {
+    /**武器id */
+    private weaponIds: number[] = [];
+
+    /**
+     * 设置武器
+     */
+    setWeaponIds(weapons: number[]): void {
+        this.weaponIds = weapons;
+    }
+
+    apply(plane: PlayerPlane) {
+        if (!this.validate(plane)) return;
         
-//         this.applyEffect(
-//             plane,
-//             'attack-buff',
-//             5,
-//             () => {
-//                 plane.attack = originalAtk * 1.5;
-//                 this.emitEvent('attack-buff-start', plane.node);
-//             },
-//             () => {
-//                 plane.attack = originalAtk;
-//                 this.emitEvent('attack-buff-end', plane.node);
-//             }
-//         );
-//     }
-// }
+        this.applyEffect(
+            plane,
+            'weapon-swap',
+            this.duration,
+            () => this.activateWeapons(plane),
+            () => this.restoreWeapons(plane)
+        );
+    }
+
+    /**
+     * @desc:有效性判断
+     * @param plane 
+     * @returns 
+     */
+    private validate(plane: PlayerPlane): boolean {
+        if (!plane || !plane.node || !plane.node.isValid) {
+            cc.warn("无效的飞机节点");
+            return false;
+        }
+        if (this.weaponIds.length === 0) {
+            cc.warn("请先调用setWeapons方法配置武器");
+            return false;
+        }
+        if (!plane.originalWeaponUUIDs) {
+            cc.error("PlayerPlane缺少originalWeaponIds属性");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @desc:激活新武器
+     * @param plane 
+     */
+    private activateWeapons(plane: PlayerPlane) {
+        console.log("激活新武器")
+        // 禁用现有武器
+        plane.node.getComponents(Weapon).forEach(weapon => {
+            weapon.enabled = false /*!plane.originalWeaponUUIDs.has(weapon.uuid)*/;
+        });
+
+        this.weaponIds.forEach(weaponId => {
+            let weaponCfg = ResourceManager.ins().getJsonById<WeaponCfg>(TempConfig.WeaponConfig, weaponId);
+            if (!weaponCfg) {
+                console.error("武器表" + weaponId + "没有配置")
+                return;
+            }
+            let comp = null;
+            switch (weaponCfg.type) {
+                case EWeaponType.Single:
+                case EWeaponType.Base:
+                    comp = plane.node.addComponent(Weapon);
+                    break;
+                case EWeaponType.Fan:
+                    comp = plane.node.addComponent(FanWeapon);
+                    break;
+                case EWeaponType.Curve:
+                    comp = plane.node.addComponent(SpinWeapon);
+                    break; 
+                default:
+                    break;
+            }
+            comp && comp.initByCfg(weaponCfg);
+        });
+
+        this.emitEvent('weapon-swap-start', plane.node, this.duration);
+    }
+
+    /**
+     * @desc:恢复原武器
+     */
+    private restoreWeapons(plane: PlayerPlane) {
+        console.log("移除新武器，启用原武器")
+        // 移除新增武器（通过ID比对）
+        plane.node.getComponents(Weapon).forEach(weapon => {
+            if (!plane.originalWeaponUUIDs.has(weapon.uuid)) {
+                // 使用 cc.tween 来实现延迟销毁，避免使用不存在的 scheduleOnce 方法
+                cc.tween(weapon.node)
+                  .delay(0)
+                  .call(() => weapon.destroy())
+                  .start();
+            }
+        });
+
+        // 启用原始武器
+        plane.node.getComponents(Weapon).forEach(weapon => {
+            if (plane.originalWeaponUUIDs.has(weapon.uuid)) {
+                weapon.enabled = true;
+            }
+        });
+
+        (plane.node.getComponent(cc.Collider) as any).itemTag = null;
+        this.emitEvent('weapon-swap-end', plane.node);
+    }
+
+}
