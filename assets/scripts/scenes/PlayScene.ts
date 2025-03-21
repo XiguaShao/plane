@@ -185,7 +185,7 @@ export default class PlayScene extends cc.Component {
         }
         /** 等级信息 */
         let chapterConfig = ResourceManager.ins().getJsonById<ChapterCfg>(TempConfig.ChapterConfig, this._currentChapter);
-        let exp1 = this._score / 100;
+        let exp1 = this._score;
         let exp2 = chapterConfig ? chapterConfig.expreward : 0;
         let allExp = exp1 + exp2;
         this.onRoleLvChange(allExp);
@@ -231,14 +231,14 @@ export default class PlayScene extends cc.Component {
     private _onEnemyPlaneDestroy(plane: Plane): void {
         if (!this.scoreLabel) return;
 
-        this._score += plane.getMaxHP() * 100;
+        this._score += 10;//plane.getMaxHP() * 100;
         this.scoreLabel.string = this._score.toString();
         const scaleBy1 = cc.scaleTo(0.05, 1.1);
         const scaleBy2 = cc.scaleTo(0.05, 1);
         this.scoreLabel.node.runAction(cc.sequence(scaleBy1, scaleBy2));
 
         /** 经验和等级变动 */
-        let exp = this._score / 100;
+        let exp = this._score;
         this.onRoleLvChange(exp);
     }
 
