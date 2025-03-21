@@ -187,8 +187,7 @@ export default class PlayScene extends cc.Component {
         let chapterConfig = ResourceManager.ins().getJsonById<ChapterCfg>(TempConfig.ChapterConfig, this._currentChapter);
         let exp1 = this._score;
         let exp2 = chapterConfig ? chapterConfig.expreward : 0;
-        let allExp = exp1 + exp2;
-        this.onRoleLvChange(allExp);
+        this.onRoleLvChange(exp2);
     }
 
     /**s

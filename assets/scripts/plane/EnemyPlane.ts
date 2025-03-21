@@ -52,7 +52,7 @@ export default class EnemyPlane extends Plane {
     getPlayerPlaneDamage(): number {
         let level = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv) || 1
         let curConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.AccountlvCfg, level);
-        return curConfig && curConfig.attack || 2;
+        return curConfig && curConfig.attack || 0;
     }
 
     @property({
