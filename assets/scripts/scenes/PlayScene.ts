@@ -187,7 +187,7 @@ export default class PlayScene extends cc.Component {
         let levelExp = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleExp) || 0;
         let totalExp = experience + levelExp;
         let nextConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.ChapterConfig, level + 1);
-        while (totalExp >= nextConfig.experience) {
+        while (nextConfig && totalExp >= nextConfig.experience) {
             totalExp -= nextConfig.experience;
             level++;
             nextConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.ChapterConfig, level + 1);

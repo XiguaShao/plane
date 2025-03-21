@@ -84,9 +84,6 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 192
-      },
-      {
         "__id__": 193
       },
       {
@@ -94,6 +91,9 @@
       },
       {
         "__id__": 195
+      },
+      {
+        "__id__": 196
       }
     ],
     "_prefab": null,
@@ -4883,6 +4883,9 @@
       },
       {
         "__id__": 140
+      },
+      {
+        "__id__": 192
       }
     ],
     "_active": true,
@@ -8903,6 +8906,64 @@
     "_id": "691Tpf1yZBbIXMlbAIVT6W"
   },
   {
+    "__type__": "cc.Node",
+    "_name": "nodeLevel",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 109
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float64Array",
+      "array": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "_groupIndex": 0,
+    "groupIndex": 0,
+    "_id": "6agRSZovdEeImS+yv6UB7O"
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -8970,6 +9031,9 @@
     },
     "nodeEffectLayer": {
       "__id__": 66
+    },
+    "nodeLevel": {
+      "__id__": 192
     },
     "chapterList": {
       "__id__": 184

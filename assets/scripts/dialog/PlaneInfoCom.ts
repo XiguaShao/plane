@@ -55,8 +55,8 @@ export default class PlaneInfoCom extends cc.Component {
     updateUI() {
         let level = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv) || 1;
         let levelExp = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleExp) || 0;
-        let nextConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.ChapterConfig, level + 1);
-        let curConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.ChapterConfig, level);
+        let nextConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.AccountlvCfg, level + 1);
+        let curConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.AccountlvCfg, level);
         /** 飞机模型展示 */
         // this.spPlane
         /** 飞机等级 */

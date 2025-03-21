@@ -3,6 +3,12 @@ export interface AccountlvCfg {
    rank:number,
    /** 提升所需经验值 */
    experience:number,
+   /** 血量 */
+   hp:number,
+   /** 攻击 */
+   attack:number,
+   /** 防御 */
+   defense:number,
 }
 
 export interface BulletCfg { 

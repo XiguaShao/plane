@@ -1,3 +1,7 @@
+import ResourceManager from '../../framework/resourceManager/ResourceManager';
+import { AccountlvCfg } from '../common/JsonConfig';
+import { TempConfig } from '../common/ResConst';
+import { PLAYER_DATE_TYPE } from '../data/GamePlayerData';
 import { TimerManager } from '../timer/TimerManager';
 import Weapon from '../weapon/Weapon';
 import Plane from './Plane';
@@ -14,10 +18,12 @@ export default class PlayerPlane extends Plane {
     public originalWeaponUUIDs = new Set<string>();
 
     start(): void {
-       super.start(); 
-       cc.game.emit('player-init', this);
-       this.backupOriginalWeapons();
+        cc.game.on('roleExpExchange', this.roleExpExchange, this);
+        cc.game.on('game-data-init', this.gameDataInit, this);
+        super.start();
+        this.backupOriginalWeapons();
     }
+
 
     /**
      * @desc:备份初始武器
@@ -30,6 +36,29 @@ export default class PlayerPlane extends Plane {
         console.log("originalWeaponUUIDs", this.originalWeaponUUIDs);
     }
 
+    /**
+     * @description:数据初始化
+     */
+    gameDataInit(){
+        let level = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv) || 1;
+        let curConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.AccountlvCfg, level);
+        this.hp = curConfig && curConfig.hp || 6;
+        this._maxHP = this.hp;
+        cc.game.emit('player-init', this);
+    }
+
+    /**
+     * @desc:升级经验
+     */
+    roleExpExchange(){
+        let level = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv) || 1;
+        let curConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.AccountlvCfg, level);
+        let prevHP = this.hp;
+        this.hp = curConfig && curConfig.hp || 6;
+        this._maxHP = this.hp;
+        cc.game.emit('hp-update', this.node,prevHP,this.hp);
+    }
+
     onCollisionEnter(other: cc.Collider): void {
         if(this.isInvincible) return;
         const bullet = other.getComponent('Bullet');
@@ -38,7 +67,7 @@ export default class PlayerPlane extends Plane {
         } else {
             const enemyPlane = other.getComponent(Plane);
             if (enemyPlane) {
-                this.hp -= enemyPlane.hp;
+                this.hp -= 2;
             }
         }
 

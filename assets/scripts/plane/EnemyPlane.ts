@@ -3,8 +3,9 @@ import Plane from './Plane';
 import UpdateRotation from '../../scripts/components/UpdateRotation';
 import ResourceManager from '../../framework/resourceManager/ResourceManager';
 import { getPrefabPath, TempConfig, TPrefab } from '../common/ResConst';
-import { PropCfg } from '../common/JsonConfig';
+import { AccountlvCfg, PropCfg } from '../common/JsonConfig';
 import DropItem from '../item/DropItem';
+import { PLAYER_DATE_TYPE } from '../data/GamePlayerData';
 
 const { ccclass, property } = cc._decorator;
 
@@ -27,7 +28,8 @@ export default class EnemyPlane extends Plane {
         if (other.node.group === 'player') {
             //碰到玩家飞机
             // this._playDestroy();
-            this.takeDamage(2);
+            
+            this.takeDamage(2 + this.getPlayerPlaneDamage());
             if (this.hp > 0) {
                 this._progressBar.node.runAction(cc.fadeOut(1));
             }
@@ -35,7 +37,7 @@ export default class EnemyPlane extends Plane {
             //碰到玩家子弹
             this._progressBar.node.opacity = 255;
             const bullet = other.getComponent('Bullet');
-            this.takeDamage(bullet.getDamageValue())
+            this.takeDamage(bullet.getDamageValue() + this.getPlayerPlaneDamage())  ;
             // this.hp -= bullet.getDamageValue();
             if (this.hp > 0) {
                 this._progressBar.node.runAction(cc.fadeOut(1));
@@ -43,6 +45,15 @@ export default class EnemyPlane extends Plane {
         }
     }
 
+    /**
+     * @description:获取自己飞机自身伤害
+     * @returns 
+     */
+    getPlayerPlaneDamage(): number {
+        let level = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv) || 1
+        let curConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.AccountlvCfg, level);
+        return curConfig && curConfig.attack || 2;
+    }
 
     @property({
         type: [cc.Float],

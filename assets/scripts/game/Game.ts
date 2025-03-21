@@ -23,7 +23,6 @@ export default class Game {
             this.ResManager = new ResourceManager();
         }
         this.inited = true;
-        cc.game.emit("game-init");
     }
 
     /**
@@ -42,12 +41,14 @@ export default class Game {
             TempConfig.PlaneConfig,
             TempConfig.BulletConfig,
             TempConfig.WeaponConfig,
-            TempConfig.DropConfig
+            TempConfig.DropConfig,
+            TempConfig.AccountlvCfg
         ];
         ResourceManager.ins().loadResourceList(
             cfgs, 
             ()=>{
                 this.gameDataInited = true;
+                cc.game.emit("game-data-init");
             }, 
         null);
     

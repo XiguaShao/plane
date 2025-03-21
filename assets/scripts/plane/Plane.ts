@@ -1,6 +1,7 @@
-import SpriteAnimate from "../bomb/SpriteAnimate";
-import { PlaneCfg } from "../common/JsonConfig";
-import Game from "../game/Game";
+import ResourceManager from "../../framework/resourceManager/ResourceManager";
+import { AccountlvCfg, PlaneCfg } from "../common/JsonConfig";
+import { TempConfig } from "../common/ResConst";
+import { PLAYER_DATE_TYPE } from "../data/GamePlayerData";
 
 const { ccclass, property } = cc._decorator;
 
@@ -44,9 +45,14 @@ export default class Plane extends cc.Component {
     /**武器 */
     private _weapons: number[] = [];
     /**最大血量 */
-    private _maxHP!: number;
+    public _maxHP!: number;
     public _progressBar!: cc.ProgressBar;
     private _lastDamageTime: number = 0; // 上次受伤时间
+
+    /**飞机等级 */
+    public level: number = 0;
+    /**飞机自身的伤害 */
+    public attack: number = 0; 
 
     /**配置表 */
     public planeCfg: PlaneCfg = null;
@@ -59,10 +65,26 @@ export default class Plane extends cc.Component {
             node.opacity = 0;
             const progressBar = node.getComponent(cc.ProgressBar);
             this._progressBar = progressBar;
-
             this._progressBar.progress = this.hp / this._maxHP;
         }
+        this.registerEvent();
     }
+
+    /**
+     * @description:注册事件
+     */
+    registerEvent(){
+    }
+
+    /**
+     * @description:初始化
+     */
+    gameInit(){}
+
+    /**
+     * @description:升级经验
+     */
+    roleExpExchange(){}
 
     /**
      * @description: 初始化配置
