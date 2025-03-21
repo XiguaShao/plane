@@ -13,6 +13,7 @@ export const TempConfig = {
     WeaponConfig: ConfigBasePath + "Weapon",
     SpawnerConfig: ConfigBasePath + "spawner",
     SkillConfig: ConfigBasePath + "skill",
+    AccountlvCfg: ConfigBasePath + "Accountlv",
 }
 
 export const PlaneBasicPath = "prefabs/plane/enemyPlanes/";

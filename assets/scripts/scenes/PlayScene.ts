@@ -1,5 +1,5 @@
 import ResourceManager from '../../framework/resourceManager/ResourceManager';
-import { ChapterCfg } from '../common/JsonConfig';
+import { AccountlvCfg, ChapterCfg } from '../common/JsonConfig';
 import { TempConfig } from '../common/ResConst';
 import { PLAYER_DATE_TYPE } from '../data/GamePlayerData';
 import GeneratorPlane from '../plane/GeneratorPlane';
@@ -46,10 +46,14 @@ export default class PlayScene extends cc.Component {
     /** 道具层 */
     @property({ type: cc.Node, tooltip: CC_DEV && "道具层" })
     nodeDropLayer: cc.Node = null;
-    
+
     /** 效果层 */
     @property({ type: cc.Node, tooltip: CC_DEV && "效果层" })
     nodeEffectLayer: cc.Node = null;
+
+    /** 玩家等级节点 */
+    @property({ type: cc.Node, tooltip: CC_DEV && "玩家等级节点" })
+    nodeLevel: cc.Node = null;
 
     private _score: number = 0;
 
@@ -78,6 +82,7 @@ export default class PlayScene extends cc.Component {
         this._currentChapter = this._unlockChapter;
         this.initUI();
         this.loadChapter();  // 加载章节配置
+        this.createLevelNode();
     }
 
     loadChapter() {
@@ -88,8 +93,8 @@ export default class PlayScene extends cc.Component {
             }
             const chapter = asset.json;
             const chapters: ChapterCfg[] = Object.values(chapter);
-            this.chapterList.width = chapters.length*210;
-            const percent = this._unlockChapter/ chapters.length;
+            this.chapterList.width = chapters.length * 210;
+            const percent = this._unlockChapter / chapters.length;
             this.chapterList.parent.parent.getComponent(cc.ScrollView).scrollToPercentHorizontal(percent)
             // 创建章节列表
             chapters.forEach((chapterCfg, index) => {
@@ -102,7 +107,7 @@ export default class PlayScene extends cc.Component {
                 const titleLabel = item.getChildByName('titleLabel').getComponent(cc.Label);
                 titleLabel.string = chapterCfg.name;
                 const bLock = chapterCfg.level > this._unlockChapter
-                item.children[3].active = bLock; 
+                item.children[3].active = bLock;
                 // 添加点击事件
                 const button = item.getComponent(cc.Button);
 
@@ -111,12 +116,12 @@ export default class PlayScene extends cc.Component {
                         element.children[1].active = false;
                     });
                     item.children[1].active = true;
-                    if(bLock) return;
+                    if (bLock) return;
                     this._currentChapter = chapterCfg.level;
                 }, this);
             });
 
-            
+
         });
     }
 
@@ -133,16 +138,26 @@ export default class PlayScene extends cc.Component {
     /**
      * @description:初始化UI
      */
-    initUI(){
-         this.nodeScore.active = false;
-         this.nodeHp.active = false;
+    initUI() {
+        this.nodeScore.active = false;
+        this.nodeHp.active = false;
+    }
+
+    /**
+     * @Method: createLevelNode
+     * @Desc: 等级信息
+     */
+    async createLevelNode() {
+        let prefab = await ResourceManager.ins().getPrefab("prefabs/dialog/planeInfoCom");
+        let nodeLv = cc.instantiate(prefab);
+        this.nodeLevel.addChild(nodeLv);
     }
 
     /**
      * 过关
      */
     private _passStage(generator: GeneratorPlane, wave: any[]): void {
-        if(App.isOver) return;
+        if (App.isOver) return;
         this.nodeResult.active = true;
         this.nodeResult.getChildByName("passLabel").getComponent(cc.Label).string = `得分：${this._score.toString()}`;
         this.nodeResult.getChildByName("spWin").active = true;
@@ -152,9 +167,33 @@ export default class PlayScene extends cc.Component {
         this.nodeResult.runAction(scale);
         // 存储数据
         const nChapter = App.Rms.getDataByType(PLAYER_DATE_TYPE.chapter);
-        if(this._currentChapter >= nChapter) {
+        if (this._currentChapter >= nChapter) {
             App.Rms.updateDataByType(PLAYER_DATE_TYPE.chapter, Math.min(nChapter + 1, this._maxChapter));
         }
+        /** 等级信息 */
+        let chapterConfig = ResourceManager.ins().getJsonById<ChapterCfg>(TempConfig.ChapterConfig, this._currentChapter);
+        let exp1 = this._score / 100;
+        let exp2 = chapterConfig ? chapterConfig.expreward : 0;
+        let allExp = exp1 + exp2;
+        this.onRoleLvChange(allExp);
+    }
+
+    /**s
+     * @Method: calculateLevel
+     * @Desc: 计算等级
+     */
+    private calculateLevel(experience: number) {
+        let level = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv) || 1;
+        let levelExp = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleExp) || 0;
+        let totalExp = experience + levelExp;
+        let nextConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.ChapterConfig, level + 1);
+        while (totalExp >= nextConfig.experience) {
+            totalExp -= nextConfig.experience;
+            level++;
+            nextConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.ChapterConfig, level + 1);
+        }
+
+        return [Math.min(99, level), totalExp];
     }
 
     /**
@@ -184,6 +223,17 @@ export default class PlayScene extends cc.Component {
         const scaleBy1 = cc.scaleTo(0.05, 1.1);
         const scaleBy2 = cc.scaleTo(0.05, 1);
         this.scoreLabel.node.runAction(cc.sequence(scaleBy1, scaleBy2));
+
+        /** 经验和等级变动 */
+        let exp = this._score / 100;
+        this.onRoleLvChange(exp);
+    }
+
+    onRoleLvChange(allExp: number) {
+        let [level, leftExp] = this.calculateLevel(allExp);
+        App.Rms.updateDataByType(PLAYER_DATE_TYPE.roleLv, level);
+        App.Rms.updateDataByType(PLAYER_DATE_TYPE.roleExp, leftExp);
+        cc.game.emit('roleExpExchange');
     }
 
     /**
@@ -208,22 +258,22 @@ export default class PlayScene extends cc.Component {
         cc.game.off('pass-stage', this._passStage, this);
         cc.game.off('player-under-attack', this._onPlayerUnderAttack, this);
         cc.game.off('enemy-plane-destroy', this._onEnemyPlaneDestroy, this);
-        
+
         // Reset score
         this._score = 0;
         if (this.scoreLabel) {
             this.scoreLabel.string = '0';
         }
-        
+
         // Restart the game
         cc.director.loadScene('PlayScene');
     }
 
-     /**
-     * @description:显示护盾
-     * @param planeNode 
-     */
-     onShowShield(planeNode: cc.Node) {
+    /**
+    * @description:显示护盾
+    * @param planeNode 
+    */
+    onShowShield(planeNode: cc.Node) {
         planeNode.getChildByName("hudun").active = true;
     }
     /**

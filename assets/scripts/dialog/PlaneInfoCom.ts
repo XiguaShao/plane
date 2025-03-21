@@ -5,6 +5,11 @@
  * @Date: 2025-03-18 14:56:02
  */
 
+import ResourceManager from "../../framework/resourceManager/ResourceManager";
+import { AccountlvCfg } from "../common/JsonConfig";
+import { TempConfig } from "../common/ResConst";
+import { PLAYER_DATE_TYPE } from "../data/GamePlayerData";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -39,29 +44,33 @@ export default class PlaneInfoCom extends cc.Component {
 
 
     protected start(): void {
-        this.initUI();
+        this.updateUI();
+        cc.game.on('roleExpExchange', this.updateUI, this);
     }
 
     /**
      * @Method: initUI
      * @Desc: 界面初始化
      */
-    initUI() {
+    updateUI() {
+        let level = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv) || 1;
+        let levelExp = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleExp) || 0;
+        let nextConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.ChapterConfig, level + 1);
+        let curConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.ChapterConfig, level);
         /** 飞机模型展示 */
         // this.spPlane
         /** 飞机等级 */
-        this.lbLevel.string = `Lv.${3}`;
+        this.lbLevel.string = `Lv.${level}`;
         /** 经验进度 */
-        this.lvProgress.progress = 80 / 100;
+        this.lvProgress.progress = levelExp / nextConfig.experience;
         /** 当前攻击 */
-        this.lbCurAtk.string = `当前攻击：${2}`;
+        this.lbCurAtk.string = `当前攻击：${curConfig.attack}`;
         /** 当前生命值 */
-        this.lbCurHp.string = `当前生命：${4}`;
+        this.lbCurHp.string = `当前生命：${curConfig.hp}`;
         /** 下级攻击 */
-        this.lbNextAtk.string = `下级攻击：${4}`;
+        this.lbNextAtk.string = `下级攻击：${nextConfig.attack}`;
         /** 下级生命值 */
-        this.lbNextHp.string = `下级生命：${6}`;
-
+        this.lbNextHp.string = `下级生命：${nextConfig.hp}`;
     }
 
     /**

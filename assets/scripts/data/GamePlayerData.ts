@@ -7,7 +7,9 @@ export enum PLAYER_DATE_TYPE {
     money,
     chapter,
     round,
-    roundData
+    roundData,
+    roleLv,
+    roleExp
 }
 
 /** 数据变量名 */
