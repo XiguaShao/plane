@@ -18,6 +18,8 @@ export const PlayerDataNames: {[key: number] : string} = {
     [PLAYER_DATE_TYPE.chapter] : "_chapter",
     [PLAYER_DATE_TYPE.round] : "_round",
     [PLAYER_DATE_TYPE.roundData] : "_roundData",
+    [PLAYER_DATE_TYPE.roleLv] : "_roleLv",
+    [PLAYER_DATE_TYPE.roleExp] : "_roleExp",
 }
 
 /**
@@ -32,6 +34,10 @@ export class PlayerData {
     public _round: number = 1;
     // 关卡数据
     public _roundData: any = {};
+    //等级
+    public _roleLv: number = 0;
+    //经验
+    public _roleExp: number = 0;
 }
 
 /**
