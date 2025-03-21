@@ -230,8 +230,9 @@ export default class PlayScene extends cc.Component {
 
     private _onEnemyPlaneDestroy(plane: Plane): void {
         if (!this.scoreLabel) return;
-
+       
         this._score += 10;//plane.getMaxHP() * 100;
+        console.log("分数", this._score)
         this.scoreLabel.string = this._score.toString();
         const scaleBy1 = cc.scaleTo(0.05, 1.1);
         const scaleBy2 = cc.scaleTo(0.05, 1);
@@ -239,7 +240,8 @@ export default class PlayScene extends cc.Component {
 
         /** 经验和等级变动 */
         let exp = this._score;
-        this.onRoleLvChange(exp);
+        this.onRoleLvChange(10);
+        console.log("等级", App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv))
     }
 
     onRoleLvChange(allExp: number) {
