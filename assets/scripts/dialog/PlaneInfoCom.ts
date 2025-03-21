@@ -17,6 +17,9 @@ export default class PlaneInfoCom extends cc.Component {
     /** 等级按钮 */
     // @property({ type: cc.Node, tooltip: CC_DEV && "等级按钮" })
     // nodeBtnLvL: cc.Node = null;
+    /** 玩家等级 */
+    @property({ type: cc.Label, tooltip: CC_DEV && "玩家等级" })
+    lbBtnLevel: cc.Label = null;
     /** 玩家飞机属性节点 */
     @property({ type: cc.Node, tooltip: CC_DEV && "玩家飞机属性节点" })
     nodeDetail: cc.Node = null;
@@ -56,11 +59,13 @@ export default class PlaneInfoCom extends cc.Component {
         let level = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleLv) || 1;
         let levelExp = App.Rms.getDataByType(PLAYER_DATE_TYPE.roleExp) || 0;
         let nextConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.AccountlvCfg, level + 1);
+        if (!nextConfig) return;
         let curConfig = ResourceManager.ins().getJsonById<AccountlvCfg>(TempConfig.AccountlvCfg, level);
         /** 飞机模型展示 */
         // this.spPlane
         /** 飞机等级 */
         this.lbLevel.string = `Lv.${level}`;
+        this.lbBtnLevel.string = `Lv.${level}`;
         /** 经验进度 */
         this.lvProgress.progress = levelExp / nextConfig.experience;
         /** 当前攻击 */
