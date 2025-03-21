@@ -4,34 +4,34 @@
       "level": 1,
       "name": "第一关",
       "introduce": "ch.1介绍",
-      "expreward": 1000
+      "expreward": 500
    },
    "2": {
       "id": 2,
       "level": 2,
       "name": "第二关",
       "introduce": "ch.2介绍",
-      "expreward": 2000
+      "expreward": 1000
    },
    "3": {
       "id": 3,
       "level": 3,
       "name": "第三关",
       "introduce": "ch.3介绍",
-      "expreward": 3000
+      "expreward": 1500
    },
    "4": {
       "id": 4,
       "level": 4,
       "name": "第四关",
       "introduce": "ch.4介绍",
-      "expreward": 4000
+      "expreward": 2000
    },
    "5": {
       "id": 5,
       "level": 5,
       "name": "第五关",
       "introduce": "ch.5介绍",
-      "expreward": 5000
+      "expreward": 2500
    }
 }

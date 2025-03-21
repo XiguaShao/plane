@@ -1,398 +1,695 @@
 {
    "1": {
       "rank": 1,
-      "experience": 100
+      "experience": 800,
+      "hp": 6,
+      "attack": 0,
+      "defense": 0
    },
    "2": {
       "rank": 2,
-      "experience": 300
+      "experience": 1200,
+      "hp": 7,
+      "attack": 1,
+      "defense": 0
    },
    "3": {
       "rank": 3,
-      "experience": 600
+      "experience": 1500,
+      "hp": 8,
+      "attack": 1,
+      "defense": 0
    },
    "4": {
       "rank": 4,
-      "experience": 1000
+      "experience": 2000,
+      "hp": 9,
+      "attack": 2,
+      "defense": 0
    },
    "5": {
       "rank": 5,
-      "experience": 2000
+      "experience": 2000,
+      "hp": 10,
+      "attack": 2,
+      "defense": 0
    },
    "6": {
       "rank": 6,
-      "experience": 5000
+      "experience": 2000,
+      "hp": 11,
+      "attack": 3,
+      "defense": 0
    },
    "7": {
       "rank": 7,
-      "experience": 5400
+      "experience": 2000,
+      "hp": 12,
+      "attack": 3,
+      "defense": 0
    },
    "8": {
       "rank": 8,
-      "experience": 6300
+      "experience": 2000,
+      "hp": 13,
+      "attack": 4,
+      "defense": 0
    },
    "9": {
       "rank": 9,
-      "experience": 7100
+      "experience": 2000,
+      "hp": 14,
+      "attack": 4,
+      "defense": 0
    },
    "10": {
       "rank": 10,
-      "experience": 8000
+      "experience": 2000,
+      "hp": 15,
+      "attack": 5,
+      "defense": 0
    },
    "11": {
       "rank": 11,
-      "experience": 8800
+      "experience": 2000,
+      "hp": 16,
+      "attack": 5,
+      "defense": 0
    },
    "12": {
       "rank": 12,
-      "experience": 9700
+      "experience": 2000,
+      "hp": 17,
+      "attack": 5,
+      "defense": 0
    },
    "13": {
       "rank": 13,
-      "experience": 10500
+      "experience": 2000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "14": {
       "rank": 14,
-      "experience": 11400
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "15": {
       "rank": 15,
-      "experience": 12300
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "16": {
       "rank": 16,
-      "experience": 13100
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "17": {
       "rank": 17,
-      "experience": 14000
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "18": {
       "rank": 18,
-      "experience": 14800
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "19": {
       "rank": 19,
-      "experience": 15700
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "20": {
       "rank": 20,
-      "experience": 16500
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "21": {
       "rank": 21,
-      "experience": 17400
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "22": {
       "rank": 22,
-      "experience": 18300
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "23": {
       "rank": 23,
-      "experience": 19100
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "24": {
       "rank": 24,
-      "experience": 20000
+      "experience": 10000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "25": {
       "rank": 25,
-      "experience": 20800
+      "experience": 10400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "26": {
       "rank": 26,
-      "experience": 21700
+      "experience": 21700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "27": {
       "rank": 27,
-      "experience": 22500
+      "experience": 22500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "28": {
       "rank": 28,
-      "experience": 23400
+      "experience": 23400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "29": {
       "rank": 29,
-      "experience": 24300
+      "experience": 24300,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "30": {
       "rank": 30,
-      "experience": 25100
+      "experience": 25100,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "31": {
       "rank": 31,
-      "experience": 26000
+      "experience": 26000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "32": {
       "rank": 32,
-      "experience": 26800
+      "experience": 26800,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "33": {
       "rank": 33,
-      "experience": 27700
+      "experience": 27700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "34": {
       "rank": 34,
-      "experience": 28500
+      "experience": 28500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "35": {
       "rank": 35,
-      "experience": 29400
+      "experience": 29400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "36": {
       "rank": 36,
-      "experience": 30300
+      "experience": 30300,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "37": {
       "rank": 37,
-      "experience": 31100
+      "experience": 31100,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "38": {
       "rank": 38,
-      "experience": 32000
+      "experience": 32000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "39": {
       "rank": 39,
-      "experience": 32800
+      "experience": 32800,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "40": {
       "rank": 40,
-      "experience": 33700
+      "experience": 33700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "41": {
       "rank": 41,
-      "experience": 34500
+      "experience": 34500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "42": {
       "rank": 42,
-      "experience": 35400
+      "experience": 35400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "43": {
       "rank": 43,
-      "experience": 36300
+      "experience": 36300,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "44": {
       "rank": 44,
-      "experience": 37100
+      "experience": 37100,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "45": {
       "rank": 45,
-      "experience": 38000
+      "experience": 38000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "46": {
       "rank": 46,
-      "experience": 38800
+      "experience": 38800,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "47": {
       "rank": 47,
-      "experience": 39700
+      "experience": 39700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "48": {
       "rank": 48,
-      "experience": 40500
+      "experience": 40500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "49": {
       "rank": 49,
-      "experience": 41400
+      "experience": 41400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "50": {
       "rank": 50,
-      "experience": 42300
+      "experience": 42300,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "51": {
       "rank": 51,
-      "experience": 43100
+      "experience": 43100,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "52": {
       "rank": 52,
-      "experience": 44000
+      "experience": 44000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "53": {
       "rank": 53,
-      "experience": 44800
+      "experience": 44800,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "54": {
       "rank": 54,
-      "experience": 45700
+      "experience": 45700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "55": {
       "rank": 55,
-      "experience": 46500
+      "experience": 46500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "56": {
       "rank": 56,
-      "experience": 47400
+      "experience": 47400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "57": {
       "rank": 57,
-      "experience": 48300
+      "experience": 48300,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "58": {
       "rank": 58,
-      "experience": 49100
+      "experience": 49100,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "59": {
       "rank": 59,
-      "experience": 50000
+      "experience": 50000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "60": {
       "rank": 60,
-      "experience": 50800
+      "experience": 50800,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "61": {
       "rank": 61,
-      "experience": 51700
+      "experience": 51700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "62": {
       "rank": 62,
-      "experience": 52500
+      "experience": 52500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "63": {
       "rank": 63,
-      "experience": 53400
+      "experience": 53400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "64": {
       "rank": 64,
-      "experience": 54300
+      "experience": 54300,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "65": {
       "rank": 65,
-      "experience": 55100
+      "experience": 55100,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "66": {
       "rank": 66,
-      "experience": 56000
+      "experience": 56000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "67": {
       "rank": 67,
-      "experience": 56800
+      "experience": 56800,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "68": {
       "rank": 68,
-      "experience": 57700
+      "experience": 57700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "69": {
       "rank": 69,
-      "experience": 58500
+      "experience": 58500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "70": {
       "rank": 70,
-      "experience": 59400
+      "experience": 59400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "71": {
       "rank": 71,
-      "experience": 60300
+      "experience": 60300,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "72": {
       "rank": 72,
-      "experience": 61100
+      "experience": 61100,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "73": {
       "rank": 73,
-      "experience": 62000
+      "experience": 62000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "74": {
       "rank": 74,
-      "experience": 62800
+      "experience": 62800,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "75": {
       "rank": 75,
-      "experience": 63700
+      "experience": 63700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "76": {
       "rank": 76,
-      "experience": 64500
+      "experience": 64500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "77": {
       "rank": 77,
-      "experience": 65400
+      "experience": 65400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "78": {
       "rank": 78,
-      "experience": 66300
+      "experience": 66300,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "79": {
       "rank": 79,
-      "experience": 67100
+      "experience": 67100,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "80": {
       "rank": 80,
-      "experience": 68000
+      "experience": 68000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "81": {
       "rank": 81,
-      "experience": 68800
+      "experience": 68800,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "82": {
       "rank": 82,
-      "experience": 69700
+      "experience": 69700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "83": {
       "rank": 83,
-      "experience": 70500
+      "experience": 70500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "84": {
       "rank": 84,
-      "experience": 71400
+      "experience": 71400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "85": {
       "rank": 85,
-      "experience": 72300
+      "experience": 72300,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "86": {
       "rank": 86,
-      "experience": 73100
+      "experience": 73100,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "87": {
       "rank": 87,
-      "experience": 74000
+      "experience": 74000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "88": {
       "rank": 88,
-      "experience": 74800
+      "experience": 74800,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "89": {
       "rank": 89,
-      "experience": 75700
+      "experience": 75700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "90": {
       "rank": 90,
-      "experience": 76500
+      "experience": 76500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "91": {
       "rank": 91,
-      "experience": 77400
+      "experience": 77400,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "92": {
       "rank": 92,
-      "experience": 78300
+      "experience": 78300,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "93": {
       "rank": 93,
-      "experience": 79100
+      "experience": 79100,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "94": {
       "rank": 94,
-      "experience": 80000
+      "experience": 80000,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "95": {
       "rank": 95,
-      "experience": 80800
+      "experience": 80800,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "96": {
       "rank": 96,
-      "experience": 81700
+      "experience": 81700,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "97": {
       "rank": 97,
-      "experience": 82500
+      "experience": 82500,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "98": {
       "rank": 98,
-      "experience": 83350
+      "experience": 83350,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    },
    "99": {
       "rank": 99,
-      "experience": 84200
+      "experience": 84200,
+      "hp": 18,
+      "attack": 5,
+      "defense": 0
    }
 }

@@ -100,7 +100,7 @@
       "name": "精英守卫者",
       "introduce": "精英守卫者",
       "asset": "EnemyPlane_2009",
-      "hp": 4,
+      "hp": 6,
       "defense": 0,
       "dropItems": [
          10101,
@@ -124,7 +124,7 @@
       "name": "精英护卫者",
       "introduce": "精英护卫者",
       "asset": "EnemyPlane_2010",
-      "hp": 4,
+      "hp": 6,
       "defense": 0,
       "dropItems": [
          10101,
@@ -148,7 +148,7 @@
       "name": "超级掠夺者",
       "introduce": "超级掠夺者",
       "asset": "EnemyPlane_2011",
-      "hp": 4,
+      "hp": 6,
       "defense": 0,
       "dropItems": [
          10101,
@@ -172,7 +172,7 @@
       "name": "超级守卫者",
       "introduce": "超级守卫者",
       "asset": "EnemyPlane_2012",
-      "hp": 4,
+      "hp": 6,
       "defense": 0,
       "dropItems": [
          10101,
@@ -196,7 +196,7 @@
       "name": "超级护卫者",
       "introduce": "超级护卫者",
       "asset": "EnemyPlane_2013",
-      "hp": 4,
+      "hp": 6,
       "defense": 0,
       "dropItems": [
          10101,
@@ -220,7 +220,7 @@
       "name": "激光堡垒朝右",
       "introduce": "激光堡垒朝右",
       "asset": "EnemyPlane_2017",
-      "hp": 15,
+      "hp": 20,
       "defense": 0,
       "dropItems": [
          10101,
@@ -244,7 +244,7 @@
       "name": "激光堡垒朝左",
       "introduce": "激光堡垒朝左",
       "asset": "EnemyPlane_2018",
-      "hp": 15,
+      "hp": 20,
       "defense": 0,
       "dropItems": [
          10101,
@@ -402,7 +402,7 @@
       "name": "精英守卫者",
       "introduce": "精英守卫者",
       "asset": "EnemyPlane_2009",
-      "hp": 8,
+      "hp": 10,
       "defense": 0,
       "dropItems": [
          20101,
@@ -426,7 +426,7 @@
       "name": "精英护卫者",
       "introduce": "精英护卫者",
       "asset": "EnemyPlane_2010",
-      "hp": 8,
+      "hp": 10,
       "defense": 0,
       "dropItems": [
          20101,
@@ -450,7 +450,7 @@
       "name": "超级掠夺者",
       "introduce": "超级掠夺者",
       "asset": "EnemyPlane_2011",
-      "hp": 8,
+      "hp": 10,
       "defense": 0,
       "dropItems": [
          20101,
@@ -474,7 +474,7 @@
       "name": "超级守卫者",
       "introduce": "超级守卫者",
       "asset": "EnemyPlane_2012",
-      "hp": 8,
+      "hp": 10,
       "defense": 0,
       "dropItems": [
          20101,
@@ -498,7 +498,7 @@
       "name": "超级护卫者",
       "introduce": "超级护卫者",
       "asset": "EnemyPlane_2013",
-      "hp": 8,
+      "hp": 10,
       "defense": 0,
       "dropItems": [
          20101,
@@ -522,7 +522,7 @@
       "name": "激光堡垒朝右",
       "introduce": "激光堡垒朝右",
       "asset": "EnemyPlane_2017",
-      "hp": 18,
+      "hp": 30,
       "defense": 0,
       "dropItems": [
          20101,
@@ -546,7 +546,7 @@
       "name": "激光堡垒朝左",
       "introduce": "激光堡垒朝左",
       "asset": "EnemyPlane_2018",
-      "hp": 18,
+      "hp": 30,
       "defense": 0,
       "dropItems": [
          20101,
@@ -608,7 +608,7 @@
       "name": "普通掠夺者",
       "introduce": "普通掠夺者",
       "asset": "EnemyPlane_2001",
-      "hp": 11,
+      "hp": 12,
       "defense": 0,
       "dropItems": [
          30101,
@@ -656,7 +656,7 @@
       "name": "普通护卫者",
       "introduce": "普通护卫者",
       "asset": "EnemyPlane_2007",
-      "hp": 13,
+      "hp": 12,
       "defense": 0,
       "dropItems": [
          30101,
@@ -680,7 +680,7 @@
       "name": "精英掠夺者",
       "introduce": "精英掠夺者",
       "asset": "EnemyPlane_2008",
-      "hp": 14,
+      "hp": 12,
       "defense": 0,
       "dropItems": [
          30101,
@@ -704,7 +704,7 @@
       "name": "精英守卫者",
       "introduce": "精英守卫者",
       "asset": "EnemyPlane_2009",
-      "hp": 15,
+      "hp": 14,
       "defense": 0,
       "dropItems": [
          30101,
@@ -728,7 +728,7 @@
       "name": "精英护卫者",
       "introduce": "精英护卫者",
       "asset": "EnemyPlane_2010",
-      "hp": 16,
+      "hp": 14,
       "defense": 0,
       "dropItems": [
          30101,
@@ -752,7 +752,7 @@
       "name": "超级掠夺者",
       "introduce": "超级掠夺者",
       "asset": "EnemyPlane_2011",
-      "hp": 17,
+      "hp": 14,
       "defense": 0,
       "dropItems": [
          30101,
@@ -776,7 +776,7 @@
       "name": "超级守卫者",
       "introduce": "超级守卫者",
       "asset": "EnemyPlane_2012",
-      "hp": 18,
+      "hp": 14,
       "defense": 0,
       "dropItems": [
          30101,
@@ -800,7 +800,7 @@
       "name": "超级护卫者",
       "introduce": "超级护卫者",
       "asset": "EnemyPlane_2013",
-      "hp": 19,
+      "hp": 14,
       "defense": 0,
       "dropItems": [
          30101,
@@ -824,7 +824,7 @@
       "name": "激光堡垒朝右",
       "introduce": "激光堡垒朝右",
       "asset": "EnemyPlane_2017",
-      "hp": 21,
+      "hp": 40,
       "defense": 0,
       "dropItems": [
          30101,
@@ -848,7 +848,7 @@
       "name": "激光堡垒朝左",
       "introduce": "激光堡垒朝左",
       "asset": "EnemyPlane_2018",
-      "hp": 21,
+      "hp": 40,
       "defense": 0,
       "dropItems": [
          30101,
@@ -910,7 +910,7 @@
       "name": "普通掠夺者",
       "introduce": "普通掠夺者",
       "asset": "EnemyPlane_2001",
-      "hp": 14,
+      "hp": 16,
       "defense": 0,
       "dropItems": [
          40101,
@@ -934,7 +934,7 @@
       "name": "普通守卫者",
       "introduce": "普通守卫者",
       "asset": "EnemyPlane_2006",
-      "hp": 15,
+      "hp": 16,
       "defense": 0,
       "dropItems": [
          40101,
@@ -982,7 +982,7 @@
       "name": "精英掠夺者",
       "introduce": "精英掠夺者",
       "asset": "EnemyPlane_2008",
-      "hp": 17,
+      "hp": 16,
       "defense": 0,
       "dropItems": [
          40101,
@@ -1030,7 +1030,7 @@
       "name": "精英护卫者",
       "introduce": "精英护卫者",
       "asset": "EnemyPlane_2010",
-      "hp": 19,
+      "hp": 18,
       "defense": 0,
       "dropItems": [
          40101,
@@ -1054,7 +1054,7 @@
       "name": "超级掠夺者",
       "introduce": "超级掠夺者",
       "asset": "EnemyPlane_2011",
-      "hp": 20,
+      "hp": 18,
       "defense": 0,
       "dropItems": [
          40101,
@@ -1078,7 +1078,7 @@
       "name": "超级守卫者",
       "introduce": "超级守卫者",
       "asset": "EnemyPlane_2012",
-      "hp": 21,
+      "hp": 18,
       "defense": 0,
       "dropItems": [
          40101,
@@ -1102,7 +1102,7 @@
       "name": "超级护卫者",
       "introduce": "超级护卫者",
       "asset": "EnemyPlane_2013",
-      "hp": 22,
+      "hp": 18,
       "defense": 0,
       "dropItems": [
          40101,
@@ -1126,7 +1126,7 @@
       "name": "激光堡垒朝右",
       "introduce": "激光堡垒朝右",
       "asset": "EnemyPlane_2017",
-      "hp": 24,
+      "hp": 60,
       "defense": 0,
       "dropItems": [
          40101,
@@ -1150,7 +1150,7 @@
       "name": "激光堡垒朝左",
       "introduce": "激光堡垒朝左",
       "asset": "EnemyPlane_2018",
-      "hp": 24,
+      "hp": 60,
       "defense": 0,
       "dropItems": [
          40101,
@@ -1212,7 +1212,7 @@
       "name": "普通掠夺者",
       "introduce": "普通掠夺者",
       "asset": "EnemyPlane_2001",
-      "hp": 17,
+      "hp": 20,
       "defense": 0,
       "dropItems": [
          50101,
@@ -1236,7 +1236,7 @@
       "name": "普通守卫者",
       "introduce": "普通守卫者",
       "asset": "EnemyPlane_2006",
-      "hp": 18,
+      "hp": 20,
       "defense": 0,
       "dropItems": [
          50101,
@@ -1260,7 +1260,7 @@
       "name": "普通护卫者",
       "introduce": "普通护卫者",
       "asset": "EnemyPlane_2007",
-      "hp": 19,
+      "hp": 20,
       "defense": 0,
       "dropItems": [
          50101,
@@ -1308,7 +1308,7 @@
       "name": "精英守卫者",
       "introduce": "精英守卫者",
       "asset": "EnemyPlane_2009",
-      "hp": 21,
+      "hp": 22,
       "defense": 0,
       "dropItems": [
          50101,
@@ -1356,7 +1356,7 @@
       "name": "超级掠夺者",
       "introduce": "超级掠夺者",
       "asset": "EnemyPlane_2011",
-      "hp": 23,
+      "hp": 22,
       "defense": 0,
       "dropItems": [
          50101,
@@ -1380,7 +1380,7 @@
       "name": "超级守卫者",
       "introduce": "超级守卫者",
       "asset": "EnemyPlane_2012",
-      "hp": 24,
+      "hp": 22,
       "defense": 0,
       "dropItems": [
          50101,
@@ -1404,7 +1404,7 @@
       "name": "超级护卫者",
       "introduce": "超级护卫者",
       "asset": "EnemyPlane_2013",
-      "hp": 25,
+      "hp": 22,
       "defense": 0,
       "dropItems": [
          50101,
@@ -1428,7 +1428,7 @@
       "name": "激光堡垒朝右",
       "introduce": "激光堡垒朝右",
       "asset": "EnemyPlane_2017",
-      "hp": 27,
+      "hp": 80,
       "defense": 0,
       "dropItems": [
          50101,
@@ -1452,7 +1452,7 @@
       "name": "激光堡垒朝左",
       "introduce": "激光堡垒朝左",
       "asset": "EnemyPlane_2018",
-      "hp": 27,
+      "hp": 80,
       "defense": 0,
       "dropItems": [
          50101,

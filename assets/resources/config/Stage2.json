@@ -24,6 +24,36 @@
          4
       ]
    },
+   "Wave3.1": {
+      "id": "Wave3.1",
+      "subwaves": [
+         2013,
+         1
+      ]
+   },
+   "Wave3.2": {
+      "id": "Wave3.2",
+      "subwaves": [
+         2014,
+         2001,
+         1
+      ]
+   },
+   "Wave3.3": {
+      "id": "Wave3.3",
+      "subwaves": [
+         2015,
+         1
+      ]
+   },
+   "Wave3.4": {
+      "id": "Wave3.4",
+      "subwaves": [
+         2016,
+         2002,
+         1
+      ]
+   },
    "Wave4": {
       "id": "Wave4",
       "subwaves": [
@@ -62,6 +92,36 @@
          2108,
          2109,
          2
+      ]
+   },
+   "Wave8.1": {
+      "id": "Wave8.1",
+      "subwaves": [
+         2018,
+         1
+      ]
+   },
+   "Wave8.2": {
+      "id": "Wave8.2",
+      "subwaves": [
+         2019,
+         2003,
+         1
+      ]
+   },
+   "Wave8.3": {
+      "id": "Wave8.3",
+      "subwaves": [
+         2020,
+         1
+      ]
+   },
+   "Wave8.4": {
+      "id": "Wave8.4",
+      "subwaves": [
+         2021,
+         2004,
+         1
       ]
    },
    "Wave9": {

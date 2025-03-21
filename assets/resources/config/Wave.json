@@ -589,6 +589,87 @@
       ],
       "speed": 200
    },
+   "2013": {
+      "id": 2013,
+      "type": "spawn",
+      "planeID": 20112,
+      "indexs": [
+         1
+      ],
+      "speed": 500
+   },
+   "2014": {
+      "id": 2014,
+      "type": "spawn",
+      "planeID": 20112,
+      "indexs": [
+         2
+      ],
+      "speed": 500
+   },
+   "2015": {
+      "id": 2015,
+      "type": "spawn",
+      "planeID": 20112,
+      "indexs": [
+         3
+      ],
+      "speed": 500
+   },
+   "2016": {
+      "id": 2016,
+      "type": "spawn",
+      "planeID": 20112,
+      "indexs": [
+         4
+      ],
+      "speed": 500
+   },
+   "2017": {
+      "id": 2017,
+      "type": "spawn",
+      "planeID": 20112,
+      "indexs": [
+         5
+      ],
+      "speed": 500
+   },
+   "2018": {
+      "id": 2018,
+      "type": "spawn",
+      "planeID": 20112,
+      "indexs": [
+         6
+      ],
+      "speed": 500
+   },
+   "2019": {
+      "id": 2019,
+      "type": "spawn",
+      "planeID": 20112,
+      "indexs": [
+         7
+      ],
+      "speed": 500
+   },
+   "2020": {
+      "id": 2020,
+      "type": "spawn",
+      "planeID": 20112,
+      "indexs": [
+         8
+      ],
+      "speed": 500
+   },
+   "2021": {
+      "id": 2021,
+      "type": "spawn",
+      "planeID": 20112,
+      "indexs": [
+         9
+      ],
+      "speed": 500
+   },
    "2101": {
       "id": 2101,
       "type": "sequence",
@@ -906,6 +987,87 @@
          9
       ],
       "speed": 200
+   },
+   "3013": {
+      "id": 3013,
+      "type": "spawn",
+      "planeID": 30112,
+      "indexs": [
+         1
+      ],
+      "speed": 500
+   },
+   "3014": {
+      "id": 3014,
+      "type": "spawn",
+      "planeID": 30112,
+      "indexs": [
+         2
+      ],
+      "speed": 500
+   },
+   "3015": {
+      "id": 3015,
+      "type": "spawn",
+      "planeID": 30112,
+      "indexs": [
+         3
+      ],
+      "speed": 500
+   },
+   "3016": {
+      "id": 3016,
+      "type": "spawn",
+      "planeID": 30112,
+      "indexs": [
+         4
+      ],
+      "speed": 500
+   },
+   "3017": {
+      "id": 3017,
+      "type": "spawn",
+      "planeID": 30112,
+      "indexs": [
+         5
+      ],
+      "speed": 500
+   },
+   "3018": {
+      "id": 3018,
+      "type": "spawn",
+      "planeID": 30112,
+      "indexs": [
+         6
+      ],
+      "speed": 500
+   },
+   "3019": {
+      "id": 3019,
+      "type": "spawn",
+      "planeID": 30112,
+      "indexs": [
+         7
+      ],
+      "speed": 500
+   },
+   "3020": {
+      "id": 3020,
+      "type": "spawn",
+      "planeID": 30112,
+      "indexs": [
+         8
+      ],
+      "speed": 500
+   },
+   "3021": {
+      "id": 3021,
+      "type": "spawn",
+      "planeID": 30112,
+      "indexs": [
+         9
+      ],
+      "speed": 500
    },
    "3101": {
       "id": 3101,
@@ -1225,6 +1387,87 @@
       ],
       "speed": 200
    },
+   "4013": {
+      "id": 4013,
+      "type": "spawn",
+      "planeID": 40112,
+      "indexs": [
+         1
+      ],
+      "speed": 500
+   },
+   "4014": {
+      "id": 4014,
+      "type": "spawn",
+      "planeID": 40112,
+      "indexs": [
+         2
+      ],
+      "speed": 500
+   },
+   "4015": {
+      "id": 4015,
+      "type": "spawn",
+      "planeID": 40112,
+      "indexs": [
+         3
+      ],
+      "speed": 500
+   },
+   "4016": {
+      "id": 4016,
+      "type": "spawn",
+      "planeID": 40112,
+      "indexs": [
+         4
+      ],
+      "speed": 500
+   },
+   "4017": {
+      "id": 4017,
+      "type": "spawn",
+      "planeID": 40112,
+      "indexs": [
+         5
+      ],
+      "speed": 500
+   },
+   "4018": {
+      "id": 4018,
+      "type": "spawn",
+      "planeID": 40112,
+      "indexs": [
+         6
+      ],
+      "speed": 500
+   },
+   "4019": {
+      "id": 4019,
+      "type": "spawn",
+      "planeID": 40112,
+      "indexs": [
+         7
+      ],
+      "speed": 500
+   },
+   "4020": {
+      "id": 4020,
+      "type": "spawn",
+      "planeID": 40112,
+      "indexs": [
+         8
+      ],
+      "speed": 500
+   },
+   "4021": {
+      "id": 4021,
+      "type": "spawn",
+      "planeID": 40112,
+      "indexs": [
+         9
+      ],
+      "speed": 500
+   },
    "4101": {
       "id": 4101,
       "type": "sequence",
@@ -1542,6 +1785,87 @@
          9
       ],
       "speed": 200
+   },
+   "5013": {
+      "id": 5013,
+      "type": "spawn",
+      "planeID": 50112,
+      "indexs": [
+         1
+      ],
+      "speed": 500
+   },
+   "5014": {
+      "id": 5014,
+      "type": "spawn",
+      "planeID": 50112,
+      "indexs": [
+         2
+      ],
+      "speed": 500
+   },
+   "5015": {
+      "id": 5015,
+      "type": "spawn",
+      "planeID": 50112,
+      "indexs": [
+         3
+      ],
+      "speed": 500
+   },
+   "5016": {
+      "id": 5016,
+      "type": "spawn",
+      "planeID": 50112,
+      "indexs": [
+         4
+      ],
+      "speed": 500
+   },
+   "5017": {
+      "id": 5017,
+      "type": "spawn",
+      "planeID": 50112,
+      "indexs": [
+         5
+      ],
+      "speed": 500
+   },
+   "5018": {
+      "id": 5018,
+      "type": "spawn",
+      "planeID": 50112,
+      "indexs": [
+         6
+      ],
+      "speed": 500
+   },
+   "5019": {
+      "id": 5019,
+      "type": "spawn",
+      "planeID": 50112,
+      "indexs": [
+         7
+      ],
+      "speed": 500
+   },
+   "5020": {
+      "id": 5020,
+      "type": "spawn",
+      "planeID": 50112,
+      "indexs": [
+         8
+      ],
+      "speed": 500
+   },
+   "5021": {
+      "id": 5021,
+      "type": "spawn",
+      "planeID": 50112,
+      "indexs": [
+         9
+      ],
+      "speed": 500
    },
    "5101": {
       "id": 5101,
